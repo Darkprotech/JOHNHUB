@@ -3,15 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guhan Grade 7 Study Hub</title>
+<title>Grade 7 Mixed Subject Examination</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
 :root{
     --bg:#0b1020;
     --panel:#121a2d;
@@ -20,307 +14,286 @@
     --muted:#aab6d0;
     --border:#2b3855;
     --accent:#6ea8fe;
-    --accent2:#8b7cff;
     --green:#48d597;
     --yellow:#ffd166;
     --red:#ff6b6b;
 }
 
+*{
+    box-sizing:border-box;
+}
+
 body{
+    margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(135deg,#080c18,#101a31 50%,#0b1020);
+    background:var(--bg);
     color:var(--text);
-    min-height:100vh;
-    line-height:1.7;
+    line-height:1.6;
 }
 
 header{
-    padding:45px 20px;
-    text-align:center;
-    background:
-        radial-gradient(circle at top,#263d70 0%,transparent 55%),
-        linear-gradient(135deg,#111a31,#080c18);
+    background:linear-gradient(135deg,#18233b,#10182b);
     border-bottom:1px solid var(--border);
+    padding:35px 20px;
+    text-align:center;
 }
 
 header h1{
-    font-size:clamp(2.2rem,6vw,4.5rem);
-    margin-bottom:10px;
+    margin:0;
+    font-size:32px;
 }
 
 header p{
     color:var(--muted);
-    font-size:1.1rem;
+    margin:8px 0 0;
 }
 
-.search-wrap{
-    max-width:900px;
-    margin:25px auto 0;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 16px 60px;
 }
 
-#search{
-    width:100%;
-    padding:16px 20px;
-    border-radius:14px;
-    border:1px solid var(--border);
-    background:#0a1020;
-    color:white;
-    font-size:1rem;
-    outline:none;
-}
-
-#search:focus{
-    border-color:var(--accent);
-}
-
-nav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    padding:12px;
-    background:rgba(8,12,24,.94);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border);
-}
-
-nav button{
-    flex:0 0 auto;
-    border:1px solid var(--border);
+.info{
     background:var(--panel);
-    color:var(--text);
-    padding:11px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-nav button:hover,
-nav button.active{
-    background:var(--accent);
-    color:#08101f;
-    border-color:var(--accent);
-}
-
-main{
-    width:min(1200px,94%);
-    margin:30px auto 80px;
-}
-
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
-
-.hero{
-    background:linear-gradient(135deg,#18294a,#131d35);
     border:1px solid var(--border);
-    border-radius:22px;
-    padding:30px;
+    border-radius:14px;
+    padding:20px;
     margin-bottom:25px;
 }
 
-.hero h2{
-    font-size:2rem;
-    margin-bottom:8px;
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.hero p{
+.info input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:#0d1527;
+    color:white;
+    font-size:16px;
+}
+
+.section{
+    margin-top:35px;
+}
+
+.section-title{
+    background:linear-gradient(135deg,#1d3155,#16243e);
+    border:1px solid var(--border);
+    padding:18px 20px;
+    border-radius:14px 14px 0 0;
+}
+
+.section-title h2{
+    margin:0;
+}
+
+.section-title p{
+    margin:5px 0 0;
     color:var(--muted);
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:18px;
-}
-
-.card{
+.question{
     background:var(--panel);
     border:1px solid var(--border);
-    border-radius:18px;
+    border-top:none;
     padding:22px;
-    margin-bottom:20px;
 }
 
-.card:hover{
-    border-color:#465a82;
+.question:last-child{
+    border-radius:0 0 14px 14px;
 }
 
-.card h3{
-    color:#dce7ff;
-    margin-bottom:12px;
+.question-number{
+    font-weight:bold;
+    color:var(--accent);
+    margin-bottom:8px;
 }
 
-.card h4{
-    color:#bcd1ff;
-    margin:18px 0 7px;
+.question p{
+    margin-top:5px;
 }
 
-.card p{
-    color:#d2d9e9;
+.options{
+    display:grid;
+    gap:10px;
+    margin-top:15px;
 }
 
-.card ul,
-.card ol{
-    margin:10px 0 10px 24px;
+.option{
+    background:var(--panel2);
+    border:1px solid var(--border);
+    padding:12px;
+    border-radius:9px;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.card li{
-    margin:5px 0;
-    color:#d2d9e9;
+.option:hover{
+    border-color:var(--accent);
 }
 
-.formula{
-    background:#080d19;
-    border:1px solid #314363;
+.option input{
+    margin-right:10px;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    margin-top:12px;
+    resize:vertical;
+    background:#0d1527;
+    border:1px solid var(--border);
+    color:white;
+    padding:12px;
+    border-radius:9px;
+    font-family:inherit;
+    font-size:15px;
+}
+
+.small-answer{
+    min-height:70px;
+}
+
+.case{
+    background:#10192d;
+    border-left:5px solid var(--accent);
+    padding:18px;
+    margin:5px 0 15px;
+    border-radius:8px;
+}
+
+.case strong{
+    color:var(--yellow);
+}
+
+.graph{
+    background:#0d1527;
+    border:1px solid var(--border);
     border-radius:12px;
-    padding:16px;
-    margin:14px 0;
-    text-align:center;
-    font-size:1.15rem;
-    font-weight:bold;
-    color:#9ec5ff;
+    padding:20px;
+    margin:18px 0;
 }
 
-.example{
-    border-left:4px solid var(--green);
-    background:#0e211c;
-    padding:15px 18px;
-    margin:15px 0;
-    border-radius:8px;
+.graph h3{
+    margin-top:0;
 }
 
-.warning{
-    border-left:4px solid var(--yellow);
-    background:#29220e;
-    padding:15px 18px;
-    margin:15px 0;
-    border-radius:8px;
+.bar-row{
+    display:grid;
+    grid-template-columns:130px 1fr 50px;
+    gap:10px;
+    align-items:center;
+    margin:12px 0;
 }
 
-.tip{
-    border-left:4px solid var(--accent2);
-    background:#17142c;
-    padding:15px 18px;
-    margin:15px 0;
-    border-radius:8px;
+.bar-container{
+    height:28px;
+    background:#202b44;
+    border-radius:6px;
+    overflow:hidden;
 }
 
-.definition{
-    color:#9ec5ff;
-    font-weight:bold;
+.bar{
+    height:100%;
+    background:var(--accent);
+    border-radius:6px;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
     margin:15px 0;
-    overflow:hidden;
 }
 
 th,td{
     border:1px solid var(--border);
-    padding:11px;
-    text-align:left;
+    padding:10px;
+    text-align:center;
 }
 
 th{
-    background:#1b2945;
+    background:#1c2944;
 }
 
 td{
-    background:#10182a;
+    background:#10192d;
 }
 
-.quiz{
-    background:#10182a;
+.challenge{
+    border-left:5px solid var(--yellow);
+}
+
+button{
+    display:block;
+    margin:40px auto 20px;
+    padding:15px 35px;
+    border:none;
+    border-radius:10px;
+    background:var(--accent);
+    color:#07101f;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+#result{
+    display:none;
+    background:var(--panel);
     border:1px solid var(--border);
     border-radius:15px;
-    padding:20px;
-    margin:15px 0;
+    padding:25px;
+    margin-top:25px;
 }
 
-.quiz label{
-    display:block;
-    padding:8px;
-    cursor:pointer;
-}
-
-.quiz button,
-.action{
-    border:0;
-    background:var(--accent);
-    color:#07101e;
-    padding:11px 18px;
-    border-radius:10px;
+.score{
+    font-size:30px;
     font-weight:bold;
-    cursor:pointer;
-    margin-top:12px;
-}
-
-.result{
-    margin-top:10px;
-    font-weight:bold;
-}
-
-.good{
     color:var(--green);
 }
 
-.bad{
-    color:var(--red);
+.feedback{
+    margin-top:15px;
+    padding:15px;
+    background:#10192d;
+    border-radius:10px;
 }
 
-.big-number{
-    font-size:2.7rem;
-    font-weight:bold;
-    color:#9ec5ff;
+.correct{
+    border-left:5px solid var(--green);
 }
 
-.subject-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:20px;
+.incorrect{
+    border-left:5px solid var(--red);
 }
 
-.subject-title span{
-    font-size:2rem;
-}
-
-footer{
+.footer{
     text-align:center;
     color:var(--muted);
-    border-top:1px solid var(--border);
     padding:30px;
 }
 
-.hidden{
-    display:none !important;
-}
-
-@media(max-width:650px){
-    header{
-        padding:30px 15px;
+@media(max-width:700px){
+    .info-grid{
+        grid-template-columns:1fr;
     }
 
-    main{
-        width:94%;
+    header h1{
+        font-size:25px;
     }
 
-    .card,
-    .hero{
-        padding:18px;
-    }
-
-    table{
-        font-size:.9rem;
+    .bar-row{
+        grid-template-columns:90px 1fr 40px;
+        font-size:14px;
     }
 }
 </style>
@@ -329,1234 +302,835 @@ footer{
 <body>
 
 <header>
-    <h1>📚 Guhan's Grade 7 Study Hub</h1>
-    <p>Maths • Science • Social Studies • Practice • Exams</p>
-
-    <div class="search-wrap">
-        <input id="search" type="text" placeholder="🔎 Search the entire study hub...">
-    </div>
+    <h1>📚 Grade 7 Mixed Subject Examination</h1>
+    <p>Mathematics • Science • Social Studies</p>
 </header>
 
-<nav>
-    <button class="active" onclick="showSection('home',this)">🏠 Home</button>
-    <button onclick="showSection('maths',this)">📐 Maths</button>
-    <button onclick="showSection('science',this)">🔬 Science</button>
-    <button onclick="showSection('sst',this)">🌍 SST</button>
-    <button onclick="showSection('exam',this)">📝 Practice</button>
-</nav>
+<div class="container">
 
-<main>
+<div class="info">
+    <h2>Student Information</h2>
 
-<!-- HOME -->
-
-<section id="home" class="section active">
-
-<div class="hero">
-    <h2>Welcome to your Grade 7 Study Hub 👋</h2>
-    <p>
-        This is your all-in-one study website. Choose a subject above,
-        read the detailed explanations, study examples, and test yourself
-        using the interactive questions.
-    </p>
-</div>
-
-<div class="cards">
-
-<div class="card">
-    <h3>📐 Maths</h3>
-    <p>
-        Learn circles, constructions, equations, area, perimeter,
-        mean, median, range and problem solving.
-    </p>
-    <button class="action" onclick="openSubject('maths')">Open Maths</button>
-</div>
-
-<div class="card">
-    <h3>🔬 Science</h3>
-    <p>
-        Study acids and bases, light, reflection, shadows,
-        electricity, circuits and digestion.
-    </p>
-    <button class="action" onclick="openSubject('science')">Open Science</button>
-</div>
-
-<div class="card">
-    <h3>🌍 Social Studies</h3>
-    <p>
-        Study the Constitution of India and UAE values with
-        detailed explanations and important vocabulary.
-    </p>
-    <button class="action" onclick="openSubject('sst')">Open SST</button>
-</div>
-
-<div class="card">
-    <h3>📝 Practice</h3>
-    <p>
-        Test what you remember with mixed Grade 7 questions.
-    </p>
-    <button class="action" onclick="openSubject('exam')">Start Practice</button>
-</div>
-
-</div>
-
-<div class="card">
-    <h3>How to use this website</h3>
-    <ol>
-        <li>Choose a subject.</li>
-        <li>Read the chapter explanation carefully.</li>
-        <li>Look at the worked examples.</li>
-        <li>Review the common mistakes.</li>
-        <li>Use the practice questions.</li>
-        <li>Come back later and test yourself again.</li>
-    </ol>
-</div>
-
-</section>
-
-
-<!-- MATHS -->
-
-<section id="maths" class="section">
-
-<div class="hero">
-    <div class="subject-title">
-        <span>📐</span>
-        <div>
-            <h2>Grade 7 Mathematics Hub</h2>
-            <p>Understand the method instead of simply memorising answers.</p>
-        </div>
+    <div class="info-grid">
+        <input type="text" id="studentName" placeholder="Student Name">
+        <input type="text" id="className" placeholder="Class / Section">
     </div>
+
+    <p><strong>Total Marks:</strong> 80</p>
+    <p><strong>Instructions:</strong></p>
+    <ul>
+        <li>Read every question carefully.</li>
+        <li>Show your working for mathematical questions.</li>
+        <li>Write complete explanations where required.</li>
+        <li>All subjects are mixed throughout the examination.</li>
+        <li>Use the graphs and tables carefully.</li>
+    </ul>
 </div>
 
-<div class="card">
-<h3>⭕ Circles</h3>
 
-<h4>What is a circle?</h4>
+<!-- SECTION A -->
+
+<div class="section">
+
+<div class="section-title">
+    <h2>Section A — Multiple Choice Questions</h2>
+    <p>15 questions × 1 mark = 15 marks</p>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 1 — Mathematics</div>
+<p>What is the diameter of a circle with a radius of 7 cm?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="A"> A. 3.5 cm</label>
+<label class="option"><input type="radio" name="q1" value="B"> B. 7 cm</label>
+<label class="option"><input type="radio" name="q1" value="C"> C. 14 cm</label>
+<label class="option"><input type="radio" name="q1" value="D"> D. 21 cm</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 2 — Science</div>
+<p>Which substance is neutral on the pH scale?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="A"> A. Lemon juice</label>
+<label class="option"><input type="radio" name="q2" value="B"> B. Pure water</label>
+<label class="option"><input type="radio" name="q2" value="C"> C. Soap solution</label>
+<label class="option"><input type="radio" name="q2" value="D"> D. Vinegar</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 3 — Social Studies</div>
+<p>What is the main purpose of a constitution?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="A"> A. To describe the weather</label>
+<label class="option"><input type="radio" name="q3" value="B"> B. To provide rules and principles for governing a country</label>
+<label class="option"><input type="radio" name="q3" value="C"> C. To list all businesses</label>
+<label class="option"><input type="radio" name="q3" value="D"> D. To calculate taxes only</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 4 — Mathematics</div>
+<p>Find the mean of 4, 6, 8, 10 and 12.</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q4" value="A"> A. 6</label>
+<label class="option"><input type="radio" name="q4" value="B"> B. 7</label>
+<label class="option"><input type="radio" name="q4" value="C"> C. 8</label>
+<label class="option"><input type="radio" name="q4" value="D"> D. 10</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 5 — Science</div>
+<p>Which object produces its own light?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="A"> A. Moon</label>
+<label class="option"><input type="radio" name="q5" value="B"> B. Mirror</label>
+<label class="option"><input type="radio" name="q5" value="C"> C. Sun</label>
+<label class="option"><input type="radio" name="q5" value="D"> D. Book</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 6 — Social Studies</div>
+<p>Which branch of government makes laws?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="A"> A. Legislature</label>
+<label class="option"><input type="radio" name="q6" value="B"> B. Judiciary</label>
+<label class="option"><input type="radio" name="q6" value="C"> C. Executive</label>
+<label class="option"><input type="radio" name="q6" value="D"> D. Police</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 7 — Mathematics</div>
+<p>A rectangle has a length of 12 cm and a width of 5 cm. What is its area?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q7" value="A"> A. 17 cm²</label>
+<label class="option"><input type="radio" name="q7" value="B"> B. 34 cm²</label>
+<label class="option"><input type="radio" name="q7" value="C"> C. 60 cm²</label>
+<label class="option"><input type="radio" name="q7" value="D"> D. 120 cm²</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 8 — Science</div>
+<p>Which material is generally a good conductor of electricity?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q8" value="A"> A. Rubber</label>
+<label class="option"><input type="radio" name="q8" value="B"> B. Plastic</label>
+<label class="option"><input type="radio" name="q8" value="C"> C. Copper</label>
+<label class="option"><input type="radio" name="q8" value="D"> D. Wood</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 9 — Social Studies</div>
+<p>Which of the following demonstrates tolerance?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q9" value="A"> A. Refusing to listen to others</label>
+<label class="option"><input type="radio" name="q9" value="B"> B. Respecting people with different views</label>
+<label class="option"><input type="radio" name="q9" value="C"> C. Excluding people from activities</label>
+<label class="option"><input type="radio" name="q9" value="D"> D. Ignoring community rules</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 10 — Mathematics</div>
+<p>What is the median of 3, 5, 7, 8 and 15?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q10" value="A"> A. 5</label>
+<label class="option"><input type="radio" name="q10" value="B"> B. 7</label>
+<label class="option"><input type="radio" name="q10" value="C"> C. 8</label>
+<label class="option"><input type="radio" name="q10" value="D"> D. 15</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 11 — Science</div>
+<p>What is formed when an opaque object blocks light?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q11" value="A"> A. A circuit</label>
+<label class="option"><input type="radio" name="q11" value="B"> B. A shadow</label>
+<label class="option"><input type="radio" name="q11" value="C"> C. An acid</label>
+<label class="option"><input type="radio" name="q11" value="D"> D. A conductor</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 12 — Social Studies</div>
+<p>Which is an example of a Fundamental Duty?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q12" value="A"> A. Respecting the Constitution and national symbols</label>
+<label class="option"><input type="radio" name="q12" value="B"> B. Breaking laws</label>
+<label class="option"><input type="radio" name="q12" value="C"> C. Avoiding responsibility</label>
+<label class="option"><input type="radio" name="q12" value="D"> D. Refusing to cooperate</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 13 — Mathematics</div>
+<p>Solve: x + 9 = 17</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q13" value="A"> A. 6</label>
+<label class="option"><input type="radio" name="q13" value="B"> B. 7</label>
+<label class="option"><input type="radio" name="q13" value="C"> C. 8</label>
+<label class="option"><input type="radio" name="q13" value="D"> D. 9</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 14 — Science</div>
+<p>Which part of the digestive system absorbs most nutrients?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q14" value="A"> A. Small intestine</label>
+<label class="option"><input type="radio" name="q14" value="B"> B. Oesophagus</label>
+<label class="option"><input type="radio" name="q14" value="C"> C. Large intestine</label>
+<label class="option"><input type="radio" name="q14" value="D"> D. Mouth</label>
+</div>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 15 — Social Studies</div>
+<p>Which value involves working together to achieve a common goal?</p>
+
+<div class="options">
+<label class="option"><input type="radio" name="q15" value="A"> A. Cooperation</label>
+<label class="option"><input type="radio" name="q15" value="B"> B. Isolation</label>
+<label class="option"><input type="radio" name="q15" value="C"> C. Conflict</label>
+<label class="option"><input type="radio" name="q15" value="D"> D. Disrespect</label>
+</div>
+</div>
+
+</div>
+
+
+<!-- SECTION B -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Section B — Short & Long Answer</h2>
+<p>5 questions × 4 marks = 20 marks</p>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 16 — Mathematics</div>
+<p>A circular garden has a radius of 7 cm. Calculate its diameter and circumference. Use π = 22/7. Show your working.</p>
+<textarea id="q16"></textarea>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 17 — Science</div>
+<p>Explain how a shadow is formed. In your answer, explain the roles of the light source, object and screen.</p>
+<textarea id="q17"></textarea>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 18 — Social Studies</div>
+<p>Explain why a constitution is important in a democratic country. Give at least two reasons.</p>
+<textarea id="q18"></textarea>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 19 — Mathematics</div>
+<p>Solve the equation 3x + 5 = 20. Show each step clearly.</p>
+<textarea id="q19"></textarea>
+</div>
+
+
+<div class="question">
+<div class="question-number">Question 20 — Science + Social Studies</div>
+<p>A school wants to reduce electricity use and protect the environment. Describe three actions the school could take and explain how they would help.</p>
+<textarea id="q20"></textarea>
+</div>
+
+</div>
+
+
+<!-- SECTION C -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Section C — Case Studies</h2>
+<p>4 case studies × 5 marks = 20 marks</p>
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 21 — Case Study: The School Garden</div>
+
+<div class="case">
+<strong>Case Study:</strong><br>
+A school creates a circular garden. The garden has a radius of 5 metres.
+Students measure the plants each week and record their observations.
+They also notice that some plants grow better when they receive more sunlight.
+</div>
+
+<p><strong>a)</strong> Calculate the diameter of the garden.</p>
+<textarea class="small-answer" id="q21a"></textarea>
+
+<p><strong>b)</strong> Why is sunlight important for plants?</p>
+<textarea class="small-answer" id="q21b"></textarea>
+
+<p><strong>c)</strong> Give one variable that students should keep the same when comparing plant growth.</p>
+<textarea class="small-answer" id="q21c"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 22 — Case Study: The Science Laboratory</div>
+
+<div class="case">
+<strong>Case Study:</strong><br>
+A student has three unknown liquids.
+Liquid A has a pH of 2, Liquid B has a pH of 7 and Liquid C has a pH of 10.
+The student uses an indicator to investigate the liquids.
+</div>
+
+<p><strong>a)</strong> Which liquid is acidic?</p>
+<textarea class="small-answer" id="q22a"></textarea>
+
+<p><strong>b)</strong> Which liquid is neutral?</p>
+<textarea class="small-answer" id="q22b"></textarea>
+
+<p><strong>c)</strong> Which liquid is alkaline?</p>
+<textarea class="small-answer" id="q22c"></textarea>
+
+<p><strong>d)</strong> What does the pH scale tell us?</p>
+<textarea class="small-answer" id="q22d"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 23 — Case Study: Community Responsibility</div>
+
+<div class="case">
+<strong>Case Study:</strong><br>
+A group of students notices that rubbish is being left around their school.
+They organise a clean-up campaign. They divide students into groups,
+make posters and encourage everyone to put rubbish in the correct bins.
+</div>
+
+<p><strong>a)</strong> Name one UAE/community value shown by the students.</p>
+<textarea class="small-answer" id="q23a"></textarea>
+
+<p><strong>b)</strong> Why is cooperation important in this situation?</p>
+<textarea class="small-answer" id="q23b"></textarea>
+
+<p><strong>c)</strong> Give one way the students could encourage the campaign to continue.</p>
+<textarea class="small-answer" id="q23c"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 24 — Case Study: Electricity</div>
+
+<div class="case">
+<strong>Case Study:</strong><br>
+A student builds a circuit using a cell, wires, a switch and a bulb.
+When the switch is closed, the bulb lights up. When the switch is opened,
+the bulb goes off.
+</div>
+
+<p><strong>a)</strong> Why does the bulb light when the switch is closed?</p>
+<textarea class="small-answer" id="q24a"></textarea>
+
+<p><strong>b)</strong> What happens to the circuit when the switch is opened?</p>
+<textarea class="small-answer" id="q24b"></textarea>
+
+<p><strong>c)</strong> Name one material that could be used as a conductor.</p>
+<textarea class="small-answer" id="q24c"></textarea>
+
+</div>
+
+</div>
+
+
+<!-- SECTION D -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Section D — Graphs, Tables & Data Interpretation</h2>
+<p>5 questions × 3 marks = 15 marks</p>
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 25 — Bar Graph: Library Books</div>
+
+<p>The bar graph shows the number of books borrowed by students from different classes.</p>
+
+<div class="graph">
+
+<h3>📊 Books Borrowed</h3>
+
+<div class="bar-row">
+<span>7A</span>
+<div class="bar-container">
+<div class="bar" style="width:60%"></div>
+</div>
+<span>30</span>
+</div>
+
+<div class="bar-row">
+<span>7B</span>
+<div class="bar-container">
+<div class="bar" style="width:80%"></div>
+</div>
+<span>40</span>
+</div>
+
+<div class="bar-row">
+<span>7C</span>
+<div class="bar-container">
+<div class="bar" style="width:50%"></div>
+</div>
+<span>25</span>
+</div>
+
+<div class="bar-row">
+<span>7D</span>
+<div class="bar-container">
+<div class="bar" style="width:100%"></div>
+</div>
+<span>50</span>
+</div>
+
+</div>
+
+<p><strong>a)</strong> Which class borrowed the most books?</p>
+<textarea class="small-answer" id="q25a"></textarea>
+
+<p><strong>b)</strong> How many more books did 7D borrow than 7C?</p>
+<textarea class="small-answer" id="q25b"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 26 — Science Data</div>
+
+<table>
+<tr>
+<th>Object</th>
+<th>Distance from Light Source</th>
+<th>Shadow Length</th>
+</tr>
+
+<tr>
+<td>A</td>
+<td>10 cm</td>
+<td>20 cm</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>20 cm</td>
+<td>12 cm</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>30 cm</td>
+<td>8 cm</td>
+</tr>
+
+<tr>
+<td>D</td>
+<td>40 cm</td>
+<td>5 cm</td>
+</tr>
+</table>
+
+<p><strong>a)</strong> Which object produced the longest shadow?</p>
+<textarea class="small-answer" id="q26a"></textarea>
+
+<p><strong>b)</strong> Describe the relationship between distance from the light source and shadow length in this experiment.</p>
+<textarea class="small-answer" id="q26b"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 27 — Weather Data</div>
+
+<table>
+<tr>
+<th>Day</th>
+<th>Temperature °C</th>
+</tr>
+<tr>
+<td>Monday</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>29</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>34</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>31</td>
+</tr>
+</table>
+
+<p><strong>a)</strong> What was the highest temperature?</p>
+<textarea class="small-answer" id="q27a"></textarea>
+
+<p><strong>b)</strong> What was the difference between the highest and lowest temperatures?</p>
+<textarea class="small-answer" id="q27b"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 28 — Mathematics Data</div>
+
+<p>A student records the number of questions answered correctly in five practice tests:</p>
+
+<table>
+<tr>
+<th>Test</th>
+<th>Correct Answers</th>
+</tr>
+<tr>
+<td>1</td>
+<td>12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>15</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14</td>
+</tr>
+<tr>
+<td>4</td>
+<td>17</td>
+</tr>
+<tr>
+<td>5</td>
+<td>12</td>
+</tr>
+</table>
+
+<p>Calculate the mean number of correct answers.</p>
+<textarea class="small-answer" id="q28"></textarea>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">Question 29 — Mixed Data</div>
+
+<p>A school survey found the following numbers of students choosing different activities:</p>
+
+<div class="graph">
+
+<h3>📊 After-School Activities</h3>
+
+<div class="bar-row">
+<span>Sports</span>
+<div class="bar-container">
+<div class="bar" style="width:90%"></div>
+</div>
+<span>45</span>
+</div>
+
+<div class="bar-row">
+<span>Science</span>
+<div class="bar-container">
+<div class="bar" style="width:60%"></div>
+</div>
+<span>30</span>
+</div>
+
+<div class="bar-row">
+<span>Art</span>
+<div class="bar-container">
+<div class="bar" style="width:50%"></div>
+</div>
+<span>25</span>
+</div>
+
+<div class="bar-row">
+<span>Music</span>
+<div class="bar-container">
+<div class="bar" style="width:70%"></div>
+</div>
+<span>35</span>
+</div>
+
+</div>
+
+<p>What is the total number of students represented in the graph?</p>
+<textarea class="small-answer" id="q29"></textarea>
+
+</div>
+
+</div>
+
+
+<!-- SECTION E -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Section E — Challenge Questions</h2>
+<p>2 questions × 5 marks = 10 marks</p>
+</div>
+
+
+<div class="question challenge">
+
+<div class="question-number">Question 30 — Multi-Step Challenge</div>
+
 <p>
-A circle is a perfectly round two-dimensional shape in which every point
-on the boundary is the same distance from the centre. That distance is
-called the <span class="definition">radius</span>.
+A rectangular school courtyard is 18 m long and 10 m wide.
+A circular flower bed with a radius of 3 m is placed inside it.
 </p>
 
-<h4>Important parts</h4>
+<p>
+Calculate the area of the rectangular courtyard.
+Then calculate the circumference of the circular flower bed using π = 3.14.
+Show all your working.
+</p>
+
+<textarea id="q30"></textarea>
+
+</div>
+
+
+<div class="question challenge">
+
+<div class="question-number">Question 31 — Investigation Challenge</div>
+
+<p>
+A student wants to investigate whether the distance between a light source
+and an object affects the size of its shadow.
+</p>
+
+<p>
+Design a fair experiment. Include:
+</p>
+
 <ul>
-<li><b>Centre:</b> the exact middle of the circle.</li>
-<li><b>Radius:</b> distance from the centre to the circumference.</li>
-<li><b>Diameter:</b> a line passing through the centre from one side to the other.</li>
-<li><b>Circumference:</b> the distance around the outside of the circle.</li>
+<li>The equipment needed.</li>
+<li>The independent variable.</li>
+<li>The dependent variable.</li>
+<li>One controlled variable.</li>
+<li>How the results could be recorded.</li>
 </ul>
 
-<div class="formula">Diameter = 2 × Radius</div>
-<div class="formula">Radius = Diameter ÷ 2</div>
+<textarea id="q31"></textarea>
 
-<h4>Circumference</h4>
-<p>
-Circumference means the distance around the circle. When the radius is
-known, use:
-</p>
-
-<div class="formula">C = 2πr</div>
-
-<p>
-When the diameter is known, you can use:
-</p>
-
-<div class="formula">C = πd</div>
-
-<div class="example">
-<b>Example:</b><br>
-A circle has radius 5 cm.<br>
-C = 2 × π × 5<br>
-C = 10π<br>
-Using π ≈ 3.14:<br>
-C ≈ 31.4 cm
-</div>
-
-<h4>Area of a circle</h4>
-<p>
-Area tells us how much space is inside the circle.
-</p>
-
-<div class="formula">A = πr²</div>
-
-<div class="example">
-<b>Example:</b><br>
-Radius = 4 cm<br>
-A = π × 4²<br>
-A = 16π<br>
-A ≈ 50.24 cm²
-</div>
-
-<div class="warning">
-<b>Common mistake:</b> Do not confuse circumference and area.
-Circumference is measured in units such as cm, while area is measured
-in square units such as cm².
 </div>
 
 </div>
 
 
-<div class="card">
-<h3>📐 Constructions</h3>
+<button onclick="submitExam()">SUBMIT EXAM</button>
 
-<h4>What is geometric construction?</h4>
-<p>
-A construction is a precise geometric drawing made using mathematical
-instruments such as a ruler and compass. Unlike an ordinary sketch,
-a construction is based on exact relationships and measurements.
-</p>
+<div id="result">
+<h2>📊 Exam Results</h2>
 
-<h4>Constructing a 90° angle</h4>
-<ol>
-<li>Draw a straight line.</li>
-<li>Choose a point on the line.</li>
-<li>Place the compass at that point.</li>
-<li>Make equal arcs on either side.</li>
-<li>Use the intersection points to construct the perpendicular.</li>
-</ol>
+<p id="studentResult"></p>
 
-<h4>Angle bisector</h4>
-<p>
-An angle bisector divides an angle into two equal angles.
-For example, a 60° angle becomes two 30° angles.
-</p>
+<div class="score" id="score"></div>
 
-<h4>Perpendicular bisector</h4>
-<p>
-A perpendicular bisector cuts a line segment into two equal parts
-while meeting it at 90°.
-</p>
+<div class="feedback" id="feedback"></div>
 
-<h4>Useful constructions</h4>
-<table>
-<tr>
-<th>Construction</th>
-<th>Result</th>
-</tr>
-<tr>
-<td>Angle bisector</td>
-<td>Divides an angle into two equal angles</td>
-</tr>
-<tr>
-<td>Perpendicular bisector</td>
-<td>Divides a segment into two equal lengths at 90°</td>
-</tr>
-<tr>
-<td>90° angle</td>
-<td>Right angle</td>
-</tr>
-<tr>
-<td>45° angle</td>
-<td>Half of a 90° angle</td>
-</tr>
-<tr>
-<td>60° angle</td>
-<td>Can be constructed using equal-radius arcs</td>
-</tr>
-<tr>
-<td>30° angle</td>
-<td>Half of a 60° angle</td>
-</tr>
-</table>
-
+<div class="feedback">
+<h3>📌 Automatic MCQ Marking</h3>
+<p id="mcqResults"></p>
 </div>
 
-
-<div class="card">
-<h3>❓ Finding the Unknown</h3>
-
-<h4>What does an unknown mean?</h4>
+<div class="feedback">
+<h3>✏️ Written Questions</h3>
 <p>
-An unknown is a value that we do not know yet. It is commonly represented
-by a letter such as x.
+Written, case-study and challenge answers need to be checked for
+working, explanations and accuracy. Your answers remain on the page
+so you can review them with a teacher.
 </p>
-
-<h4>Inverse operations</h4>
-<p>
-To solve an equation, use the opposite operation to isolate the unknown.
-</p>
-
-<table>
-<tr>
-<th>Operation</th>
-<th>Inverse</th>
-</tr>
-<tr><td>Addition</td><td>Subtraction</td></tr>
-<tr><td>Subtraction</td><td>Addition</td></tr>
-<tr><td>Multiplication</td><td>Division</td></tr>
-<tr><td>Division</td><td>Multiplication</td></tr>
-</table>
-
-<div class="example">
-<b>Example:</b><br>
-x + 7 = 19<br>
-Subtract 7 from both sides.<br>
-x = 12
-</div>
-
-<div class="example">
-<b>Example:</b><br>
-5x = 35<br>
-Divide both sides by 5.<br>
-x = 7
-</div>
-
-<div class="example">
-<b>Example:</b><br>
-x - 8 = 20<br>
-Add 8 to both sides.<br>
-x = 28
-</div>
-
-<div class="tip">
-Always perform the same operation on both sides of an equation.
-This keeps the equation balanced.
 </div>
 
 </div>
 
-
-<div class="card">
-<h3>📏 Area & Perimeter</h3>
-
-<h4>Perimeter</h4>
-<p>
-Perimeter is the total distance around the outside of a shape.
-</p>
-
-<div class="formula">Rectangle: P = 2(l + w)</div>
-<div class="formula">Square: P = 4s</div>
-
-<h4>Area</h4>
-<p>
-Area measures the amount of space inside a two-dimensional shape.
-</p>
-
-<div class="formula">Rectangle: A = l × w</div>
-<div class="formula">Square: A = s²</div>
-<div class="formula">Triangle: A = ½ × base × height</div>
-
-<div class="example">
-<b>Example:</b><br>
-A rectangle has length 8 cm and width 5 cm.<br><br>
-Area = 8 × 5 = 40 cm²<br>
-Perimeter = 2(8 + 5) = 26 cm
 </div>
 
-<div class="warning">
-Do not use the perimeter formula when the question asks for area.
-Look carefully at the units and the wording.
+<div class="footer">
+Grade 7 Mixed Subject Examination • Maths • Science • Social Studies
 </div>
-
-</div>
-
-
-<div class="card">
-<h3>📊 Mean, Median & Range</h3>
-
-<h4>Mean</h4>
-<p>
-The mean is found by adding every value and dividing by the number
-of values.
-</p>
-
-<div class="formula">Mean = Total ÷ Number of values</div>
-
-<div class="example">
-Numbers: 4, 6, 8, 10<br>
-Total = 28<br>
-There are 4 values.<br>
-Mean = 28 ÷ 4 = 7
-</div>
-
-<h4>Median</h4>
-<p>
-The median is the middle value after the numbers have been arranged
-from smallest to largest.
-</p>
-
-<div class="example">
-Numbers: 3, 7, 9, 12, 20<br>
-Median = 9
-</div>
-
-<p>
-If there are two middle numbers, add those two numbers and divide by 2.
-</p>
-
-<h4>Range</h4>
-<div class="formula">Range = Largest value − Smallest value</div>
-
-<div class="example">
-Numbers: 4, 8, 11, 15<br>
-Range = 15 − 4 = 11
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SCIENCE -->
-
-<section id="science" class="section">
-
-<div class="hero">
-<div class="subject-title">
-<span>🔬</span>
-<div>
-<h2>Grade 7 Science Hub</h2>
-<p>Detailed explanations, examples, investigations and exam practice.</p>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<h3>🧪 Acids, Bases & Neutrals</h3>
-
-<h4>What is an acid?</h4>
-<p>
-An acid is a substance that has acidic properties. Acids can occur
-naturally in foods and in living organisms. Lemon juice contains citric
-acid, while vinegar contains acetic acid.
-</p>
-
-<h4>What is a base?</h4>
-<p>
-A base has properties opposite to many acids. Some bases are found in
-cleaning products, while others occur naturally.
-</p>
-
-<h4>What is a neutral substance?</h4>
-<p>
-A neutral substance is neither acidic nor alkaline. Pure water is
-approximately neutral at room temperature.
-</p>
-
-<h4>pH scale</h4>
-<p>
-The pH scale is commonly shown from 0 to 14. Values below 7 are acidic,
-7 is neutral, and values above 7 are alkaline.
-</p>
-
-<table>
-<tr><th>pH</th><th>Type</th></tr>
-<tr><td>0–6</td><td>Acidic</td></tr>
-<tr><td>7</td><td>Neutral</td></tr>
-<tr><td>8–14</td><td>Alkaline</td></tr>
-</table>
-
-<h4>Indicators</h4>
-<p>
-Indicators are substances that change colour depending on whether a
-solution is acidic or alkaline. Universal indicator gives different
-colours across the pH scale.
-</p>
-
-<h4>Neutralisation</h4>
-<p>
-When an acid reacts with a base, a neutralisation reaction can occur.
-The products commonly include a salt and water.
-</p>
-
-<div class="formula">Acid + Base → Salt + Water</div>
-
-<div class="example">
-<b>Everyday example:</b><br>
-If a substance is too acidic, a suitable alkaline substance can sometimes
-be used to reduce the acidity. The exact substance used depends on the
-situation.
-</div>
-
-<div class="warning">
-Never taste an unknown substance to determine whether it is acidic or
-alkaline. Scientific testing should use appropriate indicators and
-safe procedures.
-</div>
-
-</div>
-
-
-<div class="card">
-<h3>💡 Light & Reflection</h3>
-
-<h4>What is light?</h4>
-<p>
-Light is a form of energy that allows us to see objects. Some objects
-produce their own light and are called luminous objects. Other objects
-are visible because light reflects from their surfaces.
-</p>
-
-<h4>Luminous and non-luminous objects</h4>
-<ul>
-<li><b>Luminous:</b> Sun, stars, lamps and flames.</li>
-<li><b>Non-luminous:</b> books, tables, walls and the Moon.</li>
-</ul>
-
-<h4>Reflection</h4>
-<p>
-Reflection happens when light strikes a surface and changes direction.
-Smooth surfaces can produce a clear reflection, while rough surfaces
-scatter light in many directions.
-</p>
-
-<h4>Law of reflection</h4>
-<p>
-For a plane mirror, the angle of incidence is equal to the angle of
-reflection.
-</p>
-
-<div class="formula">Angle of incidence = Angle of reflection</div>
-
-<h4>Regular and diffuse reflection</h4>
-<p>
-Regular reflection happens when light reflects from a smooth surface in
-an orderly way. Diffuse reflection occurs when a rough surface causes
-the reflected rays to travel in different directions.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>🌑 Shadows</h3>
-
-<h4>How does a shadow form?</h4>
-<p>
-A shadow forms when an opaque object blocks some or all of the light
-travelling from a light source.
-</p>
-
-<p>
-A basic shadow experiment needs:
-</p>
-
-<ul>
-<li>A light source</li>
-<li>An object that blocks light</li>
-<li>A screen or surface</li>
-</ul>
-
-<h4>What changes the size of a shadow?</h4>
-<p>
-The size and position of a shadow depend on the positions of the light
-source, object and screen.
-</p>
-
-<div class="example">
-If an object is moved closer to a light source, its shadow can become
-larger. Moving it farther from the light source can change the size
-and shape of the shadow.
-</div>
-
-<h4>Fair testing</h4>
-<p>
-In an investigation, a fair test changes one main variable while other
-important variables are kept controlled.
-</p>
-
-<table>
-<tr><th>Variable</th><th>Meaning</th></tr>
-<tr><td>Independent variable</td><td>The variable deliberately changed</td></tr>
-<tr><td>Dependent variable</td><td>The variable measured</td></tr>
-<tr><td>Control variables</td><td>Variables kept the same</td></tr>
-</table>
-
-</div>
-
-
-<div class="card">
-<h3>⚡ Electricity & Circuits</h3>
-
-<h4>What is an electric circuit?</h4>
-<p>
-An electric circuit is a complete pathway through which electric current
-can flow. A simple circuit may contain a cell, wires, a switch and a
-lamp.
-</p>
-
-<h4>Complete and incomplete circuits</h4>
-<p>
-When the pathway is complete, current can flow through the circuit.
-When there is a gap, current cannot flow through the complete pathway.
-</p>
-
-<h4>Conductors</h4>
-<p>
-Conductors allow electric current to pass through relatively easily.
-Many metals are good conductors.
-</p>
-
-<h4>Insulators</h4>
-<p>
-Insulators resist the movement of electric charge. Examples include
-many plastics and rubber materials.
-</p>
-
-<table>
-<tr><th>Material</th><th>Typical behaviour</th></tr>
-<tr><td>Copper</td><td>Good conductor</td></tr>
-<tr><td>Aluminium</td><td>Good conductor</td></tr>
-<tr><td>Plastic</td><td>Insulator</td></tr>
-<tr><td>Rubber</td><td>Insulator</td></tr>
-</table>
-
-<h4>Series circuits</h4>
-<p>
-In a series circuit, components are connected along one main pathway.
-If the pathway is broken, the complete circuit is interrupted.
-</p>
-
-<h4>Switches</h4>
-<p>
-A switch controls whether the circuit is complete or broken. Closing
-the switch can complete the pathway; opening it creates a gap.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>🫀 Human Digestive System</h3>
-
-<h4>Why do we digest food?</h4>
-<p>
-Food contains substances that our bodies need for energy, growth and
-repair. Digestion breaks large food molecules into smaller substances
-that can be absorbed and used by the body.
-</p>
-
-<h4>Main organs</h4>
-
-<table>
-<tr><th>Organ</th><th>Main role</th></tr>
-<tr><td>Mouth / Buccal cavity</td><td>Food is chewed and mixed with saliva</td></tr>
-<tr><td>Oesophagus</td><td>Moves food toward the stomach</td></tr>
-<tr><td>Stomach</td><td>Churns food and mixes it with digestive juices</td></tr>
-<tr><td>Small intestine</td><td>Digestion continues and nutrients are absorbed</td></tr>
-<tr><td>Large intestine</td><td>Absorbs much of the remaining water</td></tr>
-<tr><td>Rectum</td><td>Stores faeces before removal</td></tr>
-<tr><td>Anus</td><td>Opening through which faeces leave the body</td></tr>
-</table>
-
-<h4>Buccal cavity</h4>
-<p>
-The buccal cavity is the mouth region. Teeth mechanically break food
-into smaller pieces while the tongue helps move and mix the food.
-Saliva begins the digestion of certain food components.
-</p>
-
-<h4>Stomach</h4>
-<p>
-The stomach is a muscular organ. It churns food and mixes it with
-digestive juices, producing a semi-liquid mixture.
-</p>
-
-<h4>Small intestine</h4>
-<p>
-The small intestine is extremely important because digested nutrients
-are absorbed through its walls into the bloodstream.
-</p>
-
-<h4>Seed respiration investigation</h4>
-<p>
-Germinating seeds respire. During respiration, seeds use oxygen and
-release carbon dioxide. Carbon dioxide can be tested using limewater.
-When carbon dioxide is passed into limewater, the limewater becomes
-milky.
-</p>
-
-<div class="formula">Seed respiration → Carbon dioxide → Limewater turns milky</div>
-
-</div>
-
-
-<div class="card">
-<h3>🧪 Experiments & Scientific Thinking</h3>
-
-<h4>A good scientific investigation</h4>
-<ol>
-<li>Ask a clear question.</li>
-<li>Make a prediction or hypothesis.</li>
-<li>Identify variables.</li>
-<li>Plan a fair test.</li>
-<li>Collect observations or measurements.</li>
-<li>Record results clearly.</li>
-<li>Look for patterns.</li>
-<li>Draw a conclusion based on evidence.</li>
-<li>Suggest improvements or further questions.</li>
-</ol>
-
-<h4>Why repeat experiments?</h4>
-<p>
-Repeating measurements can help identify unusual results and improve
-confidence in the pattern observed. Scientists should not simply
-ignore a result because it is unexpected; they should investigate it.
-</p>
-
-<h4>Tables and graphs</h4>
-<p>
-Tables are useful for recording exact values. Graphs can make patterns
-easier to see. The type of graph should match the data being collected.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- SST -->
-
-<section id="sst" class="section">
-
-<div class="hero">
-<div class="subject-title">
-<span>🌍</span>
-<div>
-<h2>Grade 7 Social Studies Hub</h2>
-<p>Civics, citizenship, government and values.</p>
-</div>
-</div>
-</div>
-
-
-<div class="card">
-<h3>🇮🇳 The Constitution of India</h3>
-
-<h4>What is a constitution?</h4>
-<p>
-A constitution is a fundamental set of rules and principles that explains
-how a country is governed. It establishes important institutions,
-describes powers and responsibilities, and sets out important principles
-that guide the relationship between citizens and the state.
-</p>
-
-<h4>Why does India have a Constitution?</h4>
-<p>
-India is a large and diverse democratic country. A written Constitution
-provides a framework for governing the country while protecting important
-principles and rights. It also explains how the different organs of
-government function.
-</p>
-
-<h4>The Preamble</h4>
-<p>
-The Preamble introduces the Constitution and describes important ideals
-of the Indian Republic. It identifies India as a sovereign, socialist,
-secular, democratic republic and expresses goals including justice,
-liberty, equality and fraternity.
-</p>
-
-<h4>Fundamental Rights</h4>
-<p>
-Fundamental Rights are important constitutional protections. They help
-protect individual liberty and equality and place limits on the exercise
-of state power.
-</p>
-
-<h4>Fundamental Duties</h4>
-<p>
-Fundamental Duties describe responsibilities expected from citizens.
-They include respecting the Constitution and national symbols,
-promoting harmony, protecting the environment and developing a
-scientific temper.
-</p>
-
-<h4>Three organs of government</h4>
-
-<table>
-<tr>
-<th>Organ</th>
-<th>Main role</th>
-</tr>
-<tr>
-<td>Legislature</td>
-<td>Makes laws</td>
-</tr>
-<tr>
-<td>Executive</td>
-<td>Implements laws and manages administration</td>
-</tr>
-<tr>
-<td>Judiciary</td>
-<td>Interprets laws and resolves legal disputes</td>
-</tr>
-</table>
-
-<h4>Democracy</h4>
-<p>
-Democracy is a system in which people participate in choosing their
-representatives and in public decision-making. Elections are one
-important way citizens participate in a democracy.
-</p>
-
-<div class="tip">
-<b>Remember:</b> The Constitution is not simply a list of ordinary laws.
-It provides the fundamental framework within which government operates.
-</div>
-
-<h4>Important vocabulary</h4>
-<ul>
-<li><b>Constitution:</b> fundamental framework of government.</li>
-<li><b>Democracy:</b> government based on participation of the people.</li>
-<li><b>Republic:</b> a state whose head of state is not a hereditary monarch.</li>
-<li><b>Equality:</b> equal status and treatment under the law.</li>
-<li><b>Justice:</b> fairness in society and law.</li>
-<li><b>Liberty:</b> freedom within the framework of law.</li>
-<li><b>Fraternity:</b> sense of brotherhood and unity.</li>
-</ul>
-
-</div>
-
-
-<div class="card">
-<h3>🇦🇪 UAE Values</h3>
-
-<h4>What are values?</h4>
-<p>
-Values are principles that help people decide how they should behave
-toward themselves, other people and their community. Values influence
-decisions, relationships and responsible citizenship.
-</p>
-
-<h4>Respect</h4>
-<p>
-Respect means treating other people, their ideas, cultures and rights
-with consideration. A respectful community allows people to communicate
-even when they disagree.
-</p>
-
-<h4>Tolerance</h4>
-<p>
-Tolerance means accepting that people can have different cultures,
-backgrounds, traditions and viewpoints. It encourages peaceful
-coexistence.
-</p>
-
-<h4>Responsibility</h4>
-<p>
-Responsible citizens understand that their choices can affect other
-people and the environment. Responsibility includes following rules,
-looking after shared spaces and contributing positively to society.
-</p>
-
-<h4>Cooperation</h4>
-<p>
-Cooperation means working together toward a shared goal. Schools,
-communities and countries often need cooperation to solve problems.
-</p>
-
-<h4>Community</h4>
-<p>
-A strong community depends on people helping one another, respecting
-shared rules and taking care of public spaces.
-</p>
-
-<table>
-<tr><th>Value</th><th>Example</th></tr>
-<tr><td>Respect</td><td>Listening when another person is speaking</td></tr>
-<tr><td>Tolerance</td><td>Accepting cultural differences</td></tr>
-<tr><td>Responsibility</td><td>Taking care of shared spaces</td></tr>
-<tr><td>Cooperation</td><td>Working effectively in a team</td></tr>
-<tr><td>Empathy</td><td>Considering another person's feelings</td></tr>
-</table>
-
-</div>
-
-</section>
-
-
-<!-- PRACTICE -->
-
-<section id="exam" class="section">
-
-<div class="hero">
-<h2>📝 Grade 7 Mixed Practice</h2>
-<p>Try the questions without looking back at the chapters first.</p>
-</div>
-
-<div id="quizContainer"></div>
-
-<button class="action" onclick="gradeQuiz()">Submit Practice</button>
-
-<div id="score" class="card hidden"></div>
-
-</section>
-
-</main>
-
-<footer>
-    Guhan's Grade 7 Study Hub • Maths • Science • SST
-</footer>
 
 
 <script>
 
-const questions = [
-
-{
-q:"What is the diameter of a circle with radius 7 cm?",
-options:["7 cm","14 cm","21 cm","49 cm"],
-answer:1
-},
-
-{
-q:"What is the formula for the area of a circle?",
-options:["2πr","πd","πr²","4r"],
-answer:2
-},
-
-{
-q:"What is the inverse operation of multiplication?",
-options:["Addition","Subtraction","Division","Squaring"],
-answer:2
-},
-
-{
-q:"What is the mean of 4, 6, 8 and 10?",
-options:["6","7","8","9"],
-answer:1
-},
-
-{
-q:"What is the range of 3, 7, 11 and 15?",
-options:["8","10","12","15"],
-answer:2
-},
-
-{
-q:"A substance with a pH of 3 is generally:",
-options:["Acidic","Neutral","Alkaline","A metal"],
-answer:0
-},
-
-{
-q:"A pH of 7 is generally:",
-options:["Strongly acidic","Neutral","Strongly alkaline","A conductor"],
-answer:1
-},
-
-{
-q:"What happens during reflection?",
-options:[
-"Light disappears",
-"Light changes direction after striking a surface",
-"Light becomes electricity",
-"Objects become transparent"
-],
-answer:1
-},
-
-{
-q:"What is needed for a shadow to form?",
-options:[
-"Only an object",
-"Only a screen",
-"A light source, object and surface/screen",
-"Only water"
-],
-answer:2
-},
-
-{
-q:"Which material is generally a good electrical conductor?",
-options:["Rubber","Plastic","Copper","Glass"],
-answer:2
-},
-
-{
-q:"What does a switch do in a circuit?",
-options:[
-"Controls whether the circuit is complete",
-"Creates plastic",
-"Removes all wires",
-"Changes metal into rubber"
-],
-answer:0
-},
-
-{
-q:"Where does digestion begin?",
-options:["Stomach","Mouth","Large intestine","Rectum"],
-answer:1
-},
-
-{
-q:"Where are many digested nutrients absorbed?",
-options:["Small intestine","Oesophagus","Mouth","Large intestine"],
-answer:0
-},
-
-{
-q:"What happens to limewater when carbon dioxide is passed through it?",
-options:[
-"It becomes milky",
-"It becomes blue",
-"It disappears",
-"It freezes"
-],
-answer:0
-},
-
-{
-q:"What is the main purpose of a constitution?",
-options:[
-"To provide a fundamental framework for government",
-"To list school subjects",
-"To describe weather",
-"To calculate taxes only"
-],
-answer:0
-},
-
-{
-q:"Which organ of government makes laws?",
-options:["Judiciary","Legislature","Police only","Hospitals"],
-answer:1
-},
-
-{
-q:"Which value involves treating other people with consideration?",
-options:["Respect","Speed","Competition","Silence"],
-answer:0
-},
-
-{
-q:"What does cooperation mean?",
-options:[
-"Refusing to work with others",
-"Working together toward a shared goal",
-"Always working alone",
-"Breaking rules"
-],
-answer:1
-},
-
-{
-q:"What is the perimeter of a square with side 6 cm?",
-options:["12 cm","18 cm","24 cm","36 cm"],
-answer:2
-},
-
-{
-q:"What is the area of a rectangle measuring 9 cm by 4 cm?",
-options:["13 cm²","26 cm²","36 cm²","45 cm²"],
-answer:2
-},
-
-{
-q:"An angle bisector divides an angle into:",
-options:[
-"Two equal angles",
-"Three equal angles",
-"Two unequal angles",
-"No angles"
-],
-answer:0
-},
-
-{
-q:"A perpendicular bisector meets a line segment at:",
-options:["30°","45°","60°","90°"],
-answer:3
-},
-
-{
-q:"Which is the median of 2, 5, 8, 11, 14?",
-options:["5","8","11","14"],
-answer:1
-},
-
-{
-q:"Which part of a circle is the distance around its outside?",
-options:["Radius","Diameter","Circumference","Centre"],
-answer:2
-},
-
-{
-q:"Which of these is an insulator?",
-options:["Copper","Aluminium","Rubber","Iron"],
-answer:2
-},
-
-{
-q:"Which organ churns food and mixes it with digestive juices?",
-options:["Stomach","Mouth","Small intestine","Large intestine"],
-answer:0
-},
-
-{
-q:"Which of these is a luminous object?",
-options:["Book","Wall","Sun","Chair"],
-answer:2
-},
-
-{
-q:"What is the dependent variable?",
-options:[
-"The variable deliberately changed",
-"The variable measured",
-"A variable that is always ignored",
-"The equipment"
-],
-answer:1
-},
-
-{
-q:"Which branch of government interprets laws?",
-options:["Judiciary","Legislature","Executive only","School council"],
-answer:0
-},
-
-{
-q:"What does tolerance encourage?",
-options:[
-"Respectful coexistence despite differences",
-"People refusing to communicate",
-"Breaking laws",
-"Discrimination"
-],
-answer:0
+function getRadio(name){
+    const selected=document.querySelector('input[name="'+name+'"]:checked');
+    return selected ? selected.value : null;
 }
 
-];
+function submitExam(){
 
+    const answers={
+        q1:"C",
+        q2:"B",
+        q3:"B",
+        q4:"C",
+        q5:"C",
+        q6:"A",
+        q7:"C",
+        q8:"C",
+        q9:"B",
+        q10:"B",
+        q11:"B",
+        q12:"A",
+        q13:"C",
+        q14:"A",
+        q15:"A"
+    };
 
-function showSection(id,button){
+    let mcqScore=0;
+    let answered=0;
 
-    document.querySelectorAll(".section").forEach(section=>{
-        section.classList.remove("active");
-    });
+    for(let i=1;i<=15;i++){
 
-    document.getElementById(id).classList.add("active");
+        const answer=getRadio("q"+i);
 
-    document.querySelectorAll("nav button").forEach(btn=>{
-        btn.classList.remove("active");
-    });
+        if(answer){
+            answered++;
+        }
 
-    if(button){
-        button.classList.add("active");
+        if(answer===answers["q"+i]){
+            mcqScore++;
+        }
     }
 
+    /*
+       Section A = 15 marks
+       Section B = 20 marks
+       Section C = 20 marks
+       Section D = 15 marks
+       Section E = 10 marks
+
+       Only Section A can be automatically marked.
+       The remaining 65 marks require human checking.
+    */
+
+    const totalPossible=80;
+
+    document.getElementById("result").style.display="block";
+
+    const name=document.getElementById("studentName").value.trim();
+
+    if(name){
+        document.getElementById("studentResult").innerHTML=
+            "<strong>Student:</strong> "+escapeHTML(name);
+    }else{
+        document.getElementById("studentResult").innerHTML=
+            "<strong>Student:</strong> Not entered";
+    }
+
+    document.getElementById("score").textContent=
+        "Automatically marked: "+mcqScore+" / 15";
+
+    document.getElementById("mcqResults").innerHTML=
+        "You answered <strong>"+answered+
+        "/15</strong> MCQs. You got <strong>"+mcqScore+
+        "/15</strong> correct.";
+
+    let percentage=Math.round((mcqScore/15)*100);
+
+    let message="";
+
+    if(percentage===100){
+        message="🔥 Perfect MCQ score! Excellent work.";
+    }else if(percentage>=80){
+        message="⭐ Great work! You have a strong understanding of the MCQ topics.";
+    }else if(percentage>=60){
+        message="👍 Good effort. Review the questions you missed.";
+    }else if(percentage>=40){
+        message="📖 Keep practising. Review the Maths, Science and SST chapters.";
+    }else{
+        message="💪 Keep going! Use the study hub to review the topics and try again.";
+    }
+
+    document.getElementById("feedback").textContent=message;
+
     window.scrollTo({
-        top:0,
+        top:document.getElementById("result").offsetTop-20,
         behavior:"smooth"
     });
 }
 
 
-function openSubject(id){
+function escapeHTML(text){
 
-    const button=[...document.querySelectorAll("nav button")]
-        .find(b=>b.getAttribute("onclick")?.includes(id));
-
-    showSection(id,button);
-}
-
-
-function loadQuiz(){
-
-    const container=document.getElementById("quizContainer");
-
-    questions.forEach((question,index)=>{
-
-        const div=document.createElement("div");
-
-        div.className="quiz";
-
-        let html=`
-            <h3>${index+1}. ${question.q}</h3>
-        `;
-
-        question.options.forEach((option,i)=>{
-
-            html+=`
-            <label>
-                <input type="radio" name="q${index}" value="${i}">
-                ${option}
-            </label>
-            `;
-
-        });
-
-        div.innerHTML=html;
-
-        container.appendChild(div);
-
-    });
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
-
-
-function gradeQuiz(){
-
-    let score=0;
-
-    questions.forEach((question,index)=>{
-
-        const selected=document.querySelector(
-            `input[name="q${index}"]:checked`
-        );
-
-        if(selected && Number(selected.value)===question.answer){
-            score++;
-        }
-
-    });
-
-    const percentage=Math.round(
-        (score/questions.length)*100
-    );
-
-    const result=document.getElementById("score");
-
-    result.classList.remove("hidden");
-
-    result.innerHTML=`
-        <h2>Your Score</h2>
-        <div class="big-number">${score}/${questions.length}</div>
-        <p>${percentage}%</p>
-        <p>
-        ${percentage>=80
-            ? "🔥 Excellent work! Keep going."
-            : percentage>=60
-            ? "👍 Good job! Review the chapters you found difficult."
-            : "📚 Keep practising and review the explanations before trying again."
-        }
-        </p>
-    `;
-
-    result.scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-document.getElementById("search").addEventListener("input",function(){
-
-    const query=this.value.toLowerCase().trim();
-
-    document.querySelectorAll(".card").forEach(card=>{
-
-        const text=card.innerText.toLowerCase();
-
-        if(query===""){
-            card.classList.remove("hidden");
-        }else{
-            card.classList.toggle(
-                "hidden",
-                !text.includes(query)
-            );
-        }
-
-    });
-
-});
-
-
-loadQuiz();
 
 </script>
 
