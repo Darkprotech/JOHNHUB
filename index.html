@@ -25,6 +25,7 @@ main{max-width:1450px;margin:auto;padding:28px 22px 70px}.section{display:none}.
 .card p,.lesson p{color:#d4ddec;line-height:1.8;margin-bottom:13px}
 h2{font-size:32px;margin-bottom:18px}h3{font-size:23px;margin-bottom:12px}h4{margin:20px 0 9px;color:#dce7ff}
 ul,ol{padding-left:25px;margin:8px 0 15px}li{line-height:1.75}
+.small{font-size:13px;color:var(--muted)}
 .btn{border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(135deg,var(--blue),var(--purple));color:white;font-weight:800}
 .btn.secondary{background:var(--card2);border:1px solid var(--border)}.btn.danger{background:var(--red)}
 .formula{background:#070e1e;border:1px solid var(--border);padding:14px;border-radius:10px;font-family:monospace;color:#b9d7ff;margin:12px 0;line-height:1.8}
@@ -32,8 +33,8 @@ ul,ol{padding-left:25px;margin:8px 0 15px}li{line-height:1.75}
 .tip{border-left:4px solid var(--yellow);background:#211b0c;padding:14px;border-radius:8px;margin:14px 0;line-height:1.75}
 .search{width:100%;max-width:650px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;color:white;margin-bottom:20px}
 .badge{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--card2);border:1px solid var(--border);margin:3px;font-size:13px;color:#d5def3}
-.exam-screen{display:none}.exam-screen.active{display:block}
-.exambar{position:sticky;top:74px;z-index:30;background:rgba(7,12,24,.98);border:1px solid var(--border);border-radius:14px;padding:14px 17px;margin-bottom:18px}
+.exam-screen{display:none;max-width:1450px;margin:auto;padding:28px 22px 70px}.exam-screen.active{display:block}
+.exambar{position:sticky;top:0;z-index:30;background:rgba(7,12,24,.98);border:1px solid var(--border);border-radius:14px;padding:14px 17px;margin-bottom:18px}
 .exambarrow{display:flex;justify-content:space-between;align-items:center;gap:12px}.timer{font-size:24px;font-weight:900;color:var(--green)}.timer.warn{color:var(--yellow)}.timer.danger{color:var(--red)}
 .exam-q{margin-bottom:15px}.qnum{color:var(--blue);font-weight:900;margin-bottom:8px}.qtext{font-size:18px;font-weight:700;line-height:1.55;margin-bottom:14px}
 .options{display:grid;gap:8px}.option{background:var(--card2);border:1px solid var(--border);padding:11px;border-radius:9px}.option:hover{border-color:var(--blue)}
@@ -45,7 +46,7 @@ table{width:100%;border-collapse:collapse;margin:14px 0}th,td{border:1px solid v
 .canvaswrap{background:white;border-radius:8px;overflow:auto}.canvaswrap canvas{display:block;background:white;touch-action:none}
 .diagram{display:flex;justify-content:center;margin:15px 0}.diagram svg{max-width:100%;background:#f8fafc;border-radius:10px}
 footer{text-align:center;color:var(--muted);padding:30px}
-@media(max-width:760px){.head{flex-direction:column;align-items:flex-start}.hero{padding:35px 19px}.exambar{top:125px}}
+@media(max-width:760px){.head{flex-direction:column;align-items:flex-start}.hero{padding:35px 19px}}
 </style>
 </head>
 <body>
@@ -271,17 +272,25 @@ footer{text-align:center;color:var(--muted);padding:30px}
 
 <div class="card"><h3>English Mini-Exam</h3><p>20 questions • 15 minutes • grammar • reading • poetry analysis • case study • extended writing</p><button class="btn" onclick="startMini('english')">Start English Mini-Exam</button></div>
 </section>
+</main>
 
 <section id="miniExam" class="exam-screen"></section>
 <section id="finalExam" class="exam-screen"></section>
-</main>
 
-<footer>Welcome to John Study Hub • Learn it. Apply it. Explain it.</footer>
+<footer id="siteFooter">Welcome to John Study Hub • Learn it. Apply it. Explain it.</footer>
 
 <script>
 const MINI_DURATION=15*60*1000;
 const FINAL_DURATION=30*60*1000;
-let currentExam=null,currentSubject=null,timer=null,drawState=null;
+let currentExam=null,currentSubject=null,timer=null,drawState=null,examEnd=0;
+
+/* Safe storage: works even where sessionStorage is blocked */
+const store={
+get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},
+set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},
+remove(k){try{sessionStorage.removeItem(k)}catch(e){}},
+clear(){try{sessionStorage.clear()}catch(e){}}
+};
 
 const exams={
 maths:{
@@ -289,47 +298,47 @@ title:"Maths Mini-Exam",
 questions:[
 ["mcq","A circular pond has a radius of 3 m. Which expression represents its area?",["3π","6π","9π","12π"],"C"],
 ["tf","If the diameter of a circle is doubled, its circumference is also doubled.",null,"True"],
-["short","A circular wheel has diameter 56 cm. What is its radius?","28 cm"],
-["word","A school charges a fixed 12 AED booking fee plus 15 AED per participant. The total collected is 132 AED. How many participants attended?","8"],
+["short","A circular wheel has diameter 56 cm. What is its radius?",null,"28 cm"],
+["word","A school charges a fixed 12 AED booking fee plus 15 AED per participant. The total collected is 132 AED. How many participants attended?",null,"8"],
 ["mcq","A rectangle is 9 m long and 5 m wide. Which quantity would you calculate to find the amount of fencing needed around it?",["Area","Perimeter","Mean","Diameter"],"B"],
-["short","Find the perimeter of a 7 cm by 11 cm rectangle.","36 cm"],
-["mcq","A data set is 4, 7, 7, 9, 13. Which statistic is 7?",["Only the mean","Only the range","The median and mode","Only the range"],"C"],
+["short","Find the perimeter of a 7 cm by 11 cm rectangle.",null,"36 cm"],
+["mcq","A data set is 4, 7, 7, 9, 13. Which statistic is 7?",["Only the mean","Only the range","The median and mode","None of them"],"C"],
 ["tf","The angles inside every triangle add to 360°.",null,"False"],
-["word","A triangular sign has base 12 cm and perpendicular height 8 cm. Find its area.","48 cm²"],
-["short","A straight line is split into angles of 64° and x°. Find x.","116°"],
+["word","A triangular sign has base 12 cm and perpendicular height 8 cm. Find its area.",null,"48 cm²"],
+["short","A straight line is split into angles of 64° and x°. Find x.",null,"116°"],
 ["mcq","A shop sells 4 notebooks at the same price. The bill is 36 AED. What is the price of one notebook?",["6 AED","8 AED","9 AED","12 AED"],"C"],
-["case","A sports coach records sprint times of 12, 13, 13, 14 and 28 seconds. The 28-second result happened because the runner stopped to tie a shoe. Which statistic is likely to better represent a typical sprint time, and why?","The median, because the unusually large value affects the mean more."],
-["short","Find the mean of 6, 8, 10 and 12.","9"],
+["case","A sports coach records sprint times of 12, 13, 13, 14 and 28 seconds. The 28-second result happened because the runner stopped to tie a shoe. Which statistic is likely to better represent a typical sprint time, and why?",null,"The median, because the unusually large value affects the mean more."],
+["short","Find the mean of 6, 8, 10 and 12.",null,"9"],
 ["mcq","Which construction creates two equal angles from one angle?",["Perpendicular bisector","Angle bisector","Circle radius","Parallel line"],"B"],
-["word","A circular running track has radius 20 m. Using π≈3.14, estimate one lap's circumference.","125.6 m"],
+["word","A circular running track has radius 20 m. Using π≈3.14, estimate one lap's circumference.",null,"125.6 m"],
 ["tf","The range is found by subtracting the smallest value from the largest value.",null,"True"],
-["short","If 3x+5=26, find x.","7"],
-["case","A rectangular garden is 14 m by 9 m. A 1 m-wide path runs all the way around the outside. Explain why simply calculating 14×9 is not enough to find the area of the path.","14×9 only gives the original garden area; the outside dimensions must be found and the garden area subtracted."],
+["short","If 3x+5=26, find x.",null,"7"],
+["case","A rectangular garden is 14 m by 9 m. A 1 m-wide path runs all the way around the outside. Explain why simply calculating 14×9 is not enough to find the area of the path.",null,"14×9 only gives the original garden area; the outside dimensions must be found and the garden area subtracted."],
 ["mcq","Which statement is always true?",["A square has four equal sides","Every rectangle has four equal sides","Every triangle has a right angle","Every circle has a diameter twice its circumference"],"A"],
-["long","A class wants to cover a 6 m by 4 m wall with square tiles. Each tile is 0.5 m by 0.5 m. Explain the steps needed to find the number of tiles and give the answer.","The wall area is 24 m². Each tile has area 0.25 m². 24÷0.25=96 tiles."]
+["long","A class wants to cover a 6 m by 4 m wall with square tiles. Each tile is 0.5 m by 0.5 m. Explain the steps needed to find the number of tiles and give the answer.",null,"The wall area is 24 m². Each tile has area 0.25 m². 24÷0.25=96 tiles."]
 ]},
 science:{
 title:"Science Mini-Exam",
 questions:[
 ["mcq","A solution has pH 3. Which description is best?",["Strongly alkaline","Acidic","Neutral","Exactly pH 7"],"B"],
 ["tf","The angle of incidence is measured from the mirror surface rather than the normal.",null,"False"],
-["short","What happens to blue litmus paper in an acidic solution?","It turns red."],
+["short","What happens to blue litmus paper in an acidic solution?",null,"It turns red."],
 ["mcq","A student changes the distance between a lamp and an object and measures shadow length. What is the dependent variable?",["Lamp distance","Object height","Shadow length","Room temperature"],"C"],
-["word","A ray hits a plane mirror at an angle of incidence of 35°. What is its angle of reflection?","35°"],
-["case","A student tests how temperature affects dissolving time. At 20°C the average is 80 s, at 40°C it is 50 s, and at 60°C it is 32 s. What pattern is shown?","Dissolving time decreases as temperature increases."],
+["word","A ray hits a plane mirror at an angle of incidence of 35°. What is its angle of reflection?",null,"35°"],
+["case","A student tests how temperature affects dissolving time. At 20°C the average is 80 s, at 40°C it is 50 s, and at 60°C it is 32 s. What pattern is shown?",null,"Dissolving time decreases as temperature increases."],
 ["mcq","Which material is most suitable for the insulating covering of an electrical wire?",["Copper","Iron","Plastic","Aluminium"],"C"],
 ["tf","A circuit can operate normally if there is a break in the conducting path.",null,"False"],
-["short","Why does chewing increase the surface area of food?","It breaks food into smaller pieces."],
+["short","Why does chewing increase the surface area of food?",null,"It breaks food into smaller pieces."],
 ["mcq","Which organ is especially important for nutrient absorption?",["Small intestine","Oesophagus","Large intestine","Mouth"],"A"],
-["short","Name the imaginary line drawn at 90° to a mirror at the point where a light ray strikes it.","Normal"],
-["case","A group gets readings of 12 cm, 13 cm, 12 cm, 12 cm and 31 cm for a shadow experiment. The student says 31 cm may be an anomalous result. What should the group do before simply deleting it?","Check the measurement and repeat the test."],
+["short","Name the imaginary line drawn at 90° to a mirror at the point where a light ray strikes it.",null,"Normal"],
+["case","A group gets readings of 12 cm, 13 cm, 12 cm, 12 cm and 31 cm for a shadow experiment. The student says 31 cm may be an anomalous result. What should the group do before simply deleting it?",null,"Check the measurement and repeat the test."],
 ["mcq","A pH 7 solution is best described as:",["Acidic","Neutral","Alkaline","A strong acid"],"B"],
 ["tf","A fair test usually changes one main independent variable while controlling other important factors.",null,"True"],
-["graph","The temperature/dissolving data are: 20°C→80 s, 30°C→65 s, 40°C→50 s, 50°C→40 s, 60°C→32 s. Describe the overall relationship and identify whether the decrease is perfectly constant.","Dissolving time decreases as temperature increases; the decreases are not perfectly constant."],
-["diagram","Look at the reflection diagram. If the normal is shown as the vertical dashed line, from which line should the angle of incidence be measured?","From the normal."],
-["long","Explain why a bulb does not light when a switch is open, even if the cell is working.","An open switch breaks the conducting path, so the circuit is incomplete and current cannot flow through the bulb."],
+["graph","The temperature/dissolving data are: 20°C→80 s, 30°C→65 s, 40°C→50 s, 50°C→40 s, 60°C→32 s. Describe the overall relationship and identify whether the decrease is perfectly constant.",null,"Dissolving time decreases as temperature increases; the decreases are not perfectly constant."],
+["diagram","Look at the reflection diagram. If the normal is shown as the vertical dashed line, from which line should the angle of incidence be measured?",null,"From the normal."],
+["long","Explain why a bulb does not light when a switch is open, even if the cell is working.",null,"An open switch breaks the conducting path, so the circuit is incomplete and current cannot flow through the bulb."],
 ["mcq","Which change is mainly mechanical digestion?",["Enzymes changing starch","Chewing food","Absorbing glucose","Changing proteins chemically"],"B"],
-["case","A student claims that a taller object always produces a longer shadow. Design one improvement to make this claim testable.","Keep the object height fixed and change one other variable, such as light distance, while measuring shadow length."],
+["case","A student claims that a taller object always produces a longer shadow. Design one improvement to make this claim testable.",null,"Keep the object height fixed and change one other variable, such as light distance, while measuring shadow length."],
 ["draw","Draw and label a simple closed circuit containing one cell, a switch and a bulb. Make the wires form a complete loop.",null,null]
 ]},
 sst:{
@@ -337,71 +346,71 @@ title:"SST Mini-Exam",
 questions:[
 ["mcq","Which document provides the basic framework for India's government?",["A school timetable","The Constitution","A newspaper","A budget receipt"],"B"],
 ["tf","The Preamble includes ideals such as justice, liberty, equality and fraternity.",null,"True"],
-["short","Name one function associated with the legislature.","Making laws."],
-["case","A local authority wants to introduce a new policy. Citizens ask which law gives the authority that power. Why is this an important democratic question?","It checks that the authority is acting within its legal powers."],
+["short","Name one function associated with the legislature.",null,"Making laws."],
+["case","A local authority wants to introduce a new policy. Citizens ask which law gives the authority that power. Why is this an important democratic question?",null,"It checks that the authority is acting within its legal powers."],
 ["mcq","Which institution is primarily associated with interpreting laws and resolving disputes?",["Judiciary","Legislature","Executive","Election campaign"],"A"],
-["short","What does equality mean in a civic context?","People should receive fair and equal treatment under the law."],
+["short","What does equality mean in a civic context?",null,"People should receive fair and equal treatment under the law."],
 ["tf","Democracy only means that people vote once and then have no further role.",null,"False"],
-["case","A student says, 'I have a right to speak, so I can deliberately prevent everyone else from speaking.' What civic principle is missing from this argument?","Rights should be exercised responsibly while respecting others."],
+["case","A student says, 'I have a right to speak, so I can deliberately prevent everyone else from speaking.' What civic principle is missing from this argument?",null,"Rights should be exercised responsibly while respecting others."],
 ["mcq","Which is most closely connected to responsibility?",["Ignoring community rules","Completing a duty you accepted","Preventing others from participating","Refusing to listen"],"B"],
-["short","Give one reason constitutions limit government power.","To establish rules, rights and limits on authorities."],
-["data","A school council survey records: 42 students prefer sports, 31 prefer arts, 18 prefer science club and 9 prefer debate. Which activity received the highest number of responses?","Sports."],
+["short","Give one reason constitutions limit government power.",null,"To establish rules, rights and limits on authorities."],
+["data","A school council survey records: 42 students prefer sports, 31 prefer arts, 18 prefer science club and 9 prefer debate. Which activity received the highest number of responses?",null,"Sports."],
 ["mcq","If a court examines whether a government action follows the law, which role is being demonstrated?",["Judicial role","Advertising","Private business","Classroom management"],"A"],
 ["tf","Tolerance means that people must agree with every opinion they hear.",null,"False"],
-["case","A community has limited funds. Two groups argue over which project should receive money. Suggest one democratic method for reaching a decision and explain why it is fair.","Discuss options, gather views and use a transparent decision process such as a vote based on agreed criteria."],
-["short","What is fraternity intended to encourage in society?","A sense of brotherhood, unity and mutual respect."],
+["case","A community has limited funds. Two groups argue over which project should receive money. Suggest one democratic method for reaching a decision and explain why it is fair.",null,"Discuss options, gather views and use a transparent decision process such as a vote based on agreed criteria."],
+["short","What is fraternity intended to encourage in society?",null,"A sense of brotherhood, unity and mutual respect."],
 ["mcq","Which is the strongest source-analysis response?",["It says something about government.","The passage is nice.","The evidence suggests the policy increases participation because the survey numbers rise.","I copied the passage."],"C"],
-["long","Explain why rights and duties should be considered together in a democracy.","Rights protect freedoms, while duties encourage responsible behaviour and respect for the community. Both help democracy function fairly."],
-["case","A proposed rule gives every student exactly the same number of resources, but some students need additional support to participate. Explain why equality can require careful thinking rather than simply giving identical treatment.","Fairness may require recognising different needs; equal opportunity is not always identical treatment."],
+["long","Explain why rights and duties should be considered together in a democracy.",null,"Rights protect freedoms, while duties encourage responsible behaviour and respect for the community. Both help democracy function fairly."],
+["case","A proposed rule gives every student exactly the same number of resources, but some students need additional support to participate. Explain why equality can require careful thinking rather than simply giving identical treatment.",null,"Fairness may require recognising different needs; equal opportunity is not always identical treatment."],
 ["tf","The executive is generally associated with implementing laws and government policies.",null,"True"],
-["long","A town has a disagreement about a new public facility. Explain two ways citizens can participate constructively without using threats or harassment.","They can attend consultations, present evidence, contact representatives, submit petitions or participate in lawful public discussion."]
+["long","A town has a disagreement about a new public facility. Explain two ways citizens can participate constructively without using threats or harassment.",null,"They can attend consultations, present evidence, contact representatives, submit petitions or participate in lawful public discussion."]
 ]},
 arabic:{
 title:"Arabic Mini-Exam",
 questions:[
 ["mcq","What does قميص mean?",["Coat","Shirt","Shoes","Scarf"],"B"],
 ["tf","معطف means coat.",null,"True"],
-["short","Write the Arabic word for 'shoes'.","حذاء"],
+["short","Write the Arabic word for 'shoes'.",null,"حذاء"],
 ["mcq","Which word means 'blue'?",["أحمر","أخضر","أزرق","أبيض"],"C"],
-["case","اقرأ: 'ذهب خالد إلى السوق واشترى قميصاً أزرق وحذاءً أسود.' What colour was the shirt?","أزرق"],
+["case","اقرأ: 'ذهب خالد إلى السوق واشترى قميصاً أزرق وحذاءً أسود.' What colour was the shirt?",null,"أزرق"],
 ["truearabic","صح أم خطأ: 'الوشاح' means scarf.",null,"صح"],
-["short","Write one Arabic sentence using فستان.","Any grammatically sensible sentence using فستان."],
+["long","Write one Arabic sentence using فستان.",null,"Any grammatically sensible sentence using فستان."],
 ["mcq","Which item would be most sensible to wear in very cold weather?",["معطف","تي شيرت","صندل","قبعة صيفية"],"A"],
-["reading","اقرأ: 'في الصباح كان الجو بارداً، لذلك ارتدى سامي معطفاً ووشاحاً. ثم ذهب إلى المدرسة.' Why did Sami wear a coat and scarf?","لأن الجو كان بارداً."],
+["reading","اقرأ: 'في الصباح كان الجو بارداً، لذلك ارتدى سامي معطفاً ووشاحاً. ثم ذهب إلى المدرسة.' Why did Sami wear a coat and scarf?",null,"لأن الجو كان بارداً."],
 ["truearabic","صح أم خطأ: 'أسود' means white.",null,"خطأ"],
-["short","Write the Arabic word for 'hat'.","قبعة"],
+["short","Write the Arabic word for 'hat'.",null,"قبعة"],
 ["mcq","Which pair contains two clothing items?",["أحمر وأزرق","قميص وحذاء","بارد وساخن","مدرسة وكتاب"],"B"],
-["case","Imagine you are describing an outfit to a friend who cannot see it. Name two clothing items and two colours in Arabic.","Any sensible response with two clothing items and two colours."],
+["case","Imagine you are describing an outfit to a friend who cannot see it. Name two clothing items and two colours in Arabic.",null,"Any sensible response with two clothing items and two colours."],
 ["tf","Context can help you infer the meaning of an unfamiliar Arabic word.",null,"True"],
-["short","Translate: بنطال أسود","Black trousers."],
-["reading","اقرأ: 'تحب مريم الفستان الأخضر، لكنها ترتدي سترة زرقاء عندما يكون الجو بارداً.' What does Mary wear when the weather is cold?","سترة زرقاء."],
+["short","Translate: بنطال أسود",null,"Black trousers."],
+["reading","اقرأ: 'تحب مريم الفستان الأخضر، لكنها ترتدي سترة زرقاء عندما يكون الجو بارداً.' What does Mary wear when the weather is cold?",null,"سترة زرقاء."],
 ["mcq","Which word means 'scarf'?",["وشاح","جوارب","حزام","تنورة"],"A"],
-["long","Write a short Arabic paragraph describing what you might wear on a cold school day. Include at least three clothing words and two colours.","Open response."],
+["long","Write a short Arabic paragraph describing what you might wear on a cold school day. Include at least three clothing words and two colours.",null,"Open response."],
 ["truearabic","صح أم خطأ: 'جوارب' means socks.",null,"صح"],
-["case","A friend says 'أريد ملابس مناسبة للبرد'. Suggest two suitable clothing items in Arabic and explain your choices in simple Arabic or English.","For example: معطف ووشاح لأن الجو بارد."]
+["case","A friend says 'أريد ملابس مناسبة للبرد'. Suggest two suitable clothing items in Arabic and explain your choices in simple Arabic or English.",null,"For example: معطف ووشاح لأن الجو بارد."]
 ]},
 french:{
 title:"French Mini-Exam",
 questions:[
 ["mcq","Which connector means 'because'?",["mais","parce que","ensuite","enfin"],"B"],
 ["tf","'Ensuite' can be used to show the next step in a sequence.",null,"True"],
-["short","Translate 'se lever'.","to get up"],
+["short","Translate 'se lever'.",null,"to get up"],
 ["mcq","Which is a reflexive verb?",["manger","se laver","avoir","aller"],"B"],
-["case","You are writing about your morning. You wake up, wash, get dressed and leave. Which connector would help show the sequence?","D'abord, ensuite, puis/finalement or similar sequence connectors."],
+["case","You are writing about your morning. You wake up, wash, get dressed and leave. Which connector would help show the sequence?",null,"D'abord, ensuite, puis/finalement or similar sequence connectors."],
 ["mcq","Which command is most suitable for telling a group 'Listen!'?",["Écoutez !","Écouter !","Écoutons !","Écoutes !"],"A"],
 ["tf","A negative imperative can use ne ... pas.",null,"True"],
-["short","Give one French connector used to introduce a contrast.","mais"],
-["case","A student writes: 'Je vais au parc. Il fait beau. Je joue au football.' Improve the flow by adding at least two connectors.","Example: Je vais au parc parce qu'il fait beau, et ensuite je joue au football."],
+["short","Give one French connector used to introduce a contrast.",null,"mais"],
+["case","A student writes: 'Je vais au parc. Il fait beau. Je joue au football.' Improve the flow by adding at least two connectors.",null,"Example: Je vais au parc parce qu'il fait beau, et ensuite je joue au football."],
 ["mcq","What does 'se coucher' mean?",["to wake up","to go to bed","to wash","to get dressed"],"B"],
-["short","Translate: 'Je me lève à sept heures.'","I get up at seven o'clock."],
+["short","Translate: 'Je me lève à sept heures.'",null,"I get up at seven o'clock."],
 ["tf","'Enfin' can indicate the final step in a sequence.",null,"True"],
 ["mcq","Which sentence contains a reflexive structure?",["Je mange une pomme.","Je me lave.","Je joue au tennis.","J'aime Paris."],"B"],
-["case","Your teacher asks for classroom instructions. Write two sensible commands in French.","Any two appropriate imperative commands."],
-["short","What is the purpose of a production écrite paragraph?","To communicate connected ideas in written French."],
+["case","Your teacher asks for classroom instructions. Write two sensible commands in French.",null,"Any two appropriate imperative commands."],
+["case","What is the purpose of a production écrite paragraph?",null,"To communicate connected ideas in written French."],
 ["mcq","Which connector means 'but'?",["et","mais","parce que","aussi"],"B"],
 ["truefrench","Vrai ou faux: 'se brosser' can be used when describing a daily routine.",null,"Vrai"],
-["long","Write 5–7 French sentences about a morning routine. Use at least three reflexive verbs and two connectors.","Open response."],
-["case","A student wants to give advice to a friend who is late. Write one positive command and one negative command that would make sense.","Any sensible imperative pair."],
+["long","Write 5–7 French sentences about a morning routine. Use at least three reflexive verbs and two connectors.",null,"Open response."],
+["case","A student wants to give advice to a friend who is late. Write one positive command and one negative command that would make sense.",null,"Any sensible imperative pair."],
 ["mcq","Which structure is most useful for a clear paragraph?",["Only isolated words","Ideas connected with sequence/reason connectors","One enormous sentence","Random verbs"],"B"]
 ]},
 english:{
@@ -409,26 +418,49 @@ title:"English Mini-Exam",
 questions:[
 ["mcq","Which tense best describes a routine?",["Present simple","Present continuous","Past continuous","Present perfect"],"A"],
 ["tf","The present continuous can describe an action happening around now.",null,"True"],
-["short","Identify the tense: 'Maya was reading when the lights went out.'","Past continuous."],
+["short","Identify the tense: 'Maya was reading when the lights went out.'",null,"Past continuous."],
 ["mcq","Which is the strongest analysis?",["The writer uses imagery.","The writer uses imagery to make the setting feel threatening, increasing tension for the reader.","There is a metaphor.","It is good."],"B"],
-["case","A character says, 'I have never seen the sea before, but today I finally understand why people describe it as endless.' What does the present perfect help connect?","A past experience/state with the character's present understanding."],
+["case","A character says, 'I have never seen the sea before, but today I finally understand why people describe it as endless.' What does the present perfect help connect?",null,"A past experience/state with the character's present understanding."],
 ["trueenglish","True or false: P.A.W.S. includes Point, Analysis, Writer's Method and Significance.",null,"True"],
-["short","In P.A.W.S., what does the 'S' stand for?","Significance."],
+["short","In P.A.W.S., what does the 'S' stand for?",null,"Significance."],
 ["mcq","Which V.O.I.C.E. element focuses on how the text is organised?",["Vocabulary","Organisation","Imagery","Effect"],"B"],
-["case","A travel writer describes a city using sounds, smells and colours before explaining that the place made them feel overwhelmed. Why are the sensory details effective?","They help the reader imagine the setting and understand the writer's emotional response."],
+["case","A travel writer describes a city using sounds, smells and colours before explaining that the place made them feel overwhelmed. Why are the sensory details effective?",null,"They help the reader imagine the setting and understand the writer's emotional response."],
 ["mcq","Which sentence is in the present perfect?",["I visited Dubai yesterday.","I am visiting Dubai.","I have visited Dubai before.","I was visiting Dubai."],"C"],
-["short","Give one reason a writer might use dialogue in a story.","To reveal character, conflict, information or relationships."],
+["case","Give one reason a writer might use dialogue in a story.",null,"To reveal character, conflict, information or relationships."],
 ["tf","A travelogue should only list places visited and never include personal reflection.",null,"False"],
-["case","A poem presents an animal as powerful but also mysterious. Give two things you could analyse to explain this impression.","Language choices, imagery, sound, structure, contrast or word connotations."],
+["case","A poem presents an animal as powerful but also mysterious. Give two things you could analyse to explain this impression.",null,"Language choices, imagery, sound, structure, contrast or word connotations."],
 ["mcq","Which opening is most suitable for a travelogue?",["The place was nice.","At 5:30 a.m., the station was already alive with footsteps, announcements and the smell of cardamom tea.","I went somewhere.","Travel is travel."],"B"],
-["short","What does V.O.I.C.E. 'E' stand for?","Effect."],
+["short","What does V.O.I.C.E. 'E' stand for?",null,"Effect."],
 ["trueenglish","True or false: In analysis, naming a technique is enough for the highest-quality explanation.",null,"False"],
-["long","Write one analytical paragraph using P.A.W.S. Explain how a writer could make an animal seem powerful without simply saying 'the animal is powerful'.","Open response."],
-["case","A character interrupts another speaker three times during a conversation. What might this reveal? Give one plausible interpretation and explain it.","It could reveal impatience, dominance, excitement, conflict or urgency, depending on context."],
+["long","Write one analytical paragraph using P.A.W.S. Explain how a writer could make an animal seem powerful without simply saying 'the animal is powerful'.",null,"Open response."],
+["case","A character interrupts another speaker three times during a conversation. What might this reveal? Give one plausible interpretation and explain it.",null,"It could reveal impatience, dominance, excitement, conflict or urgency, depending on context."],
 ["mcq","Which tense best fits: 'I ____ my homework already.'",["finish","am finishing","have finished","finished yesterday"],"C"],
-["long","Write a short dialogue of 6–8 lines in which two students disagree about a project and eventually reach a solution. Make each speaker's attitude clear through their words.","Open response."]
+["long","Write a short dialogue of 6–8 lines in which two students disagree about a project and eventually reach a solution. Make each speaker's attitude clear through their words.",null,"Open response."]
 ]}
 };
+
+const finalQuestions=[
+["mcq","A circle has radius 5 cm. Which expression gives its circumference?",["5π","10π","25π","50π"],"B"],
+["mcq","A liquid has pH 9. It is:",["acidic","neutral","alkaline","pure water"],"C"],
+["tf","Angles inside a triangle total 180°.",null,"True"],
+["mcq","Which branch of government is associated with interpreting laws?",["Legislature","Judiciary","Executive","Sports council"],"B"],
+["short","Find x: 4x + 7 = 31.",null,"6"],
+["case","A cyclist's wheel has diameter 70 cm. Explain how you could estimate the distance travelled after 20 complete rotations.",null,"Find circumference using d=70, then multiply circumference by 20."],
+["mcq","Which variable is measured in an experiment?",["Independent","Dependent","Control","Constant only"],"B"],
+["tf","The present perfect can connect a past action with the present.",null,"True"],
+["short","Translate the French connector 'parce que'.",null,"because"],
+["case","A student wants to test whether hotter water dissolves sugar faster but changes both temperature and amount of sugar. Explain the problem.",null,"More than one important variable changes, so the test is not fair."],
+["mcq","Which Arabic word means scarf?",["وشاح","حزام","قبعة","جوارب"],"A"],
+["short","Find the mean of 5, 7, 8 and 12.",null,"8"],
+["case","A school council has two competing proposals. Explain one democratic way to compare them fairly.",null,"Gather evidence, hear both sides and use transparent agreed criteria or a vote."],
+["mcq","Which sentence uses a reflexive verb?",["Je mange.","Je me lave.","Je joue.","J'aime."],"B"],
+["short","What does the 'A' in P.A.W.S. represent?",null,"Analysis"],
+["case","A shadow becomes shorter when a light source is moved higher. Suggest why its length changes.",null,"The angle/path of light changes, altering the size of the blocked region."],
+["mcq","A rectangle is 12 m by 7 m. What is its area?",["19 m²","38 m²","84 m²","168 m²"],"C"],
+["tf","A responsible citizen has only rights and no responsibilities.",null,"False"],
+["long","Explain why a strong answer in any subject should use evidence rather than simply state an opinion.",null,"Evidence supports the claim and allows the reader to see why the conclusion is reasonable."],
+["long","Write a short paragraph explaining one real-life situation where mathematics, science or civic knowledge helps someone make a better decision.",null,"Open response."]
+];
 
 function filterCards(){
 const q=document.getElementById("searchBox").value.toLowerCase();
@@ -440,168 +472,175 @@ document.getElementById(id).classList.add("active");
 window.scrollTo(0,0);
 }
 
+function lockHub(){
+document.getElementById("studyHub").style.display="none";
+document.getElementById("siteHeader").style.display="none";
+window.scrollTo(0,0);
+}
+function unlockHub(){
+document.getElementById("miniExam").className="exam-screen";
+document.getElementById("finalExam").className="exam-screen";
+document.getElementById("miniExam").innerHTML="";
+document.getElementById("finalExam").innerHTML="";
+document.getElementById("studyHub").style.display="";
+document.getElementById("siteHeader").style.display="";
+}
+
 function startMini(subject){
 if(!confirm("Are you sure you want to start the "+exams[subject].title+"? You will have 15 minutes and the learning material will be locked."))return;
 currentExam="mini";currentSubject=subject;
-sessionStorage.setItem("activeExam","mini");
-sessionStorage.setItem("activeSubject",subject);
-sessionStorage.setItem("examEnd",String(Date.now()+MINI_DURATION));
-renderExam(subject,false);
+examEnd=Date.now()+MINI_DURATION;
+store.set("activeExam","mini");store.set("activeSubject",subject);store.set("examEnd",String(examEnd));
+renderExam(subject);
 }
 
 function startFinal(){
 if(!confirm("Are you sure you want to start the Final Mixed Exam? You will have 30 minutes and the learning material will be locked."))return;
 currentExam="final";currentSubject=null;
-sessionStorage.setItem("activeExam","final");
-sessionStorage.removeItem("activeSubject");
-sessionStorage.setItem("examEnd",String(Date.now()+FINAL_DURATION));
+examEnd=Date.now()+FINAL_DURATION;
+store.set("activeExam","final");store.remove("activeSubject");store.set("examEnd",String(examEnd));
 renderFinal();
 }
 
-function renderExam(subject,restore){
-document.getElementById("studyHub").style.display="none";
-document.getElementById("siteHeader").style.display="none";
+function renderExam(subject){
+lockHub();
 const box=document.getElementById("miniExam");
 box.className="exam-screen active";
 const ex=exams[subject];
 let html=`<div class="exambar"><div class="exambarrow"><div><b>${ex.title}</b><div class="small">20 mixed questions • 15 minutes • learning material locked</div></div><div id="timer" class="timer">15:00</div></div></div><div id="examBody">`;
 ex.questions.forEach((q,i)=>html+=questionHTML(q,i));
-html+=`</div><div class="exam-submit"><button class="btn" onclick="submitMini(false)">Submit Exam</button></div><div id="result" class="result"></div>`;
+html+=`</div><div class="exam-submit"><button class="btn" onclick="submitExam(false)">Submit Exam</button></div><div id="result" class="result"></div>`;
 box.innerHTML=html;
-if(subject==="science")initCanvas();
+initCanvas();
 startTimer();
 }
+
+function renderFinal(){
+lockHub();
+const box=document.getElementById("finalExam");
+box.className="exam-screen active";
+let html=`<div class="exambar"><div class="exambarrow"><div><b>Final Mixed Examination</b><div class="small">20 questions • 30 minutes • all subjects</div></div><div id="timer" class="timer">30:00</div></div></div>`;
+finalQuestions.forEach((q,i)=>html+=questionHTML(q,i));
+html+=`<div class="exam-submit"><button class="btn" onclick="submitExam(false)">Submit Final Exam</button></div><div id="result" class="result"></div>`;
+box.innerHTML=html;
+startTimer();
+}
+
 function questionHTML(q,i){
-const [type,prompt,opts,ans]=q;
+const [type,prompt,opts]=q;
 let h=`<div class="exam-q"><div class="qnum">Question ${i+1} • ${type.toUpperCase()}</div><div class="qtext">${prompt}</div>`;
+const radios=(vals)=>`<div class="options">${vals.map(v=>`<label class="option"><input type="radio" name="q${i}" value="${v}"> ${v}</label>`).join("")}</div>`;
 if(type==="mcq")h+=`<div class="options">${opts.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${String.fromCharCode(65+j)}"> ${String.fromCharCode(65+j)}. ${o}</label>`).join("")}</div>`;
-else if(type==="tf")h+=`<div class="options"><label class="option"><input type="radio" name="q${i}" value="True"> True</label><label class="option"><input type="radio" name="q${i}" value="False"> False</label></div>`;
-else if(type==="truearabic")h+=`<div class="options"><label class="option"><input type="radio" name="q${i}" value="صح"> صح</label><label class="option"><input type="radio" name="q${i}" value="خطأ"> خطأ</label></div>`;
-else if(type==="truefrench")h+=`<div class="options"><label class="option"><input type="radio" name="q${i}" value="Vrai"> Vrai</label><label class="option"><input type="radio" name="q${i}" value="Faux"> Faux</label></div>`;
-else if(type==="trueenglish")h+=`<div class="options"><label class="option"><input type="radio" name="q${i}" value="True"> True</label><label class="option"><input type="radio" name="q${i}" value="False"> False</label></div>`;
-else if(type==="short"||type==="word")h+=`<input class="answer" id="a${i}" placeholder="Type your answer...">`;
-else if(type==="case"||type==="long"||type==="reading"||type==="graph"||type==="diagram")h+=`<textarea class="longanswer" id="a${i}" placeholder="Explain your reasoning..."></textarea>`;
+else if(type==="tf"||type==="trueenglish")h+=radios(["True","False"]);
+else if(type==="truearabic")h+=radios(["صح","خطأ"]);
+else if(type==="truefrench")h+=radios(["Vrai","Faux"]);
+else if(type==="short"||type==="word"||type==="data")h+=`<input class="answer" id="a${i}" placeholder="Type your answer...">`;
 else if(type==="draw")h+=drawingHTML();
+else h+=`<textarea class="longanswer" id="a${i}" placeholder="Explain your reasoning..."></textarea>`;
 return h+"</div>";
 }
+
 function drawingHTML(){
 return `<div class="drawbox"><div class="tools"><button onclick="setDrawMode('pen')">✏ Pen</button><button onclick="setDrawMode('erase')">Eraser</button><button onclick="clearCanvas()">Clear</button><button onclick="undoCanvas()">Undo</button><label style="padding:8px">Size <input id="penSize" type="number" min="1" max="30" value="3"></label></div><div class="canvaswrap"><canvas id="drawCanvas" width="900" height="430"></canvas></div><p class="small" style="margin-top:8px">Draw the circuit clearly. Use the canvas like paper; labels are part of the answer.</p></div>`;
 }
 function initCanvas(){
-const c=document.getElementById("drawCanvas");if(!c)return;
+const c=document.getElementById("drawCanvas");if(!c){drawState=null;return}
 drawState={canvas:c,ctx:c.getContext("2d"),mode:"pen",down:false,history:[]};
 drawState.ctx.fillStyle="white";drawState.ctx.fillRect(0,0,c.width,c.height);
 saveCanvas();
 const pos=e=>{const r=c.getBoundingClientRect();return{x:(e.clientX-r.left)*c.width/r.width,y:(e.clientY-r.top)*c.height/r.height}};
-c.addEventListener("pointerdown",e=>{drawState.down=true;const p=pos(e);drawState.ctx.beginPath();drawState.ctx.moveTo(p.x,p.y)});
-c.addEventListener("pointermove",e=>{if(!drawState.down)return;const p=pos(e);drawState.ctx.lineWidth=Number(document.getElementById("penSize").value)||3;drawState.ctx.lineCap="round";drawState.ctx.strokeStyle=drawState.mode==="erase"?"white":"#111";drawState.ctx.lineTo(p.x,p.y);drawState.ctx.stroke()});
-c.addEventListener("pointerup",()=>{drawState.down=false;saveCanvas()});
-c.addEventListener("pointerleave",()=>{drawState.down=false});
+c.addEventListener("pointerdown",e=>{drawState.down=true;c.setPointerCapture(e.pointerId);const p=pos(e);drawState.ctx.beginPath();drawState.ctx.moveTo(p.x,p.y)});
+c.addEventListener("pointermove",e=>{if(!drawState.down)return;const p=pos(e);drawState.ctx.lineWidth=Number(document.getElementById("penSize").value)||3;drawState.ctx.lineCap="round";drawState.ctx.lineJoin="round";drawState.ctx.strokeStyle=drawState.mode==="erase"?"white":"#111";drawState.ctx.lineTo(p.x,p.y);drawState.ctx.stroke()});
+const end=()=>{if(drawState.down){drawState.down=false;saveCanvas()}};
+c.addEventListener("pointerup",end);
+c.addEventListener("pointercancel",end);
 }
-function saveCanvas(){if(drawState)drawState.history.push(drawState.ctx.getImageData(0,0,drawState.canvas.width,drawState.canvas.height))}
+function saveCanvas(){if(drawState){drawState.history.push(drawState.ctx.getImageData(0,0,drawState.canvas.width,drawState.canvas.height));if(drawState.history.length>40)drawState.history.shift()}}
 function setDrawMode(m){if(drawState)drawState.mode=m}
 function clearCanvas(){if(!drawState)return;drawState.ctx.fillStyle="white";drawState.ctx.fillRect(0,0,drawState.canvas.width,drawState.canvas.height);saveCanvas()}
 function undoCanvas(){if(!drawState||drawState.history.length<2)return;drawState.history.pop();drawState.ctx.putImageData(drawState.history[drawState.history.length-1],0,0)}
+
 function getResponse(i,q){
 const type=q[0];
 if(type==="mcq"||type==="tf"||type.startsWith("true")){const x=document.querySelector(`input[name="q${i}"]:checked`);return x?x.value:""}
-if(type==="draw")return document.getElementById("drawCanvas")?.toDataURL()||""
-return document.getElementById("a"+i)?.value.trim()||"";
+if(type==="draw")return document.getElementById("drawCanvas")?document.getElementById("drawCanvas").toDataURL():"";
+const el=document.getElementById("a"+i);return el?el.value.trim():"";
 }
-function normalize(s){return s.toLowerCase().replace(/[.,!?°]/g,"").replace(/\s+/g," ").trim()}
+function normalize(s){return String(s).toLowerCase().replace(/[.,!?°'’]/g,"").replace(/\s+/g," ").trim()}
 function gradeResponse(q,r){
 const type=q[0],a=q[3];
 if(type==="mcq"||type==="tf"||type.startsWith("true"))return normalize(r)===normalize(a)?1:0;
-if(type==="short"||type==="word"){
+if(type==="short"||type==="word"||type==="data"){
 const n=normalize(r),target=normalize(a);
-if(n===target)return 1;
+if(!n)return 0;
+if(n===target||n.includes(target)||target.includes(n)&&n.length>2)return 1;
 const nums=n.match(/-?\d+(\.\d+)?/g),tn=target.match(/-?\d+(\.\d+)?/g);
 if(nums&&tn&&nums[0]===tn[0])return 1;
 return 0;
 }
-return r?0:null;
+return null; /* written / drawing answers need human marking */
 }
-function submitMini(auto){
+
+function submitExam(auto){
 clearInterval(timer);
-const ex=exams[currentSubject];let earned=0,autoMarked=0;
-ex.questions.forEach((q,i)=>{const r=getResponse(i,q),g=gradeResponse(q,r);if(g!==null){autoMarked++;earned+=g}});
-const totalAuto=autoMarked;
-const pct=totalAuto?Math.round(earned/totalAuto*100):0;
-const result=document.getElementById("result");
-result.innerHTML=`<h2>${auto?"Time's up!":"Exam submitted!"}</h2><div class="score">${pct}%</div><p>${earned} automatically correct out of ${totalAuto} auto-marked questions.</p><p class="small">Written answers are shown to your teacher/you for human marking because quality, reasoning and originality cannot reliably be reduced to a multiple-choice key.</p><button class="btn" onclick="finishExam()">Return to Study Hub</button>`;
-result.classList.add("show");
-document.querySelector(".exam-submit").style.display="none";
+const qs=currentExam==="final"?finalQuestions:exams[currentSubject].questions;
+const box=document.getElementById(currentExam==="final"?"finalExam":"miniExam");
+let earned=0,total=0,review="";
+qs.forEach((q,i)=>{
+const r=getResponse(i,q),g=gradeResponse(q,r);
+if(g!==null){total++;earned+=g}
+if(q[0]!=="draw"){
+let shown=r;
+if(q[0]==="mcq"&&r)shown=r+". "+q[2][r.charCodeAt(0)-65];
+let model=q[3];
+if(q[0]==="mcq")model=q[3]+". "+q[2][q[3].charCodeAt(0)-65];
+const mark=g===null?"✍ Teacher marks":g?"✅ Correct":"❌ Incorrect";
+review+=`<div class="exam-q" style="text-align:left"><div class="qnum">Question ${i+1} • ${mark}</div><div class="qtext" style="font-size:16px">${q[1]}</div><p><b>Your answer:</b> ${shown?escapeHTML(shown):"<i>(no answer)</i>"}</p><p style="margin-top:6px;color:var(--green)"><b>Model answer:</b> ${model}</p></div>`;
 }
+});
+box.querySelectorAll("input,textarea,button").forEach(el=>{if(!el.closest(".result"))el.disabled=true});
+const pct=total?Math.round(earned/total*100):0;
+const result=document.getElementById("result");
+result.innerHTML=`<h2>${auto?"Time's up!":"Exam submitted!"}</h2><div class="score">${pct}%</div><p>${earned} correct out of ${total} auto-marked questions.</p><p class="small">Written answers and drawings need human marking for reasoning, evidence and writing quality. Compare them with the model answers below.</p><div style="margin:20px 0"><button class="btn" onclick="finishExam()">Return to Study Hub</button></div>${review}<button class="btn" onclick="finishExam()">Return to Study Hub</button>`;
+result.classList.add("show");
+box.querySelector(".exam-submit").style.display="none";
+const t=document.getElementById("timer");if(t)t.textContent="Done";
+store.clear();
+result.scrollIntoView({behavior:"smooth"});
+}
+function escapeHTML(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
 function finishExam(){
-const finished=currentSubject||"home";
-sessionStorage.clear();currentExam=null;currentSubject=null;clearInterval(timer);
-document.getElementById("miniExam").classList.remove("active");
-document.getElementById("finalExam").classList.remove("active");
-document.getElementById("studyHub").style.display="";
-document.getElementById("siteHeader").style.display="";
+const finished=currentExam==="mini"&&currentSubject?currentSubject:"home";
+store.clear();currentExam=null;currentSubject=null;clearInterval(timer);drawState=null;
+unlockHub();
 showSection(finished);
 }
 
 function startTimer(){
 clearInterval(timer);
-timer=setInterval(()=>{
-const left=Math.max(0,Number(sessionStorage.getItem("examEnd"))-Date.now());
+const tick=()=>{
+const left=Math.max(0,examEnd-Date.now());
 const sec=Math.ceil(left/1000),m=Math.floor(sec/60),s=sec%60;
 const el=document.getElementById("timer");if(!el)return;
 el.textContent=`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 el.className="timer"+(sec<=60?" danger":sec<=180?" warn":"");
-if(left<=0){clearInterval(timer);submitMini(true)}
-},250);
-}
-
-const finalQuestions=[
-["mcq","A circle has radius 5 cm. Which expression gives its circumference?",["5π","10π","25π","50π"],"B"],
-["mcq","A liquid has pH 9. It is:",["acidic","neutral","alkaline","pure water"],"C"],
-["tf","Angles inside a triangle total 180°.",null,"True"],
-["mcq","Which branch of government is associated with interpreting laws?",["Legislature","Judiciary","Executive","Sports council"],"B"],
-["short","Find x: 4x + 7 = 31.","6"],
-["case","A cyclist's wheel has diameter 70 cm. Explain how you could estimate the distance travelled after 20 complete rotations.","Find circumference using d=70, then multiply circumference by 20."],
-["mcq","Which variable is measured in an experiment?",["Independent","Dependent","Control","Constant only"],"B"],
-["tf","The present perfect can connect a past action with the present.",null,"True"],
-["short","Translate the French connector 'parce que'.","because"],
-["case","A student wants to test whether hotter water dissolves sugar faster but changes both temperature and amount of sugar. Explain the problem.","More than one important variable changes, so the test is not fair."],
-["mcq","Which Arabic word means scarf?",["وشاح","حزام","قبعة","جوارب"],"A"],
-["short","Find the mean of 5, 7, 8 and 12.","8"],
-["case","A school council has two competing proposals. Explain one democratic way to compare them fairly.","Gather evidence, hear both sides and use transparent agreed criteria or a vote."],
-["mcq","Which sentence uses a reflexive verb?",["Je mange.","Je me lave.","Je joue.","J'aime."],"B"],
-["short","What does the 'A' in P.A.W.S. represent?","Analysis"],
-["case","A shadow becomes shorter when a light source is moved higher. Suggest why its length changes.","The angle/path of light changes, altering the size of the blocked region."],
-["mcq","A rectangle is 12 m by 7 m. What is its area?",["19 m²","38 m²","84 m²","168 m²"],"C"],
-["true","A responsible citizen has only rights and no responsibilities.",null,"False"],
-["long","Explain why a strong answer in any subject should use evidence rather than simply state an opinion.","Evidence supports the claim and allows the reader to see why the conclusion is reasonable."],
-["long","Write a short paragraph explaining one real-life situation where mathematics, science or civic knowledge helps someone make a better decision.","Open response."]
-];
-function renderFinal(){
-document.getElementById("studyHub").style.display="none";document.getElementById("siteHeader").style.display="none";
-const box=document.getElementById("finalExam");box.className="exam-screen active";
-let html=`<div class="exambar"><div class="exambarrow"><div><b>Final Mixed Examination</b><div class="small">20 questions • 30 minutes • all subjects</div></div><div id="timer" class="timer">30:00</div></div></div>`;
-finalQuestions.forEach((q,i)=>html+=questionHTML(q,i));
-html+=`<div class="exam-submit"><button class="btn" onclick="submitFinal(false)">Submit Final Exam</button></div><div id="result" class="result"></div>`;
-box.innerHTML=html;startTimer();
-}
-function submitFinal(auto){
-clearInterval(timer);let earned=0,total=0;
-finalQuestions.forEach((q,i)=>{const r=getResponse(i,q),g=gradeResponse(q,r);if(g!==null){total++;earned+=g}});
-const pct=total?Math.round(earned/total*100):0;
-const result=document.getElementById("result");
-result.innerHTML=`<h2>${auto?"Time's up!":"Final Exam submitted!"}</h2><div class="score">${pct}%</div><p>${earned} automatically correct out of ${total} auto-marked questions.</p><p class="small">Extended responses require human marking for reasoning, evidence and writing quality.</p><button class="btn" onclick="finishExam()">Return to Study Hub</button>`;
-result.classList.add("show");document.querySelector(".exam-submit").style.display="none";
+if(left<=0){clearInterval(timer);submitExam(true)}
+};
+tick();
+timer=setInterval(tick,250);
 }
 
 window.addEventListener("load",()=>{
-const active=sessionStorage.getItem("activeExam"),subject=sessionStorage.getItem("activeSubject"),end=Number(sessionStorage.getItem("examEnd"));
+const active=store.get("activeExam"),subject=store.get("activeSubject"),end=Number(store.get("examEnd"));
 if(active&&end&&end>Date.now()){
-currentExam=active;currentSubject=subject||null;
-if(active==="mini"&&subject)renderExam(subject,true);else if(active==="final")renderFinal();
-}else if(active){sessionStorage.clear()}
+currentExam=active;currentSubject=subject||null;examEnd=end;
+if(active==="mini"&&subject&&exams[subject])renderExam(subject);
+else if(active==="final")renderFinal();
+}else if(active){store.clear()}
 });
 window.addEventListener("beforeunload",e=>{
-if(sessionStorage.getItem("activeExam")){e.preventDefault();e.returnValue=""}
+if(currentExam){e.preventDefault();e.returnValue=""}
 });
 </script>
 </body>
