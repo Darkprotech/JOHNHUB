@@ -122,7 +122,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <ol><li>Write what the question asks.</li><li>List the information given.</li><li>Ignore information that is irrelevant.</li><li>Draw a diagram if the situation is spatial.</li><li>Choose a formula or relationship.</li><li>Work one step at a time.</li><li>Check units.</li><li>Ask whether the answer makes sense in real life.</li></ol>
 <p>A difficult question often combines several easy ideas. The challenge is deciding which idea comes first.</p></div>
 
-<div class="card"><h3>Maths Mini-Exam</h3><p>20 questions • 15 minutes • mixed formats • original application problems</p><button class="btn" onclick="startMini('maths')">Start Maths Mini-Exam</button></div>
+<div class="card"><h3>Maths Mini-Exam</h3><p>26 questions • 20 minutes • mixed formats • original application problems</p><button class="btn" onclick="startMini('maths')">Start Maths Mini-Exam</button></div>
 </section>
 
 <section id="science" class="section">
@@ -162,7 +162,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <div class="lesson"><h3>7. How to analyse diagrams</h3>
 <p>First identify the system. Next identify each labelled part. Then follow arrows or pathways. Finally explain how the parts interact. A strong answer often follows <b>part → function → interaction → result</b>.</p></div>
 
-<div class="card"><h3>Science Mini-Exam</h3><p>20 questions • 15 minutes • case study • graph/data analysis • diagram analysis • circuit drawing</p><button class="btn" onclick="startMini('science')">Start Science Mini-Exam</button></div>
+<div class="card"><h3>Science Mini-Exam</h3><p>26 questions • 20 minutes • case study • graph/data analysis • diagram analysis • circuit drawing</p><button class="btn" onclick="startMini('science')">Start Science Mini-Exam</button></div>
 </section>
 
 <section id="sst" class="section">
@@ -191,7 +191,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <div class="lesson"><h3>6. Source and data analysis</h3>
 <p>When given a passage or table, identify its main claim, select evidence, explain what the evidence suggests and connect it to the relevant civic principle. Avoid copying the source without analysis.</p></div>
 
-<div class="card"><h3>SST Mini-Exam</h3><p>20 questions • 15 minutes • case studies • source analysis • scenarios • data interpretation</p><button class="btn" onclick="startMini('sst')">Start SST Mini-Exam</button></div>
+<div class="card"><h3>SST Mini-Exam</h3><p>26 questions • 20 minutes • case studies • source analysis • scenarios • data interpretation</p><button class="btn" onclick="startMini('sst')">Start SST Mini-Exam</button></div>
 </section>
 
 <section id="arabic" class="section">
@@ -216,7 +216,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <div class="lesson"><h3>5. Thinking in context</h3>
 <p>When you meet an unfamiliar word, examine surrounding words. Is it an object, action, colour, person or place? Context can sometimes help you infer meaning without immediately translating every word.</p></div>
 
-<div class="card"><h3>Arabic Mini-Exam</h3><p>20 questions • 15 minutes • reading • true/false • vocabulary in context • written Arabic responses</p><button class="btn" onclick="startMini('arabic')">Start Arabic Mini-Exam</button></div>
+<div class="card"><h3>Arabic Mini-Exam</h3><p>26 questions • 20 minutes • reading • true/false • vocabulary in context • written Arabic responses</p><button class="btn" onclick="startMini('arabic')">Start Arabic Mini-Exam</button></div>
 </section>
 
 <section id="french" class="section">
@@ -241,7 +241,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <div class="lesson"><h3>5. Reading strategy</h3>
 <p>Look for familiar words, verb forms, names, time expressions and connectors. Use the surrounding sentence to infer meaning. Do not panic because of one unknown word.</p></div>
 
-<div class="card"><h3>French Mini-Exam</h3><p>20 questions • 15 minutes • reading • true/false • grammar application • production écrite</p><button class="btn" onclick="startMini('french')">Start French Mini-Exam</button></div>
+<div class="card"><h3>French Mini-Exam</h3><p>26 questions • 20 minutes • reading • true/false • grammar application • production écrite</p><button class="btn" onclick="startMini('french')">Start French Mini-Exam</button></div>
 </section>
 
 <section id="english" class="section">
@@ -270,7 +270,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <p>For poems such as <i>The Tyger</i> and <i>The Eagle</i>, focus on themes, imagery, sound, structure, contrast and the speaker's attitude. You do not need to memorise entire poems. You need to understand how language creates meaning.</p>
 <div class="example"><b>Real-life connection:</b> A writer choosing powerful animal imagery can make a creature seem frightening, majestic, vulnerable or mysterious depending on the vocabulary and structure used.</div></div>
 
-<div class="card"><h3>English Mini-Exam</h3><p>20 questions • 15 minutes • grammar • reading • poetry analysis • case study • extended writing</p><button class="btn" onclick="startMini('english')">Start English Mini-Exam</button></div>
+<div class="card"><h3>English Mini-Exam</h3><p>26 questions • 20 minutes • grammar • reading • poetry analysis • case study • extended writing</p><button class="btn" onclick="startMini('english')">Start English Mini-Exam</button></div>
 </section>
 </main>
 
@@ -280,7 +280,7 @@ footer{text-align:center;color:var(--muted);padding:30px}
 <footer id="siteFooter">Welcome to John Study Hub • Learn it. Apply it. Explain it.</footer>
 
 <script>
-const MINI_DURATION=15*60*1000;
+const MINI_DURATION=20*60*1000;
 const FINAL_DURATION=30*60*1000;
 let currentExam=null,currentSubject=null,timer=null,drawState=null,examEnd=0;
 
@@ -462,6 +462,227 @@ const finalQuestions=[
 ["long","Write a short paragraph explaining one real-life situation where mathematics, science or civic knowledge helps someone make a better decision.",null,"Open response."]
 ];
 
+/* ===== Explanations for the original questions (shown when wrong / for teacher-marked) ===== */
+const EXPLAIN={
+maths:[
+"Area = πr² = π × 3² = 9π. 6π is the circumference (2πr) — a very common mix-up.",
+"C = πd, so if d doubles, C doubles too. True.",
+"Radius = diameter ÷ 2 = 56 ÷ 2 = 28 cm.",
+"Set up 12 + 15x = 132. Subtract 12: 15x = 120. Divide by 15: x = 8 participants.",
+"Fencing goes around the edge, so you need the perimeter, not the area.",
+"P = 2(l + w) = 2(7 + 11) = 2 × 18 = 36 cm.",
+"Sorted: 4, 7, 7, 9, 13. The middle value (median) is 7 and the most common value (mode) is 7. The mean is 40 ÷ 5 = 8.",
+"Angles in a triangle add to 180°, not 360°. 360° is for angles around a point or in a quadrilateral.",
+"A = ½ × base × height = ½ × 12 × 8 = 48 cm².",
+"Angles on a straight line add to 180°, so x = 180 − 64 = 116°.",
+"36 ÷ 4 = 9 AED per notebook.",
+"The 28 s is an outlier. It drags the mean up to 16 s, but the median (13 s) stays close to the normal times. Say which statistic AND why.",
+"Mean = (6 + 8 + 10 + 12) ÷ 4 = 36 ÷ 4 = 9.",
+"An angle bisector splits an ANGLE into two equal angles. A perpendicular bisector splits a LINE SEGMENT.",
+"C = 2πr = 2 × 3.14 × 20 = 125.6 m.",
+"Range = largest − smallest. True.",
+"3x + 5 = 26 → 3x = 21 → x = 7.",
+"Outer rectangle = (14 + 2) × (9 + 2) = 16 × 11 = 176 m². Path = 176 − 126 = 50 m². The key idea: the path adds 1 m on EACH side.",
+"A square always has four equal sides. Rectangles don't have to, not every triangle has a right angle, and a diameter is much shorter than the circumference.",
+"Wall = 6 × 4 = 24 m². Tile = 0.5 × 0.5 = 0.25 m². Tiles = 24 ÷ 0.25 = 96. Show every step and units."
+],
+science:[
+"Below 7 is acidic. pH 3 is quite strongly acidic.",
+"Both angles are measured from the NORMAL (the line at 90° to the mirror), not from the mirror surface. False.",
+"Acids turn blue litmus red. Alkalis turn red litmus blue.",
+"The dependent variable is what you MEASURE — shadow length. Lamp distance is what you CHANGE (independent variable).",
+"Angle of reflection = angle of incidence, so it is 35°.",
+"Describe the trend with numbers: as temperature goes up from 20°C to 60°C, dissolving time goes down from 80 s to 32 s.",
+"Plastic does not conduct electricity, so it is an insulator. Copper, iron and aluminium are metals and conduct.",
+"Current needs a complete loop. Any break stops the current, so the statement is false.",
+"Chewing breaks food into smaller pieces, which exposes more surface area for digestive juices to work on.",
+"Most digested nutrients are absorbed through the walls of the small intestine into the blood.",
+"The normal is the imaginary line at 90° to the surface where the ray hits.",
+"31 cm is far from the others (≈12 cm). Check the measurement and repeat the test before deciding it is an error.",
+"pH 7 is neutral — neither acidic nor alkaline.",
+"True. Change one variable and keep the rest the same, so you know what caused the result.",
+"Time decreases as temperature rises, but by 15, 15, 10 then 8 seconds — so the decrease is NOT constant.",
+"Angles of incidence and reflection are always measured from the normal.",
+"An open switch makes a gap in the circuit. No complete loop = no current = no light, even with a good cell.",
+"Chewing is mechanical digestion (physically breaking food up). Enzymes cause chemical digestion; absorbing glucose is absorption, not digestion.",
+"To make it a fair test, change ONLY object height, keep the lamp distance and angle the same, and measure the shadow each time.",
+"A good diagram shows a complete loop with a cell, a switch and a bulb, all labelled."
+],
+sst:[
+"The Constitution sets out how the government is organised, what powers it has, and citizens' rights.",
+"True — the Preamble names justice, liberty, equality and fraternity.",
+"The legislature (Parliament and State Assemblies) makes laws.",
+"Any authority must act within the powers the law gives it. Asking 'which law allows this?' keeps power in check.",
+"The judiciary (courts) interprets laws and settles disputes.",
+"Equality means everyone is treated equally under the law, without discrimination by religion, caste, gender or wealth.",
+"Democracy continues between elections — people can question leaders, protest peacefully, sign petitions and hold the government accountable. False.",
+"Rights come with responsibilities. Your right to speak doesn't let you stop others from speaking.",
+"Responsibility means doing what you agreed to or are expected to do.",
+"Limits stop any authority from misusing power and protect citizens' rights.",
+"Sports had 42 responses — the highest number.",
+"Checking whether actions follow the law is the role of the judiciary.",
+"Tolerance means respecting other people's right to their views even when you disagree — not agreeing with everything. False.",
+"A fair method is open and transparent: hear both sides, agree on criteria, then vote or decide by those criteria.",
+"Fraternity means a sense of brotherhood and unity among all citizens.",
+"The strongest response uses EVIDENCE (the survey numbers) to support a claim.",
+"Rights protect freedoms; duties make sure those freedoms are used responsibly. You need both for democracy to work fairly.",
+"Equal treatment isn't always fair. A student who needs extra help may need more support to get an EQUAL CHANCE.",
+"True — the executive (ministers and officials) puts laws and policies into action.",
+"Give two lawful methods (e.g. public meetings, petitions, contacting representatives) and say why each is constructive."
+],
+arabic:[
+"قميص = shirt. Coat = معطف, shoes = حذاء, scarf = وشاح.",
+"True — معطف means coat.",
+"Shoes = حذاء.",
+"أزرق = blue. أحمر = red, أخضر = green, أبيض = white.",
+"The sentence says قميصاً أزرق — a blue shirt. Black (أسود) describes the shoes.",
+"صح — وشاح means scarf.",
+"Use فستان in a full sentence, e.g. أختي ترتدي فستاناً أحمر.",
+"معطف (coat) keeps you warm. A T-shirt, sandals and a summer hat are for hot weather.",
+"The word لذلك (so/therefore) shows the reason: the weather was cold (كان الجو بارداً).",
+"خطأ — أسود means black. White is أبيض.",
+"Hat = قبعة.",
+"قميص (shirt) and حذاء (shoe) are both clothes. The other pairs are colours, weather words and school things.",
+"Name two clothes and two colours, e.g. قميص أبيض وبنطال أزرق.",
+"True — the words around an unfamiliar word give clues to its meaning.",
+"بنطال = trousers, أسود = black. In Arabic the colour comes AFTER the noun.",
+"عندما يكون الجو بارداً … ترتدي سترة زرقاء — she wears a blue jacket. She LIKES the green dress, but that's a different detail.",
+"وشاح = scarf. جوارب = socks, حزام = belt, تنورة = skirt.",
+"Include at least three clothes words and two colours, joined with و and a reason using لأن.",
+"صح — جوارب means socks.",
+"Suggest warm clothes like معطف and وشاح and give a reason: لأن الجو بارد."
+],
+french:[
+"parce que = because. mais = but, ensuite = then, enfin = finally.",
+"True — ensuite means 'then / next'.",
+"se lever = to get up (je me lève = I get up). Don't confuse it with se réveiller = to wake up.",
+"Reflexive verbs have 'se' in the infinitive: se laver = to wash oneself.",
+"Sequence connectors: d'abord (first), ensuite / puis (then), enfin (finally).",
+"For a group, use the vous imperative with no subject: Écoutez ! (Écoutons = let's listen; Écouter is the infinitive.)",
+"True — e.g. Ne cours pas ! Ne parlez pas !",
+"mais = but. It introduces a contrast.",
+"Add reason and sequence connectors: Je vais au parc parce qu'il fait beau, et ensuite je joue au football.",
+"se coucher = to go to bed. se réveiller = to wake up, se laver = to wash, s'habiller = to get dressed.",
+"Je me lève = I get up; à sept heures = at seven o'clock.",
+"True — enfin = finally / at last.",
+"Je me lave has the reflexive pronoun 'me' — I wash myself.",
+"Use the imperative, e.g. Ouvrez vos livres ! Écoutez !",
+"A production écrite paragraph communicates connected ideas clearly in written French.",
+"mais = but. et = and, parce que = because, aussi = also.",
+"Vrai — se brosser (les dents / les cheveux) is a daily routine verb.",
+"Use at least three reflexive verbs (je me lève, je me lave, je m'habille) and connectors (d'abord, ensuite, enfin).",
+"Positive: Dépêche-toi ! Negative: Ne sois pas en retard !",
+"Connectors link ideas so the paragraph flows and shows order and reasons."
+],
+english:[
+"Routines and habits use the present simple: 'I walk to school every day.'",
+"True — 'She is reading right now.'",
+"was/were + -ing = past continuous: an action in progress when something else happened.",
+"Option B names the technique AND explains its effect on the reader — that is real analysis.",
+"'I have never seen' links the past (never seen it before) to now (today I understand).",
+"True — Point, Analysis, Writer's method, Significance.",
+"S = Significance: why the writer's choice matters.",
+"Organisation is about structure and the order of ideas.",
+"Sensory details help the reader picture the place AND explain why the writer felt overwhelmed.",
+"have/has + past participle = present perfect: 'I have visited Dubai before.'",
+"Dialogue can reveal character, create conflict, give information or show relationships.",
+"False — a travelogue mixes description with personal reflection.",
+"Look at word choice, imagery, sound, structure and contrast.",
+"Option B uses a specific time, sounds and smells to pull the reader into the scene.",
+"E = Effect: what the reader experiences.",
+"False — you must also explain what the technique suggests and its effect on the reader.",
+"Make a point, quote or describe the method, explain what it suggests, then say why it matters.",
+"Interrupting may show impatience, excitement or a wish to dominate. Pick one and explain it with evidence.",
+"'already' signals the present perfect: I have finished my homework already.",
+"Each speaker needs a clear attitude, the disagreement must move towards a solution, and punctuation must be correct."
+]
+};
+const FINAL_EXPLAIN=[
+"C = 2πr = 2 × π × 5 = 10π.",
+"Above 7 is alkaline.",
+"True — the angles in a triangle add to 180°.",
+"The judiciary (courts) interprets laws.",
+"4x + 7 = 31 → 4x = 24 → x = 6.",
+"C = πd = 3.14 × 70 = 219.8 cm per turn. 20 turns = 4396 cm ≈ 44 m.",
+"The dependent variable is the one you measure.",
+"True — 'I have lived here for five years' links the past to now.",
+"parce que = because.",
+"If temperature AND amount of sugar both change, you can't tell which one caused the result. That makes it an unfair test.",
+"وشاح = scarf.",
+"Mean = (5 + 7 + 8 + 12) ÷ 4 = 32 ÷ 4 = 8.",
+"Hear both sides, use clear agreed criteria, then vote openly.",
+"Je me lave uses the reflexive pronoun 'me'.",
+"A = Analysis.",
+"A higher light hits the object at a steeper angle, so less ground is blocked and the shadow is shorter.",
+"A = l × w = 12 × 7 = 84 m². 38 m is the perimeter.",
+"False — rights come with duties and responsibilities.",
+"Evidence shows WHY your claim is true, so the reader can check it, not just take your word for it.",
+"Name the situation, the subject knowledge and the better decision it leads to."
+];
+
+/* ===== New real-life MCQ and long-answer questions ===== */
+const EXTRA={
+maths:[
+["mcq","A pizza shop sells a 20 cm diameter pizza for 30 AED and a 40 cm diameter pizza for 90 AED. Which is the better value?",["The 20 cm pizza, because it is cheaper","The 40 cm pizza, because it has 4 times the area for 3 times the price","They are the same value, because the diameter doubled","The 20 cm pizza, because the price triples"],"B","Area depends on r². Doubling the diameter (10 cm → 20 cm radius) gives 2² = 4 times the area. You get 4× the pizza for only 3× the price, so the 40 cm pizza is better value. Comparing diameters instead of areas is the trap."],
+["mcq","A phone plan costs 25 AED per month plus 0.50 AED per minute. Riya's bill was 61 AED. Which equation finds the number of minutes m?",["0.5 + 25m = 61","25m + 0.5 = 61","25 + 0.5m = 61","61 + 0.5m = 25"],"C","The 25 AED is a fixed fee (added once). The 0.50 AED is charged per minute, so it multiplies m. That gives 25 + 0.5m = 61 → 0.5m = 36 → m = 72 minutes."],
+["mcq","Five test scores are 45, 78, 80, 82 and 85. The mean is 74. The teacher says the mean makes the class look worse than it really is. Which statistic better shows a typical score?",["The mean, because it uses every score","The median (80), because the score of 45 is an outlier that pulls the mean down","The range, because it shows the spread","The mode, because it is always the most accurate"],"B","Four of the five scores are 78–85, but one very low score (45) drags the mean down to 74. The median is the middle value (80) and isn't affected much by one extreme value."],
+["long","A rectangular park is 30 m by 20 m. A circular fountain with radius 3 m sits in the middle. Grass costs 12 AED per m². How much will it cost to grass the park, not including the fountain? Use π ≈ 3.14 and show every step.",null,"Park = 30 × 20 = 600 m². Fountain = 3.14 × 3² = 28.26 m². Grass = 600 − 28.26 = 571.74 m². Cost = 571.74 × 12 = 6860.88 AED.","Three steps: (1) area of the rectangle, (2) area of the circle using πr², (3) subtract to get the grass area, then multiply by the price. Common mistakes are using 2πr (circumference) instead of πr², or forgetting to subtract the fountain."],
+["long","Ahmed says: 'If I double the radius of a circular rug, I only need twice as much material.' Is he right? Prove your answer with numbers.",null,"No. Radius 1 m: area = π × 1² = π m². Radius 2 m: area = π × 2² = 4π m². Doubling the radius makes the area 4 times bigger, so he needs 4 times the material.","Test it with real numbers. Because the radius is SQUARED in A = πr², doubling it multiplies the area by 2² = 4. (Doubling the radius does double the circumference — that may be what Ahmed is mixing up.)"],
+["long","A roof truss is a triangle. One angle is 40° and the other two angles are equal. Find the two missing angles and explain your reasoning.",null,"Angles in a triangle add to 180°. 180 − 40 = 140°. The two equal angles share it: 140 ÷ 2 = 70°. Both angles are 70°.","Use the angle-sum fact (180°), subtract the known angle, then split the rest equally. Check: 40 + 70 + 70 = 180 ✓."]
+],
+science:[
+["long","The pH of a swimming pool was found to be 7.2. After it rained continuously for two days, the pH was checked again and was found to be 6.1. What caused the change in pH, and how can the original pH of the pool be restored?",null,"Rainwater is slightly acidic because carbon dioxide from the air dissolves in it (and pollution can add more acid). Two days of rain added lots of acidic water, so the pH dropped from 7.2 (slightly alkaline) to 6.1 (slightly acidic). To restore it, add a mild base such as baking soda (sodium hydrogen carbonate) or soda ash (sodium carbonate) a little at a time. The base neutralises the extra acid. Keep testing with a pH kit or indicator until it is back around 7.2.","A full-marks answer has three parts: (1) the CAUSE — rain is naturally slightly acidic, so the pool became more acidic; (2) the FIX — add a base; (3) the SCIENCE — the base neutralises the acid, and you test the pH as you go. Saying 'add more water' or 'add acid' is wrong: water won't raise the pH much and acid lowers it further."],
+["mcq","A farmer tests his soil and finds the pH is 5. His crops grow best at about pH 7. What should he add to the soil?",["Vinegar","Lime (calcium hydroxide), a base","Lemon juice","More rainwater"],"B","pH 5 is too acidic. To raise the pH towards 7 you need a base to neutralise the acid. Lime is a base. Vinegar and lemon juice are acids (they'd make it worse), and rainwater is slightly acidic."],
+["mcq","Someone has indigestion because their stomach is producing too much acid. Which remedy makes the most sense?",["A glass of orange juice","An antacid tablet containing a mild base","A spoon of vinegar","A can of cola"],"B","Too much stomach acid is treated by NEUTRALISING it with a mild base — that's exactly what antacids (e.g. magnesium hydroxide) do. Orange juice, vinegar and cola are all acidic and would make it worse."],
+["mcq","An ant sting injects formic acid into the skin. Which household substance would be best to rub on the sting?",["Lemon juice","Vinegar","Baking soda paste","Salt water"],"C","Formic acid is an acid, so you need a base to neutralise it. Baking soda (sodium hydrogen carbonate) is a mild base. Lemon juice and vinegar are acids; salt water is roughly neutral."],
+["long","A student builds a circuit with a cell, a switch and a bulb. The switch is closed but the bulb does not light. Give three possible reasons and explain how to test each one.",null,"1) The cell is flat — swap in a new cell. 2) The bulb is fused (broken filament) — test the bulb in a circuit that works. 3) A wire is loose or broken — check and tighten every connection, or swap the wires. (Also possible: a faulty switch — bypass it with a wire.)","Troubleshoot ONE component at a time, swapping it for one you know works, so you can tell exactly which part was faulty. Each reason must come with a test to get full marks."],
+["long","Two students measure the shadow of the same pole outside, once at 9 a.m. and again at 12 noon. The noon shadow is much shorter. Explain why.",null,"At 9 a.m. the Sun is low in the sky, so light hits the pole at a shallow angle and the pole blocks a long stretch of ground — a long shadow. At noon the Sun is almost overhead, so light comes from steeply above and the pole blocks only a small area — a short shadow.","Link the Sun's POSITION (height in the sky) to the ANGLE of the light, and the angle to the SHADOW LENGTH. Light travels in straight lines, so the shadow is the region the pole blocks."]
+],
+sst:[
+["mcq","A town council makes a rule that only people of one religion may use a public park. Which constitutional ideal is most clearly broken?",["Equality","Freedom of speech","Universal adult franchise","Federalism"],"A","Public places must be open to everyone without discrimination by religion, caste, gender or race. A rule like this treats citizens unequally, so it goes against equality (and secularism)."],
+["mcq","The government shuts down a newspaper because it criticised a minister. Which right is most directly affected?",["Right to education","Right to freedom of speech and expression","Right to vote","Right against exploitation"],"B","A free press is part of freedom of speech and expression. Criticising people in power is an important way citizens hold the government accountable in a democracy."],
+["mcq","Rohan is 19 and says, 'My one vote won't change anything, so I won't bother voting.' Which reply best reflects democratic values?",["He's right — one vote never matters","Voting is only important for older people","Every vote counts, and voting is how citizens choose and hold their representatives accountable","Only people in government should decide"],"C","In a democracy, power comes from the people through voting. Elections can be won by small margins, and representatives know that voters can remove them next time — that keeps them accountable."],
+["long","A factory dumps waste into a river that a village uses for drinking water. The villagers complain to the factory, but nothing changes. Explain which institutions the villagers could approach, and which rights and duties are involved.",null,"They can go to the executive: the local government or pollution control authorities, who can inspect the factory and enforce environmental laws. If that fails, they can go to the judiciary — a court can order the factory to stop. Clean water is linked to the right to life. The factory (and all citizens) have a duty to protect the environment.","Name at least one institution and say what it can DO. Connect the problem to a right (right to life / health) and a duty (protecting the environment). Answers that only say 'complain to the government' without explanation get partial marks."],
+["long","A class monitor is elected by the class but then makes every decision alone without asking anyone. Explain how this is similar to and different from a democracy, and suggest one way to make the monitor more accountable.",null,"Similar: the monitor was chosen by a vote, like elected leaders. Different: in a democracy, leaders must consult and answer to the people between elections. Fix: hold regular class meetings where the monitor reports back, or allow the class to vote again if the monitor ignores them.","A strong answer shows that democracy is more than one vote: it also needs participation, discussion and accountability. Give one practical, fair suggestion."],
+["long","A school builds a ramp so a student using a wheelchair can enter the library. Another student says, 'That's unfair — everyone should be treated exactly the same.' Explain why the ramp actually supports equality.",null,"Equality means everyone has an equal CHANCE to take part. Stairs block the wheelchair user from using the library at all. The ramp removes that barrier so they can use it like everyone else. Treating people identically would leave them excluded.","The key idea is the difference between identical treatment and fair treatment (equal opportunity). Use the example to show how a barrier is removed."]
+],
+arabic:[
+["mcq","اقرأ: 'الجو حار جداً اليوم، وسارة ستذهب إلى الشاطئ.' What should Sara wear?",["معطف ووشاح","تي شيرت وقبعة","سترة وجوارب صوفية","معطف وحذاء شتوي"],"B","حار جداً means very hot, and الشاطئ is the beach. A T-shirt (تي شيرت) and hat (قبعة) suit hot weather. Coats, scarves and woollen socks are for cold weather."],
+["mcq","اقرأ: 'اشترى علي قميصاً أبيض وبنطالاً أسود للحفلة.' What colour are Ali's trousers?",["أبيض","أسود","أحمر","أزرق"],"B","The colour comes AFTER the noun it describes. بنطالاً أسود = black trousers. أبيض (white) describes the shirt."],
+["mcq","Your friend says: 'لوني المفضل هو لون السماء في يوم صافٍ.' What is their favourite colour?",["أخضر","أحمر","أزرق","بني"],"C","لون السماء = the colour of the sky, and يوم صافٍ = a clear day. The sky on a clear day is blue — أزرق."],
+["long","اقرأ: 'ذهبت ليلى إلى المتجر لأنها تحتاج إلى ملابس للمدرسة. اشترت تنورة زرقاء وقميصاً أبيض. لم تشترِ الحذاء لأنه كان غالياً.' Answer in Arabic: (1) لماذا ذهبت ليلى إلى المتجر؟ (2) ماذا اشترت؟ (3) لماذا لم تشترِ الحذاء؟",null,"(1) لأنها تحتاج إلى ملابس للمدرسة. (2) اشترت تنورة زرقاء وقميصاً أبيض. (3) لأنه كان غالياً.","Each 'why' answer starts with لأن / لأنها / لأنه (because). Find the word لأن in the text — the answer comes right after it. For 'what', copy the clothes AND their colours."],
+["long","Write 4–5 Arabic sentences describing your school uniform. Mention at least three items and their colours.",null,"Example: أرتدي في المدرسة قميصاً أبيض وبنطالاً أزرق. أرتدي أيضاً حذاءً أسود وجوارب بيضاء. في الشتاء أرتدي سترة زرقاء.","Put the colour AFTER the clothing item, use و (and) and أيضاً (also) to connect ideas, and start with a verb such as أرتدي (I wear)."],
+["long","You are packing for a trip to a very cold country. Write a list of four clothing items in Arabic, each with a colour, then write one sentence explaining your choice.",null,"Example: معطف أسود، وشاح أحمر، قبعة رمادية، حذاء بني. سآخذ هذه الملابس لأن الجو بارد جداً هناك.","Choose WARM clothes (not a T-shirt or sandals), give each one a colour after the noun, and use لأن to explain the reason."]
+],
+french:[
+["mcq","Ta sœur est en retard pour l'école. Which command tells her to hurry up?",["Dépêche-toi !","Te dépêches !","Dépêcher !","Tu dépêches-toi !"],"A","Use the tu imperative for one person you know well. With reflexive verbs, the pronoun goes AFTER the verb with a hyphen and te becomes toi: Dépêche-toi !"],
+["mcq","Complete: 'Le matin, je ___ à sept heures.' (to get up)",["me lève","se lève","te lèves","lève-moi"],"A","With je, the reflexive pronoun is me: je me lève. se lève goes with il/elle; te lèves goes with tu; lève-moi is an imperative."],
+["mcq","Which sentence correctly gives a REASON?",["Je reste à la maison mais il pleut.","Je reste à la maison parce qu'il pleut.","Je reste à la maison ensuite il pleut.","Je reste à la maison enfin il pleut."],"B","parce que = because, so it introduces a reason. mais shows contrast, ensuite shows sequence, and enfin means finally."],
+["long","Your French friend is visiting Dubai in summer. Write four instructions in French (imperative) to help them stay safe and enjoy the trip. Include at least one negative command.",null,"Example: Bois beaucoup d'eau ! Porte une casquette ! Visite le Burj Khalifa ! N'oublie pas ta crème solaire !","Use the tu imperative (no 'tu' before the verb). For -er verbs drop the final -s: tu portes → Porte ! A negative command wraps the verb with ne … pas: N'oublie pas …"],
+["long","Décris ta routine du dimanche en 5–6 phrases. Use at least three reflexive verbs and the connectors d'abord, ensuite and enfin.",null,"Example: Le dimanche, je me réveille à neuf heures. D'abord, je me lave et je m'habille. Ensuite, je prends le petit-déjeuner avec ma famille. L'après-midi, je joue au football parce que j'adore le sport. Enfin, je me couche à dix heures.","Check each reflexive verb has the correct pronoun (je me, tu te, il se). Use the connectors in a logical order and add a reason with parce que."],
+["long","Find and correct the mistakes, then explain them: 'Je lave à sept heures. Ensuite je m'habille et je brosse les dents.'",null,"Correct: Je me lave à sept heures. Ensuite je m'habille et je me brosse les dents. Laver and brosser need the reflexive pronoun 'me' because you are washing yourself and brushing your own teeth.","Ask: is the person doing the action TO THEMSELVES? If yes, use the reflexive pronoun. 'Je lave' alone would mean you wash something else, like a car."]
+],
+english:[
+["mcq","Choose the correct verb: 'Look! It ___ outside.'",["rains","is raining","rained","has rain"],"B","'Look!' shows it is happening right now, so you need the present continuous: is + verb-ing."],
+["mcq","A travel writer writes: 'The desert stretched forever, a golden ocean frozen in time.' What is the technique and its effect?",["A simile that makes the desert seem wet","A metaphor that makes the desert seem vast, still and timeless","Alliteration that makes the desert seem noisy","A rhetorical question that confuses the reader"],"B","Calling the desert 'a golden ocean' directly (with no 'like' or 'as') is a metaphor. Oceans are huge, and 'frozen in time' suggests stillness — so the reader imagines a vast, silent, unchanging landscape."],
+["mcq","In 'The Eagle', Tennyson writes: 'He clasps the crag with crooked hands.' What does the word 'hands' suggest?",["The eagle is weak and old","Personification — giving the eagle a human feature to suggest a strong, deliberate grip and control","A simile comparing the eagle to a man","It is a literal description of the eagle"],"B","Eagles have talons, not hands. Giving it 'hands' is personification, which makes the eagle seem almost human — powerful, in control, gripping on purpose."],
+["long","In 'The Tyger', Blake asks: 'What immortal hand or eye / Could frame thy fearful symmetry?' Use P.A.W.S. to explain what this question suggests about the tiger and its creator.",null,"P: Blake presents the tiger as so powerful that its creator must be extraordinary. A: He wonders who could have made something so beautiful yet terrifying. W: He uses a rhetorical question and the oxymoron-like phrase 'fearful symmetry'. S: The question makes the reader feel awe and unease, and wonder about a creator who could make both beauty and danger.","Follow all four steps. Don't just name 'rhetorical question' — explain that it creates wonder because no answer is given, and that 'fearful symmetry' combines beauty (symmetry) with danger (fearful)."],
+["long","Rewrite this weak travelogue sentence into 2–3 vivid sentences. Use at least two senses and add a personal reflection: 'The market was busy and nice.'",null,"Example: The spice market buzzed with traders shouting prices over the clatter of carts. Mountains of saffron and cinnamon filled the air with a warm, sweet smell. Squeezing through the crowd, I felt I had stepped into a story far older than me.","Replace vague words ('busy', 'nice') with specific sights, sounds or smells, then end with how the place made YOU feel or think."],
+["long","Write a 6-line dialogue in which one friend asks to copy the other's homework. The second friend refuses politely but firmly. Show each character's personality through what they say.",null,"Open response. Example opening: 'Can I just copy your maths? It'll take two minutes.' 'Sorry, Zaid, I can't. But I'll show you how I did question three.'","Use speech marks and a new line for each speaker. The refusal should be clear but kind, ideally with an offer to help — that shows character. Each line should move the conversation forward."]
+]
+};
+const FINAL_EXTRA=[
+["long","The pH of a swimming pool was found to be 7.2. After it rained continuously for two days, the pH was checked again and was found to be 6.1. What caused the change in pH, and how can the original pH of the pool be restored?",null,"Rain is slightly acidic (carbon dioxide dissolves in it), so lots of rain lowered the pool's pH to 6.1. Add a mild base such as baking soda or soda ash bit by bit to neutralise the acid, testing until the pH is back near 7.2.","Give the cause (acidic rain), the fix (add a base) and the science (neutralisation, with testing as you go)."],
+["mcq","A farmer's soil has pH 5. What should he add to make it closer to neutral?",["Vinegar","Lime (a base)","Lemon juice","Acid rain"],"B","pH 5 is acidic. A base like lime neutralises the acid and raises the pH towards 7."],
+["mcq","A 20 cm pizza costs 30 AED and a 40 cm pizza costs 90 AED. Which is better value?",["20 cm","40 cm","Same value","Can't tell"],"B","Doubling the diameter gives 4 times the area. That's 4× the pizza for 3× the price, so the 40 cm pizza wins."]
+];
+Object.keys(exams).forEach(s=>{
+exams[s].questions.forEach((q,i)=>{q[4]=EXPLAIN[s][i]||""});
+exams[s].questions.push(...EXTRA[s]);
+});
+finalQuestions.forEach((q,i)=>{q[4]=FINAL_EXPLAIN[i]||""});
+finalQuestions.push(...FINAL_EXTRA);
+
 function filterCards(){
 const q=document.getElementById("searchBox").value.toLowerCase();
 document.querySelectorAll(".searchable").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?"":"none");
@@ -507,7 +728,7 @@ lockHub();
 const box=document.getElementById("miniExam");
 box.className="exam-screen active";
 const ex=exams[subject];
-let html=`<div class="exambar"><div class="exambarrow"><div><b>${ex.title}</b><div class="small">20 mixed questions • 15 minutes • learning material locked</div></div><div id="timer" class="timer">15:00</div></div></div><div id="examBody">`;
+let html=`<div class="exambar"><div class="exambarrow"><div><b>${ex.title}</b><div class="small">${ex.questions.length} mixed questions • 20 minutes • learning material locked</div></div><div id="timer" class="timer">20:00</div></div></div><div id="examBody">`;
 ex.questions.forEach((q,i)=>html+=questionHTML(q,i));
 html+=`</div><div class="exam-submit"><button class="btn" onclick="submitExam(false)">Submit Exam</button></div><div id="result" class="result"></div>`;
 box.innerHTML=html;
@@ -519,7 +740,7 @@ function renderFinal(){
 lockHub();
 const box=document.getElementById("finalExam");
 box.className="exam-screen active";
-let html=`<div class="exambar"><div class="exambarrow"><div><b>Final Mixed Examination</b><div class="small">20 questions • 30 minutes • all subjects</div></div><div id="timer" class="timer">30:00</div></div></div>`;
+let html=`<div class="exambar"><div class="exambarrow"><div><b>Final Mixed Examination</b><div class="small">${finalQuestions.length} questions • 30 minutes • all subjects</div></div><div id="timer" class="timer">30:00</div></div></div>`;
 finalQuestions.forEach((q,i)=>html+=questionHTML(q,i));
 html+=`<div class="exam-submit"><button class="btn" onclick="submitExam(false)">Submit Final Exam</button></div><div id="result" class="result"></div>`;
 box.innerHTML=html;
@@ -594,8 +815,12 @@ let shown=r;
 if(q[0]==="mcq"&&r)shown=r+". "+q[2][r.charCodeAt(0)-65];
 let model=q[3];
 if(q[0]==="mcq")model=q[3]+". "+q[2][q[3].charCodeAt(0)-65];
-const mark=g===null?"✍ Teacher marks":g?"✅ Correct":"❌ Incorrect";
-review+=`<div class="exam-q" style="text-align:left"><div class="qnum">Question ${i+1} • ${mark}</div><div class="qtext" style="font-size:16px">${q[1]}</div><p><b>Your answer:</b> ${shown?escapeHTML(shown):"<i>(no answer)</i>"}</p><p style="margin-top:6px;color:var(--green)"><b>Model answer:</b> ${model}</p></div>`;
+const why=q[4]||"";
+let mark,extra;
+if(g===null){mark="✍ Teacher marks";extra=`<p style="margin-top:6px;color:var(--green)"><b>Model answer:</b> ${model}</p>`+(why?`<div class="tip"><b>How to get full marks:</b> ${why}</div>`:"");}
+else if(g){mark="✅ Correct";extra=`<p style="margin-top:6px;color:var(--green)"><b>Answer:</b> ${model}</p>`;}
+else{mark="❌ Incorrect";extra=`<p style="margin-top:6px;color:var(--green)"><b>Correct answer:</b> ${model}</p>`+(why?`<div class="tip"><b>Why:</b> ${why}</div>`:"");}
+review+=`<div class="exam-q" style="text-align:left"><div class="qnum">Question ${i+1} • ${mark}</div><div class="qtext" style="font-size:16px">${q[1]}</div><p><b>Your answer:</b> ${shown?escapeHTML(shown):"<i>(no answer)</i>"}</p>${extra}</div>`;
 }
 });
 box.querySelectorAll("input,textarea,button").forEach(el=>{if(!el.closest(".result"))el.disabled=true});
