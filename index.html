@@ -45,7 +45,7 @@ table{width:100%;border-collapse:collapse;margin:14px 0}th,td{border:1px solid v
 .drawbox{background:#070d19;border:1px solid var(--border);padding:12px;border-radius:12px}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}.tools button{background:var(--card2);color:white;border:1px solid var(--border);padding:8px 11px;border-radius:8px}.tools input{width:65px}
 .canvaswrap{background:white;border-radius:8px;overflow:auto}.canvaswrap canvas{display:block;background:white;touch-action:none}
 .diagram{display:flex;justify-content:center;margin:15px 0}.diagram svg{max-width:100%;background:#f8fafc;border-radius:10px}
-footer{text-align:center;color:var(--muted);padding:30px}.wcinfo{margin-top:8px;font-weight:800;color:var(--muted)}.wcinfo.ok{color:var(--green)}.wcinfo.bad{color:var(--yellow)}.notecard{background:#0d1830;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}.notecard p{margin:0 0 10px;color:#e2e8f0;line-height:1.75}.notecard .ptag{display:inline-block;font-size:11px;font-weight:800;color:#0b1020;background:var(--blue);border-radius:6px;padding:2px 7px;margin-right:8px}.poem{font-family:Georgia,serif;font-size:18px;line-height:1.8;background:#0b1428;border-left:4px solid var(--yellow);padding:16px 22px;border-radius:8px;margin:12px 0}.poem p{margin-bottom:14px;color:#f8fafc}.rtl{direction:rtl;text-align:right;font-size:20px;line-height:2}
+footer{text-align:center;color:var(--muted);padding:30px}#dictPop{position:fixed;z-index:1000;max-width:340px;min-width:210px;background:linear-gradient(160deg,#17264d,#0e1830);border:1px solid #35548f;border-radius:14px;padding:12px 14px 9px;box-shadow:0 18px 40px #000a;color:#e8eefc;opacity:0;transform:translateY(6px) scale(.97);pointer-events:none;transition:opacity .15s,transform .15s;font-family:Arial,Helvetica,sans-serif}#dictPop.show{opacity:1;transform:none;pointer-events:auto}#dictPop::after{content:"";position:absolute;left:var(--ax);bottom:-7px;width:12px;height:12px;background:#0e1830;border-right:1px solid #35548f;border-bottom:1px solid #35548f;transform:translateX(-50%) rotate(45deg)}#dictPop.below::after{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg);background:#17264d}.dp-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.dp-term{font-size:18px;font-weight:900;color:#fff}.dp-chip{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);white-space:nowrap}.dp-say{margin-left:auto;background:#ffffff14;border:1px solid #ffffff22;color:#fff;border-radius:8px;padding:3px 8px;font-size:13px}.dp-say:hover{background:#ffffff26}.dp-phon{color:#93c5fd;font-size:13px;margin-top:2px}.dp-pos{color:#fbbf24;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-top:8px}.dp-def{font-size:14.5px;line-height:1.55;margin-top:6px;color:#e2e8f0}.dp-ex{font-size:13px;color:#a5b4d4;font-style:italic;margin-top:4px}.dp-muted{color:#94a3b8}.dp-part{margin-top:9px}.dp-part .dp-def{margin-top:2px}.dp-foot{margin-top:9px;font-size:10px;color:#64748b;font-weight:800;text-transform:uppercase;letter-spacing:.7px}.dict-toggle{position:fixed;right:16px;bottom:16px;z-index:600;background:#13213d;color:#dbeafe;border:1px solid var(--blue);border-radius:999px;padding:9px 14px;font-weight:700;box-shadow:0 8px 24px #0007}.dict-toggle b{color:var(--green)}.dict-toggle.off b{color:var(--red)}::highlight(dictword){background-color:#fbbf2455;color:inherit}.wcinfo{margin-top:8px;font-weight:800;color:var(--muted)}.wcinfo.ok{color:var(--green)}.wcinfo.bad{color:var(--yellow)}.notecard{background:#0d1830;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}.notecard p{margin:0 0 10px;color:#e2e8f0;line-height:1.75}.notecard .ptag{display:inline-block;font-size:11px;font-weight:800;color:#0b1020;background:var(--blue);border-radius:6px;padding:2px 7px;margin-right:8px}.poem{font-family:Georgia,serif;font-size:18px;line-height:1.8;background:#0b1428;border-left:4px solid var(--yellow);padding:16px 22px;border-radius:8px;margin:12px 0}.poem p{margin-bottom:14px;color:#f8fafc}.rtl{direction:rtl;text-align:right;font-size:20px;line-height:2}
 .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
 .subtab{background:var(--card);color:var(--muted);border:1px solid var(--border);padding:10px 14px;border-radius:10px;font-weight:700}
 .subtab:hover{color:#fff;border-color:var(--blue)}.subtab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
@@ -1705,11 +1705,16 @@ As the abra carried us back, the glass towers of modern Dubai shimmered on the h
 <tr><td><b>The longboat riders</b></td><td>Indigenous people who respect the sea. In Greatmother's stories, whales and longboat people once lived in peace.</td></tr>
 <tr><td><b>The Vanished Ones</b></td><td>A long-lost branch of orcas who live in the open ocean and hunt sharks (later chapters).</td></tr></table>
 
-<h4>Chapters 1–7 (background)</h4>
-<ul><li><b>Ch 1 "Kinship":</b> Vega's hungry family searches for salmon. She isn't yet a hunter or a wayfinder, and worries she won't be good enough.</li>
-<li><b>Ch 2–5 ("Noise", "Birds", "Gathering", "Long Dance"):</b> Vega tries leading as a wayfinder but nearly takes the family into the path of a ship. Ashamed, she swims away. Her cousin Aquila persuades her to return for the <b>Gathering</b>, the summer reunion of the whole kinship, with dancing and stories.</li>
-<li><b>Ch 6 "Birth" (Deneb):</b> On the first night of the Gathering, Mother gives birth. The baby, Capella, cannot breathe and dies. The mothers sing a sad lament.</li>
-<li><b>Ch 7 "Stolen" (Vega):</b> Greatmother blames poisons and changes in the sea. Furious, Vega takes Capella's body on her back and races away to Blood Cove, where, when Mother was a baby, humans in boats and a helicopter captured the pod's babies and the uncles died defending them.</li></ul>
+<h4>Chapters 1–7 (background – know these too!)</h4>
+<table class="ntable"><tr><th>Chapter</th><th>What happens</th><th>Why it matters</th></tr>
+<tr><td><b>1 – Kinship</b><br><i>(Vega)</i></td><td>It is early morning in the misty Salish Sea. Vega's family has hunted all night without finding salmon, and everyone is tired and hungry. Vega is no longer a youngling, but she isn't yet strong enough to hunt like Mother or wise enough to be a wayfinder like Greatmother, and she worries she will never be good enough. She dances in the mist to cheer herself up. Greatmother tells her, <b>"Eat a little beauty every day, my Vega, my bright star… it will give you strength."</b> Vega doesn't understand, because she is so hungry. Mother is pregnant with Capella, so food matters even more. After a long, frustrating day Vega catches only a small flatfish, which the family shares. Later she catches a salmon. She is tempted to keep it for herself, but when she hears her family calling she <b>shares it</b>.</td><td>Introduces the family, the <b>hunger</b> caused by disappearing salmon, Vega's self-doubt and her <b>selfless</b> nature. The "beauty" saying comes back later.</td></tr>
+<tr><td><b>2 – Noise</b></td><td>Mother and Greatmother praise Vega's catch and decide she should start learning to lead as a <b>wayfinder</b>. Her cousin <b>Aquila</b> often interrupts and outshines her, which annoys Vega. On the way to the Gathering Place, Vega leads the family through familiar waters, but they meet the deafening <b>roar of a huge human ship</b>. Vega insists they keep going, and she nearly leads the pod into its path. The noise causes panic, and the older whales guide everyone to safety in a kelp forest. Mother reminds her that you learn to lead by trying. Ashamed, Vega swims off alone.</td><td>Vega's first big <b>mistake</b> as a leader. Shows the danger of ship noise and traffic to orcas.</td></tr>
+<tr><td><b>3 – Birds</b></td><td>Full of guilt, Vega believes her family would be better off without her. She hunts alone and passes seals, octopuses and fish. She watches murres and puffins diving skilfully and even envies a plain minke whale that eats well. Desperately hungry, she catches a <b>gull</b>, but orcas of her family don't eat birds. Aquila finds her and scolds her for forgetting the family's ways. Then Aquila softens, encourages her, and persuades her to come back and search for salmon together. The cousins swim side by side.</td><td>Shows Vega's <b>guilt</b> and loneliness and the importance of family <b>rules and values</b>. Aquila turns from rival to support.</td></tr>
+<tr><td><b>4 – Gathering</b></td><td>Vega and Aquila look for the family. Vega's calls go unanswered, and she remembers younglings who were lost before. Aquila is excited to be first to find the returning <b>Chinook salmon</b>, whose yearly return feeds the whole kinship. Near a human gathering, an <b>earth tremor</b> shakes the water. Aquila tells a story about the earth shaking to calm her, but Vega stays uneasy. They find Deneb and the rest of the family, including little cousin Altair, and celebrate the salmon's return. Vega realises that caring for her family matters more than being first or fastest.</td><td>The small tremor <b>foreshadows</b> the great sea shake later. The salmon run links to the theme of <b>survival</b>.</td></tr>
+<tr><td><b>5 – Long Dance</b></td><td>The whole kinship meets for the <b>Gathering</b>, a summer reunion with dancing, games and storytelling. Orcas call out their names as they leap and spin in the Long Dance. Dolphins hunt nearby while others rest in a "sleep line". Late at night, Greatmother tells Vega and Aquila about a <b>tremor long ago that reshaped the sea</b>. She teaches that if the earth shakes again, <b>the open ocean is a refuge</b>, and that together is better than apart. Deneb, pretending to sleep, has been listening, and he promises Vega, "I will always follow you."</td><td>Joyful <b>atmosphere</b> before tragedy. Greatmother's teaching later saves Vega (Ch 13). Deneb's promise sets up Chapter 9, "Follow".</td></tr>
+<tr><td><b>6 – Birth</b><br><i>(Deneb)</i></td><td>On the first night of the Gathering, Mother goes into labour. The wayfinders and great hunters circle her while the uncles stand guard. The blood draws <b>sharks</b>, and Deneb proudly helps Uncle Rigel and the other uncles drive them away. Greatmother lifts the newborn, a <b>"tiny black and golden-pink sister"</b>, to the surface. Deneb feels relief and joy, but <b>Capella cannot breathe</b>. Mother had lost a baby before, too. Uncle Rigel comforts the family: "I am here… I am beside you." Deneb copies him by nuzzling Vega. The mothers sing a lament, "high-pitched and fierce and full of longing".</td><td>Huge turning point: <b>grief</b>. Shows Deneb's wish to be a protector like Uncle Rigel.</td></tr>
+<tr><td><b>7 – Stolen</b><br><i>(Vega)</i></td><td>Vega grieves for Capella, who was meant to share her hunting and wayfinding. Greatmother tells Mother the death is not her fault. She blames <b>poisons and changes in the sea</b>, because many babies have been lost. When Greatmother says it's time to let Capella go, Vega is filled with rage at the thought of her sister lying in a cold passage with boats roaring overhead. She <b>takes Capella's body on her back</b> and races away towards Deception Pass. She tells Capella the story of <b>Blood Cove</b>: when Mother was a baby, three boats and a helicopter chased the pod. The mothers lured the boats away, and Uncle Rigel saved Mother and Aunt Nova, but the other uncles were killed and the babies were captured. Vega promises, <b>"I will lay you beside the bones of the uncles who saved your mother."</b></td><td>Shows Vega's <b>love</b> and <b>anger at humans</b>, and explains the history behind Chapter 8.</td></tr></table>
+
 
 <h4>⭐ Chapters 8–15 (exam focus)</h4>
 <table class="ntable"><tr><th>Chapter</th><th>Narrator</th><th>What happens</th><th>Why it matters</th></tr>
@@ -2801,6 +2806,426 @@ MORE.arabic=[
 ["mcq","Which sentence is correct for 'white socks'?",["جوارب أبيض","جوارب بيضاء","جوارب بيض الأبيض","أبيض جوارب"],"B","Plurals of things take the FEMININE SINGULAR adjective: جوارب بيضاء."],
 ["long","اكتب فقرة (5–6 جمل) عن ملابسك يوم العيد. Write a paragraph about your Eid clothes: at least four clothing items with correct colours, one reason with لأن, and two connectors.",null,"Open response. Example: يوم العيد ألبس ملابس جديدة. ألبس كندورة بيضاء وحذاءً أسود. ألبس أيضاً قبعة بيضاء. أختي تلبس فستاناً وردياً لأنها تحب اللون الوردي. ثم نذهب إلى بيت جدي.","Check: colour after each noun, feminine colours with ة words (كندورة بيضاء، قبعة بيضاء), at least one لأن, connectors (أيضاً، ثم، و)."]
 ];
+
+const GLOSS_RAW={
+Maths:{
+"radius":"The distance from the centre of a circle to its edge. Plural: radii.",
+"diameter":"A straight line through the centre of a circle from edge to edge. It is twice the radius (d = 2r).",
+"circumference":"The distance all the way around a circle. C = πd = 2πr.",
+"chord":"A straight line joining two points on a circle.",
+"arc":"A part of the circumference of a circle.",
+"sector":"The part of a circle between two radii and an arc – like a slice of pizza.",
+"segment":"The part of a circle between a chord and an arc.",
+"tangent":"A straight line that touches a circle at exactly one point.",
+"semicircle":"Half a circle.",
+"quadrant":"A quarter of a circle.",
+"pi":"The number you get when you divide any circle's circumference by its diameter: about 3.14 or 22/7. Symbol π.",
+"π":"Pi – about 3.14 or 22/7. Circumference ÷ diameter for every circle.",
+"area":"The amount of flat surface a shape covers, measured in square units (cm², m²).",
+"perimeter":"The total distance around the outside edge of a shape.",
+"compound shape":"A shape made by joining two or more simple shapes (e.g. an L-shape made of two rectangles).",
+"parallelogram":"A four-sided shape with two pairs of parallel sides. Area = base × height.",
+"trapezium":"A four-sided shape with exactly one pair of parallel sides. Area = ½(a + b) × h.",
+"perpendicular":"At a right angle (90°) to another line.",
+"perpendicular height":"The height measured at 90° to the base, not along a sloping side.",
+"variable":"A letter (like x or n) that stands for an unknown or changing number.",
+"coefficient":"The number in front of a letter. In 7y the coefficient is 7.",
+"constant":"A term with no letter; its value never changes. In 3x + 5 the constant is 5.",
+"expression":"Numbers and letters joined by + or −, with NO equals sign, e.g. 3x + 5.",
+"equation":"A statement that two expressions are equal, with an equals sign, e.g. 3x + 5 = 26.",
+"inverse operation":"The opposite operation that undoes another: + undoes −, × undoes ÷.",
+"balance method":"Solving an equation by doing the same thing to both sides so it stays balanced.",
+"consecutive":"Following one after another in order, e.g. 23, 24, 25.",
+"mean":"The average found by adding all values and dividing by how many there are.",
+"median":"The middle value when the data is put in order.",
+"mode":"The value that appears most often in a set of data.",
+"range":"The difference between the largest and smallest values. In geography: a line of mountains.",
+"outlier":"A value that is much bigger or smaller than the rest of the data.",
+"frequency":"How many times something happens or appears.",
+"frequency table":"A table showing each value and how many times it occurs.",
+"tally":"Marks used for counting, grouped in fives.",
+"probability":"How likely something is to happen, from 0 (impossible) to 1 (certain).",
+"acute angle":"An angle less than 90°.",
+"right angle":"An angle of exactly 90°.",
+"obtuse angle":"An angle between 90° and 180°.",
+"reflex angle":"An angle between 180° and 360°.",
+"straight angle":"An angle of exactly 180° – a straight line.",
+"complementary":"Two angles that add up to 90°.",
+"supplementary":"Two angles that add up to 180°.",
+"vertically opposite":"Equal angles opposite each other where two straight lines cross.",
+"transversal":"A line that crosses two or more other lines.",
+"corresponding angles":"Angles in matching positions where a transversal crosses parallel lines. They are equal (F-shape).",
+"alternate angles":"Angles on opposite sides of a transversal between parallel lines. They are equal (Z-shape).",
+"co-interior angles":"Angles on the same side of a transversal between parallel lines. They add to 180° (C-shape).",
+"exterior angle":"The angle between one side of a shape and the extension of the next side.",
+"isosceles":"A triangle with two equal sides and two equal angles.",
+"equilateral":"A triangle with all sides equal and all angles 60°.",
+"protractor":"An instrument for measuring angles in degrees.",
+"compasses":"An instrument for drawing circles and arcs.",
+"bisector":"A line that cuts something into two equal parts.",
+"perpendicular bisector":"A line that cuts a line segment in half at 90°.",
+"angle bisector":"A line that cuts an angle into two equal angles.",
+"vertex":"A corner point where two lines meet. Plural: vertices.",
+"construction":"An accurate drawing made with only a ruler and compasses."},
+Science:{
+"acid":"A substance with a pH below 7. Acids taste sour and turn blue litmus red.",
+"base":"A substance that neutralises an acid; pH above 7. Bases feel soapy and turn red litmus blue.",
+"alkali":"A base that dissolves in water.",
+"neutral":"Neither acidic nor basic – pH 7, like pure water.",
+"indicator":"A substance that changes colour in an acid or a base, e.g. litmus or turmeric.",
+"litmus":"An indicator made from lichens: acids turn blue litmus red; bases turn red litmus blue.",
+"phenolphthalein":"An indicator that is colourless in acids and turns pink in bases.",
+"universal indicator":"An indicator with many colours that shows the exact pH of a solution.",
+"ph":"A scale from 0 to 14 that shows how acidic or alkaline something is. 7 is neutral.",
+"neutralisation":"The reaction between an acid and a base that makes a salt and water (and gives out heat).",
+"neutralise":"To cancel out an acid with a base (or a base with an acid).",
+"antacid":"A mild base (e.g. milk of magnesia) that neutralises extra stomach acid.",
+"corrosive":"Able to burn or eat away skin and materials.",
+"acid rain":"Rain made more acidic by polluting gases like sulphur dioxide.",
+"reflection":"When light bounces back off a surface.",
+"normal":"An imaginary line at 90° to a surface at the point where a light ray hits it.",
+"incident ray":"The ray of light that strikes a surface.",
+"reflected ray":"The ray of light that bounces off a surface.",
+"angle of incidence":"The angle between the incident ray and the normal.",
+"angle of reflection":"The angle between the reflected ray and the normal. It equals the angle of incidence.",
+"lateral inversion":"Left and right being swapped in a mirror image.",
+"virtual image":"An image that cannot be caught on a screen, like the one in a plane mirror.",
+"real image":"An image that can be formed on a screen.",
+"luminous":"Giving out its own light, like the Sun or a bulb.",
+"non-luminous":"Not giving out its own light; we see it by reflected light.",
+"transparent":"Lets almost all light pass through, e.g. clear glass.",
+"translucent":"Lets some light through but you can't see clearly through it, e.g. frosted glass.",
+"opaque":"Lets no light through, so it casts a shadow.",
+"shadow":"A dark area formed when an opaque object blocks light.",
+"concave":"Curved inwards, like the inside of a spoon.",
+"convex":"Curved outwards, like the back of a spoon.",
+"dispersion":"The splitting of white light into its seven colours, e.g. by a prism.",
+"prism":"A triangular block of glass that splits white light into colours.",
+"periscope":"A tube with two mirrors that lets you see over obstacles.",
+"pinhole camera":"A box with a tiny hole that makes an upside-down image on a screen.",
+"circuit":"A complete path that electric current can flow around.",
+"current":"The flow of electric charge through a circuit. Also: a flow of water in the sea.",
+"conductor":"A material that lets electricity (or heat) pass through easily, e.g. copper.",
+"insulator":"A material that does not let electricity (or heat) pass through easily, e.g. plastic.",
+"series circuit":"A circuit with only one path for the current.",
+"parallel circuit":"A circuit with two or more separate paths for the current.",
+"filament":"The thin coiled wire inside a bulb that glows when current flows.",
+"fuse":"A safety device with a thin wire that melts if too much current flows.",
+"mcb":"Miniature circuit breaker – a switch that turns off automatically if the current is too high.",
+"electromagnet":"A temporary magnet made by passing current through a coil of wire around iron.",
+"terminal":"The positive (+) or negative (−) end of a cell or battery.",
+"digestion":"Breaking down food into small, soluble substances the body can absorb.",
+"ingestion":"Taking food into the body through the mouth.",
+"absorption":"Digested food passing into the blood (mainly in the small intestine).",
+"assimilation":"The body using absorbed food to build cells and get energy.",
+"egestion":"Removing undigested waste from the body.",
+"enzyme":"A chemical in the body that speeds up reactions, like breaking down food.",
+"saliva":"Liquid in the mouth that moistens food and starts digesting starch.",
+"oesophagus":"The food pipe from the mouth to the stomach.",
+"peristalsis":"Wave-like muscle movements that push food along the gut.",
+"stomach":"A muscular bag that churns food and adds acid and digestive juices.",
+"liver":"The largest gland; it makes bile.",
+"bile":"A juice made by the liver that breaks fats into tiny droplets.",
+"gall bladder":"A small sac that stores bile.",
+"pancreas":"A gland that makes pancreatic juice to digest carbohydrates, proteins and fats.",
+"small intestine":"The long coiled tube where digestion finishes and food is absorbed.",
+"large intestine":"The wider tube that absorbs water from undigested food.",
+"villi":"Tiny finger-like folds in the small intestine that absorb digested food. Singular: villus.",
+"rectum":"The last part of the large intestine, where waste is stored.",
+"alimentary canal":"The whole food passage from mouth to anus.",
+"incisors":"Front teeth for cutting and biting.",
+"canines":"Pointed teeth for tearing.",
+"molars":"Back teeth for crushing and grinding.",
+"ors":"Oral Rehydration Solution – water, sugar and salt to treat dehydration.",
+"roughage":"Fibre in food that helps it move through the gut.",
+"ruminant":"An animal like a cow that chews the cud.",
+"variable":"Something that can change in an experiment.",
+"independent variable":"The one thing you change on purpose in an experiment.",
+"dependent variable":"The thing you measure in an experiment.",
+"control variable":"Something you keep the same to make a test fair.",
+"fair test":"An experiment where only one variable is changed.",
+"hypothesis":"A prediction with a reason that can be tested.",
+"anomalous":"A result that doesn't fit the pattern of the others.",
+"reliable":"Giving similar results when repeated.",
+"conclusion":"A summary of what the results show and why."},
+Geography:{
+"weather":"The condition of the atmosphere at a particular place and time.",
+"climate":"The average weather of a large area over a long time (30+ years).",
+"atmosphere":"The layer of air around the Earth. In English: the mood of a scene.",
+"meteorology":"The scientific study of weather.",
+"meteorologist":"A scientist who studies and forecasts the weather.",
+"insolation":"Incoming solar radiation – the Sun's energy reaching the Earth.",
+"lapse rate":"How fast temperature falls with height: about 6.5 °C per 1,000 m.",
+"latitude":"Distance north or south of the equator, in degrees.",
+"longitude":"Distance east or west of the Prime Meridian, in degrees.",
+"altitude":"Height above sea level.",
+"equable":"Moderate – not very hot or very cold (a coastal climate).",
+"continental":"An extreme climate far from the sea, with hot summers and cold winters.",
+"air pressure":"The weight of the air pressing down on the Earth's surface.",
+"barometer":"An instrument that measures air pressure.",
+"anemometer":"An instrument that measures wind speed.",
+"wind vane":"An instrument that shows wind direction.",
+"hygrometer":"An instrument that measures humidity.",
+"rain gauge":"An instrument that measures rainfall.",
+"thermometer":"An instrument that measures temperature.",
+"stevenson screen":"A white louvred box that holds weather instruments in the shade.",
+"humidity":"The amount of water vapour in the air.",
+"condensation":"Water vapour cooling and turning into tiny water droplets.",
+"evaporation":"Liquid water turning into water vapour.",
+"precipitation":"Water falling from clouds as rain, snow, sleet or hail.",
+"dew point":"The temperature at which water vapour condenses.",
+"isobar":"A line on a map joining places with equal air pressure.",
+"cyclone":"A violent storm around a centre of very low pressure.",
+"trade winds":"Steady winds that blow towards the equator from the tropics. The north-east trade winds blow over India in winter.","jet stream":"A narrow band of very fast winds high in the atmosphere.","equator":"The imaginary line around the middle of the Earth at 0° latitude.","loo":"A hot, dry, dusty wind in north India in May and June.",
+"sea breeze":"A cool wind blowing from the sea to the land during the day.",
+"land breeze":"A wind blowing from the land to the sea at night.",
+"convectional rainfall":"Rain from hot air rising off strongly heated ground, often in afternoon storms.",
+"orographic rainfall":"Relief rain – moist air forced up mountains cools and gives rain.",
+"cyclonic rainfall":"Frontal rain – warm air forced up over cold air.",
+"windward":"The side of a mountain facing the wind – it gets heavy rain.",
+"leeward":"The side of a mountain sheltered from the wind – it is dry.",
+"rain shadow":"A dry area on the leeward side of mountains.",
+"monsoon":"Seasonal winds that reverse direction, bringing heavy rain in summer (from Arabic 'mausim' = season).",
+"burst of the monsoon":"The sudden, heavy start of the monsoon rains.",
+"western disturbances":"Low-pressure systems from the Mediterranean that bring winter rain to north-west India.",
+"mahawat":"Light winter rain in north-west India from western disturbances.",
+"mango showers":"Pre-monsoon showers in Kerala and Karnataka that help mangoes ripen.",
+"kalbaisakhi":"Violent evening thunderstorms in West Bengal and Assam before the monsoon (Nor'westers).",
+"october heat":"Hot, humid weather after the monsoon withdraws.",
+"retreating monsoon":"The withdrawal of the monsoon in October–November.",
+"tropic of cancer":"The line of latitude at 23½° N; it passes through the middle of India.",
+"standard meridian":"India's time line, 82½° E, through Mirzapur. IST = GMT + 5:30.",
+"himalayas":"Young fold mountains along India's northern border.",
+"alluvium":"Fine, fertile soil deposited by rivers.",
+"plateau":"A high, fairly flat area of land.",
+"delta":"A low, triangular area of land at a river's mouth made of deposited sediment.",
+"peninsula":"Land surrounded by water on three sides.",
+"rift valley":"A long valley formed where land sinks between faults.",
+"perennial":"Flowing all year round (e.g. Himalayan rivers).",
+"tributary":"A smaller river that joins a bigger one.",
+"lagoon":"A shallow body of water separated from the sea.",
+"atoll":"A ring-shaped coral island.",
+"desert":"A very dry area with less than about 25 cm of rain a year.",
+"desertification":"Fertile land turning into desert.",
+"sand dune":"A hill of sand built by the wind.",
+"barchan":"A crescent-shaped sand dune with horns pointing downwind.",
+"xerophyte":"A plant adapted to survive with very little water.",
+"nomadic":"Moving from place to place, often with animals, instead of living in one place.",
+"oasis":"A fertile spot in a desert with water.",
+"union territory":"An area of India governed directly by the central government."},
+English:{
+"tense":"The form of a verb that shows when an action happens.",
+"present perfect":"have/has + past participle: links a past action to now (I have finished).",
+"past perfect":"had + past participle: the earlier of two past actions.",
+"present continuous":"am/is/are + -ing: happening now.",
+"past continuous":"was/were + -ing: in progress at a past time.",
+"present simple":"Used for habits, routines and facts (She walks to school).",
+"past simple":"A finished action at a finished time (We visited Jaipur last year).",
+"past participle":"The verb form used after have/had, e.g. gone, written, finished.",
+"dialogue":"A conversation between characters.",
+"reporting clause":"The part that tells who spoke, e.g. 'asked Zaid'.",
+"travelogue":"Writing about a journey or a place visited, mixing facts and personal experience.",
+"simile":"A comparison using 'like' or 'as' – like a thunderbolt.",
+"metaphor":"Saying something IS something else – the classroom was a zoo.",
+"personification":"Giving human qualities to something non-human.",
+"alliteration":"Repeating the same consonant sound at the start of nearby words.",
+"assonance":"Repeating vowel sounds in nearby words.",
+"onomatopoeia":"A word that sounds like its meaning – buzz, crash.",
+"imagery":"Descriptive language that creates pictures in the mind through the senses.",
+"rhetorical question":"A question asked for effect, not for an answer.",
+"hyperbole":"Extreme exaggeration for effect.",
+"oxymoron":"Two opposite ideas placed together.",
+"symbolism":"Using an object or idea to stand for something bigger.",
+"symbol":"Something that stands for a bigger idea (salmon = survival).",
+"apostrophe":"Speaking directly to someone or something that can't answer (in poetry).",
+"stanza":"A group of lines in a poem – a verse.",
+"couplet":"Two lines of poetry, often rhyming.",
+"tercet":"A stanza of three lines.",
+"quatrain":"A stanza of four lines.",
+"rhyme scheme":"The pattern of rhymes in a poem, shown with letters (AABB).",
+"enjambment":"A sentence running on from one line of poetry to the next.",
+"tone":"The writer's attitude or feeling in a text.",
+"mood":"The feeling a text creates in the reader.",
+"theme":"A big idea or message in a text.",
+"narrator":"The character or voice that tells the story.",
+"first person":"Narration using 'I' and 'we'.",
+"connotation":"The feelings or ideas a word suggests beyond its basic meaning.",
+"irony":"When what happens is the opposite of what is expected.",
+"foreshadowing":"Hints about what will happen later in the story.",
+"protagonist":"The main character in a story.",
+"antagonist":"The character or force working against the main character.",
+"long note":"Your exam answer format: 4 paragraphs (Introduction, Details, Opinion, Conclusion), 100–120 words.",
+"voice":"V.O.I.C.E.: who tells the story and how they sound.",
+"opinions":"V.O.I.C.E.: what a character thinks or believes.",
+"interests":"V.O.I.C.E.: what a character wants or cares about.",
+"concerns":"V.O.I.C.E.: a character's worries, fears and problems.",
+"experiences":"V.O.I.C.E.: what happens to a character and how it changes them.",
+"power":"P.A.W.S.: who has power in the story and how it shifts.",
+"writer's perspective":"P.A.W.S.: what the writer believes and wants readers to feel.",
+"symmetry":"Balanced, matching on both sides.",
+"sinews":"Tendons and muscles; strength.",
+"anvil":"A heavy iron block a blacksmith hammers hot metal on.",
+"immortal":"Living forever; godlike.",
+"aspire":"To rise up high; to aim for something great.",
+"crag":"A steep, rough rock face.",
+"azure":"Bright sky-blue.",
+"clasps":"Grips tightly.",
+"thunderbolt":"A flash of lightning with a crash of thunder."},
+"Whale of the Wild":{
+"wayfinder":"The orca who remembers the routes and leads the pod to food – Vega is training to be one.",
+"wayfinding":"Navigating and leading the family, using memory and the senses.",
+"orca":"A killer whale – a large black-and-white toothed whale that lives in family groups called pods.",
+"pod":"A family group of whales.",
+"kinship":"A large group of related orca families; also the feeling of family connection.",
+"gathering":"The summer reunion of the whole orca kinship when the salmon return.",
+"greatmother":"Vega's grandmother – the wise elder who leads the pod.",
+"youngling":"A young orca.",
+"sea shake":"The orcas' word for the earthquake and tsunami.",
+"blue wilderness":"The orcas' name for the open ocean – feared as dangerous and unknown.",
+"seal-eater":"An orca from a different kinship that hunts seals instead of salmon.",
+"seal-eaters":"Orcas from a different kinship that hunt seals instead of salmon.",
+"blood cove":"Where humans captured the pod's babies long ago and the uncles died defending them.",
+"deception pass":"A narrow channel under a bridge; it is blocked during the sea shake.",
+"longboats":"Canoes of Indigenous people who respect the sea and greet the orcas.",
+"vanished ones":"A long-lost branch of the orca family who live in the open ocean and hunt sharks.",
+"salish sea":"The waters between Washington state (USA) and British Columbia (Canada) where Vega's family lives.",
+"chinook":"A large type of salmon – the orcas' main food.",
+"salmon":"A fish that swims from the sea up rivers to lay eggs – the orcas' main food.",
+"lament":"A sad song expressing grief.",
+"tsunami":"A huge sea wave caused by an earthquake under the sea.",
+"tremor":"A small shaking of the ground; a minor earthquake.",
+"refuge":"A safe place to escape danger.",
+"vega":"The main character – a young orca training to be a wayfinder; also a bright star.",
+"deneb":"Vega's little brother and second narrator; brave and loyal.",
+"capella":"Vega's baby sister, who dies at birth.",
+"rigel":"Uncle Rigel – the heroic uncle Deneb looks up to.",
+"aquila":"Vega's cousin, mother of Altair.",
+"captivity":"Being kept in a cage or tank instead of living free.",
+"jetty":"A wall of rocks or a pier built out into the sea.",
+"harmonica":"A small mouth instrument – Jesse's harmonica music calms Willy.",
+"foster":"Looking after a child who is not your own for a time (Jesse's foster parents)."},
+French:{
+"se lever":"to get up","se réveiller":"to wake up","se laver":"to wash (oneself)","se doucher":"to have a shower","s'habiller":"to get dressed","se brosser":"to brush (one's teeth/hair)","se coucher":"to go to bed","se dépêcher":"to hurry","se reposer":"to rest","s'amuser":"to have fun","se promener":"to go for a walk","s'appeler":"to be called","se préparer":"to get ready",
+"je me lève":"I get up","je me réveille":"I wake up","je me couche":"I go to bed","je m'habille":"I get dressed","je me douche":"I have a shower","je me lave":"I wash (myself)",
+"lève-toi":"get up! (to one person)","dépêche-toi":"hurry up! (to one person)","levez-vous":"get up! (to a group / polite)",
+"d'abord":"first","ensuite":"next, then","puis":"then","après":"after, afterwards","enfin":"finally, at last","finalement":"finally","mais":"but","et":"and","aussi":"also","parce que":"because","car":"because","donc":"so, therefore","alors":"so, then","cependant":"however","quand":"when","pendant":"during",
+"le matin":"in the morning","l'après-midi":"in the afternoon","le soir":"in the evening","la nuit":"at night","tous les jours":"every day","d'habitude":"usually","tôt":"early","tard":"late","midi":"midday, noon","minuit":"midnight","et quart":"quarter past","et demie":"half past","moins le quart":"quarter to","heures":"o'clock / hours",
+"le petit-déjeuner":"breakfast","petit-déjeuner":"breakfast","les devoirs":"homework","l'école":"school","la plage":"the beach","le parc":"the park",
+"écoutez":"listen! (to a group)","écoute":"listen! (to one person)","regardez":"look! (to a group)","ouvrez":"open! (to a group)","mange":"eat! (to one person)","allons":"let's go","sois":"be! (to one person)","soyez":"be! (to a group)","ne...pas":"not",
+"j'aime":"I like","j'adore":"I love","je déteste":"I hate","je préfère":"I prefer","à mon avis":"in my opinion","je pense que":"I think that","c'est":"it is","génial":"great","ennuyeux":"boring","fatigant":"tiring","intéressant":"interesting","amusant":"fun","salut":"hi","à bientôt":"see you soon","ça va":"how are you? / I'm fine","il fait beau":"the weather is nice","il pleut":"it's raining"},
+Arabic:{
+"قميص":"shirt","بنطال":"trousers","فستان":"dress","تنورة":"skirt","سترة":"jacket","معطف":"coat","كنزة":"sweater","حذاء":"shoe(s)","جوارب":"socks","جورب":"sock","قبعة":"hat","وشاح":"scarf","حزام":"belt","صندل":"sandals","قفازات":"gloves","نظارة":"glasses","كندورة":"kandura (Emirati robe)","ثوب":"thobe (robe)","عباءة":"abaya","ملابس":"clothes","الملابس":"the clothes","الزي المدرسي":"school uniform","تي شيرت":"T-shirt","شورت":"shorts",
+"أحمر":"red (m)","حمراء":"red (f)","أزرق":"blue (m)","زرقاء":"blue (f)","أخضر":"green (m)","خضراء":"green (f)","أصفر":"yellow (m)","صفراء":"yellow (f)","أسود":"black (m)","سوداء":"black (f)","أبيض":"white (m)","بيضاء":"white (f)","بني":"brown (m)","بنية":"brown (f)","برتقالي":"orange (m)","رمادي":"grey (m)","وردي":"pink (m)","وردية":"pink (f)","بنفسجي":"purple (m)","لون":"colour","الألوان":"the colours",
+"الجو":"the weather","حار":"hot","بارد":"cold","بارداً":"cold","ممطر":"rainy","الصيف":"summer","الشتاء":"winter","الربيع":"spring","الخريف":"autumn",
+"ألبس":"I wear","أرتدي":"I wear","يلبس":"he wears","تلبس":"she wears","ارتدى":"he wore","اشتريت":"I bought","اشترى":"he bought","اشترت":"she bought","أحب":"I like / I love","أريد":"I want","أفضل":"I prefer",
+"لأن":"because","لذلك":"so, therefore","لكن":"but","أيضاً":"also","ثم":"then","و":"and","في":"in","مع":"with","هذا":"this (m)","هذه":"this (f)","بكم":"how much?","غالٍ":"expensive","غالية":"expensive (f)","رخيص":"cheap","مقاس":"size","السوق":"the market","المدرسة":"the school","العيد":"Eid","جديد":"new","جميل":"beautiful","مريح":"comfortable","الصباح":"the morning","المساء":"the evening","اقرأ":"read!","صح":"true","خطأ":"false"}
+};
+const GLOSS={};
+for(const [tag,entries] of Object.entries(GLOSS_RAW))for(const [k,v] of Object.entries(entries)){const key=k.toLowerCase();if(!GLOSS[key])GLOSS[key]={tag,def:v,term:k};}
+
+/* ===== Hover / highlight dictionary ===== */
+(function(){
+const STOP=new Set("a an the and or but if of to in on at by for with from as is are was were be been being it its this that these those i you he she we they me him her us them my your his our their not no yes do does did have has had will would can could should shall may might must so than then there here what which who whom whose when where why how all any each some such very just also too into out up down over under about after before again more most other only own same few both nor off once while am".split(" "));
+const TAGCOL={Maths:'#60a5fa',Science:'#34d399',Geography:'#fbbf24',English:'#f472b6','Whale of the Wild':'#22d3ee',French:'#a78bfa',Arabic:'#fb923c',Dictionary:'#94a3b8'};
+const cache=new Map();let enabled=true;try{enabled=localStorage.getItem('dictOn')!=='0'}catch(e){}
+const pop=document.createElement('div');pop.id='dictPop';pop.setAttribute('role','tooltip');document.body.appendChild(pop);
+const tog=document.createElement('button');tog.className='dict-toggle';document.body.appendChild(tog);
+const paintTog=()=>{tog.innerHTML=enabled?'📖 Dictionary <b>ON</b>':'📖 Dictionary <b>OFF</b>';tog.classList.toggle('off',!enabled)};paintTog();
+tog.onclick=()=>{enabled=!enabled;try{localStorage.setItem('dictOn',enabled?'1':'0')}catch(e){}paintTog();if(!enabled)hide(true);};
+const hl=('highlights' in CSS)&&typeof Highlight!=='undefined';
+const setHL=r=>{if(!hl)return;if(r)CSS.highlights.set('dictword',new Highlight(r));else CSS.highlights.delete('dictword')};
+const isArabic=s=>/[؀-ۿ]/.test(s);
+const normAr=s=>s.replace(/[ً-ٰٟـ]/g,'').replace(/[إأآ]/g,m=>m);
+function glossLookup(raw){
+ let s=raw.trim().replace(/^[^\p{L}\p{N}π']+|[^\p{L}\p{N}π'.]+$/gu,'').replace(/[.]+$/,'').replace(/[’]/g,"'");if(!s)return null;
+ const tries=[];const low=s.toLowerCase();tries.push(low);
+ if(isArabic(s)){const n=normAr(s);tries.push(n);if(n.startsWith('و'))tries.push(n.slice(1));const n2=n.replace(/^و/,'');if(n2.startsWith('ال'))tries.push(n2.slice(2));tries.push(n2.replace(/اً$|ًا$/,''),n2.replace(/ا$/,''),n2.replace(/ة$/,''));
+  for(const t of [...tries]){tries.push('ال'+t)}}
+ else{tries.push(low.replace(/-/g,' '),low.replace(/'s$/,''),low.replace(/ies$/,'y'),low.replace(/es$/,''),low.replace(/s$/,''),low.replace(/ed$/,''),low.replace(/ed$/,'e'),low.replace(/ing$/,''),low.replace(/ing$/,'e'),low.replace(/^(l'|d'|j'|m'|t'|s'|qu')/,''));}
+ for(const t of tries){if(t&&GLOSS[t])return {...GLOSS[t],term:GLOSS[t].term};}
+ if(isArabic(s)){const n=normAr(s).replace(/^و/,'');for(const [k,v] of Object.entries(GLOSS)){if(isArabic(k)&&normAr(k)===n)return v;}}
+ return null;}
+async function apiLookup(word){
+ const w=word.toLowerCase().trim();if(!/^[a-z][a-z' -]*$/i.test(w)||w.length<3||STOP.has(w))return null;
+ if(cache.has(w))return cache.get(w);
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null;if(ctl)setTimeout(()=>ctl.abort(),3000);
+ const p=fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(w),ctl?{signal:ctl.signal}:{}).then(r=>r.ok?r.json():null).then(j=>{
+  if(!Array.isArray(j)||!j.length)return null;const e=j[0];const phon=e.phonetic||(e.phonetics||[]).map(p=>p.text).find(Boolean)||'';
+  const defs=[];for(const m of e.meanings||[])for(const d of m.definitions||[]){if(defs.length<2&&!defs.some(x=>x.pos===m.partOfSpeech))defs.push({pos:m.partOfSpeech,def:d.definition,ex:d.example});}
+  return defs.length?{term:e.word,tag:'Dictionary',phon,defs}:null;}).catch(()=>null);
+ cache.set(w,p);const r=await p;cache.set(w,r);return r;}
+function speak(text,lang){try{const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function render(info,anchor){
+ const tag=info.tag||'Dictionary',col=TAGCOL[tag]||'#94a3b8';
+ const lang=isArabic(info.term)?'ar-SA':tag==='French'?'fr-FR':'en-GB';
+ let body='';
+ if(info.loading)body=`<div class="dp-def dp-muted">Looking it up…</div>`;
+ else if(info.parts)body=info.parts.map(p=>`<div class="dp-part"><b>${esc(p.term)}</b> <span class="dp-chip" style="--c:${TAGCOL[p.tag]||'#94a3b8'}">${esc(p.tag)}</span><div class="dp-def">${esc(p.def)}</div></div>`).join('')||`<div class="dp-def dp-muted">No definitions found for these words.</div>`;
+ else if(info.defs)body=info.defs.map(d=>`<div class="dp-pos">${esc(d.pos)}</div><div class="dp-def">${esc(d.def)}</div>${d.ex?`<div class="dp-ex">“${esc(d.ex)}”</div>`:''}`).join('');
+ else if(info.def)body=`<div class="dp-def">${(tag==='French'||tag==='Arabic')?'<span class="dp-pos" style="display:inline">means&nbsp;</span>':''}${esc(info.def)}</div>`;
+ else body=`<div class="dp-def dp-muted">${esc(info.msg||'No definition found.')}</div>`;
+ pop.innerHTML=`<div class="dp-head"><span class="dp-term"${isArabic(info.term)?' dir="rtl"':''}>${esc(info.term)}</span>${info.parts||info.loading||info.msg?'':`<span class="dp-chip" style="--c:${col}">${tag==='French'?'French → English':tag==='Arabic'?'Arabic → English':esc(tag)}</span>`}<button class="dp-say" title="Listen">🔊</button></div>${info.phon?`<div class="dp-phon">${esc(info.phon)}</div>`:''}${body}<div class="dp-foot">${info.parts?'Phrase • word by word':info.tag==='Dictionary'?'Online dictionary':info.loading||info.msg?'':'Study Hub glossary'}</div>`;
+ pop.querySelector('.dp-say').onclick=e=>{e.stopPropagation();speak(info.term,lang)};
+ place(anchor);pop.classList.add('show');}
+function place(rect){
+ pop.style.left='0px';pop.style.top='0px';const pw=pop.offsetWidth,ph=pop.offsetHeight,vw=innerWidth,vh=innerHeight;
+ let x=rect.left+rect.width/2-pw/2;x=Math.max(10,Math.min(vw-pw-10,x));let y=rect.top-ph-12,below=false;if(y<10){y=rect.bottom+12;below=true}
+ pop.style.left=x+'px';pop.style.top=y+'px';pop.classList.toggle('below',below);
+ pop.style.setProperty('--ax',Math.max(16,Math.min(pw-16,rect.left+rect.width/2-x))+'px');}
+let hideT=null,hoverT=null,curKey='',pinned=false;
+function hide(force){if(pinned&&!force)return;pop.classList.remove('show');setHL(null);curKey='';pinned=false;}
+pop.addEventListener('mouseenter',()=>clearTimeout(hideT));
+pop.addEventListener('mouseleave',()=>{if(!pinned)hideT=setTimeout(()=>hide(),250)});
+const blocked=el=>!el||!el.closest||el.closest('input,textarea,select,button,svg,#dictPop,.dict-toggle,nav,.exambar,.dp-say,.option')||(typeof currentExam!=='undefined'&&currentExam);
+function caretAt(x,y){if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(x,y);return p&&{node:p.offsetNode,off:p.offset}}if(document.caretRangeFromPoint){const r=document.caretRangeFromPoint(x,y);return r&&{node:r.startContainer,off:r.startOffset}}return null}
+const WCH=/[\p{L}\p{M}\p{N}'’\-π]/u;
+function wordAt(x,y){
+ const c=caretAt(x,y);if(!c||c.node.nodeType!==3)return null;const txt=c.node.data;let s=c.off,e=c.off;
+ while(s>0&&WCH.test(txt[s-1]))s--;while(e<txt.length&&WCH.test(txt[e]))e++;if(e<=s)return null;
+ const r=document.createRange();r.setStart(c.node,s);r.setEnd(c.node,e);const b=r.getBoundingClientRect();
+ if(x<b.left-2||x>b.right+2||y<b.top-2||y>b.bottom+2)return null;
+ let word=txt.slice(s,e).replace(/^[-'’]+|[-'’]+$/g,'');if(!word)return null;
+ // try to grow into a glossary phrase (up to 4 words) around the word
+ const words=[];const re=/[\p{L}\p{M}\p{N}'’\-π]+/gu;let m;while((m=re.exec(txt)))words.push({w:m[0],s:m.index,e:m.index+m[0].length});
+ const idx=words.findIndex(o=>o.s<=s&&o.e>=e);let best=null;
+ if(idx>=0)for(let len=4;len>=2&&!best;len--)for(let st=idx-len+1;st<=idx&&!best;st++){if(st<0||st+len>words.length)continue;const ph=words.slice(st,st+len).map(o=>o.w).join(' ');const g=glossLookup(ph);if(g){best={g,s:words[st].s,e:words[st+len-1].e,text:ph};}}
+ if(best){const r2=document.createRange();r2.setStart(c.node,best.s);r2.setEnd(c.node,best.e);return {text:best.text,range:r2,gl:best.g};}
+ return {text:word,range:r};}
+document.addEventListener('mousemove',e=>{
+ if(!enabled)return;clearTimeout(hoverT);
+ if(pop.contains(e.target))return;
+ const sel=getSelection();if(sel&&!sel.isCollapsed&&String(sel).trim())return;
+ hoverT=setTimeout(async()=>{
+  if(blocked(e.target)){if(!pinned)hideT=setTimeout(()=>hide(),250);return;}
+  const w=wordAt(e.clientX,e.clientY);if(!w){if(pop.classList.contains('show')&&!pinned)hideT=setTimeout(()=>hide(),300);return;}
+  const key=w.text.toLowerCase();if(key===curKey){clearTimeout(hideT);return;}
+  let info=w.gl||glossLookup(w.text);
+  if(!info){if(isArabic(w.text)||STOP.has(key)||key.length<3||/\d/.test(key))return;info=await apiLookup(w.text);if(!info)return;
+   const again=wordAt(e.clientX,e.clientY);if(!again||again.text.toLowerCase()!==key)return;}
+  clearTimeout(hideT);curKey=key;pinned=false;setHL(w.range);render({...info,term:info.term||w.text},w.range.getBoundingClientRect());
+ },420);});
+async function lookupSelection(){
+ if(!enabled)return;const sel=getSelection();if(!sel||sel.isCollapsed)return;const text=String(sel).replace(/\s+/g,' ').trim();
+ if(!text||text.length>80)return;const node=sel.anchorNode&&(sel.anchorNode.nodeType===3?sel.anchorNode.parentElement:sel.anchorNode);if(blocked(node))return;
+ const words=text.split(' ').filter(Boolean);if(words.length>8)return;
+ const rect=sel.getRangeAt(0).getBoundingClientRect();curKey='sel:'+text.toLowerCase();pinned=true;clearTimeout(hideT);setHL(null);
+ let info=glossLookup(text);if(info){render({...info},rect);return;}
+ if(words.length===1){render({term:text,loading:true},rect);const a=isArabic(text)?null:await apiLookup(text);if(curKey!=='sel:'+text.toLowerCase())return;render(a?{...a}:{term:text,msg:navigator.onLine===false?'You are offline – only Study Hub glossary words work offline.':'No definition found.'},rect);return;}
+ const key='sel:'+text.toLowerCase();
+ const clean=words.map(w=>w.replace(/^[^\p{L}\p{N}π]+|[^\p{L}\p{N}π'-]+$/gu,''));
+ const items=[];for(let i=0;i<clean.length;){let hit=null;for(let len=Math.min(4,clean.length-i);len>=2;len--){const ph=clean.slice(i,i+len).join(' ');const g=glossLookup(ph);if(g){hit={term:ph,tag:g.tag,def:g.def,len};break}}
+  if(hit){items.push(hit);i+=hit.len;continue}const w=clean[i];i++;if(!w||STOP.has(w.toLowerCase()))continue;const g=glossLookup(w);items.push(g?{term:w,tag:g.tag,def:g.def}:{term:w,pending:true});}
+ const show=()=>{if(curKey!==key)return;const parts=items.filter(x=>x.def).slice(0,6);const waiting=items.some(x=>x.pending);render(parts.length||!waiting?{term:text,parts}:{term:text,loading:true},rect);};
+ show();
+ await Promise.all(items.filter(x=>x.pending).map(async x=>{const a=isArabic(x.term)?null:await apiLookup(x.term);x.pending=false;if(a){x.tag='Dictionary';x.def=a.defs[0].def;}}));
+ show();}
+document.addEventListener('mouseup',e=>{if(pop.contains(e.target))return;setTimeout(lookupSelection,10)});
+document.addEventListener('touchend',()=>setTimeout(lookupSelection,350));
+document.addEventListener('mousedown',e=>{if(!pop.contains(e.target)&&!e.target.closest('.dict-toggle'))hide(true)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hide(true)});
+addEventListener('scroll',()=>{if(pop.classList.contains('show'))hide(true)},{passive:true});
+})();
 
 exams.sst={title:"SST Mini-Exam",minutes:45,questions:SST_EXAM};
 exams.maths.minutes=30;
