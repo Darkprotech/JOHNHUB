@@ -73,50 +73,143 @@ details{background:var(--card2);border:1px solid var(--border);border-radius:10p
 
 @media(max-width:760px){.head{flex-direction:column;align-items:flex-start}.hero{padding:35px 19px}}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style id="glass-ui">
-/* ===== Glass UI (frosted-glass look) ===== */
-:root{--glass:rgba(255,255,255,.055);--glass-2:rgba(255,255,255,.085);--glass-hi:rgba(255,255,255,.12);
---glass-border:rgba(255,255,255,.13);--glass-shadow:0 10px 34px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);--blur:blur(16px) saturate(150%)}
-body{background:#050a16;position:relative}
-body::before{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;
-background:radial-gradient(38% 42% at 12% 18%,rgba(99,168,255,.32),transparent 70%),
-radial-gradient(34% 40% at 88% 22%,rgba(155,124,255,.30),transparent 70%),
-radial-gradient(40% 45% at 75% 88%,rgba(53,211,153,.18),transparent 70%),
-radial-gradient(35% 40% at 20% 85%,rgba(251,113,133,.16),transparent 70%),
-linear-gradient(135deg,#060b16,#0d1730 55%,#120f2b);
-animation:glassDrift 28s ease-in-out infinite alternate}
-@keyframes glassDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3%,2%,0) scale(1.06)}}
-@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+/* ===== Glass UI v2 — each subject has its own colour world ===== */
+:root{
+  --ink:#060a18;
+  --acc:#7aa7ff;          /* current subject colour (changes per subject below) */
+  --acc2:#b18cff;         /* second aurora colour */
+  --acc3:#2dd4bf;         /* third aurora colour */
+  --glass:rgba(12,18,42,.38);
+  --sheen:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.035) 42%,rgba(255,255,255,.02));
+  --glass-in:rgba(255,255,255,.06);
+  --edge:rgba(255,255,255,.22);
+  --text:#eef2ff;--muted:#b9c4de;
+  --blur:blur(22px) saturate(175%);
+}
+/* subject colours: Maths blue · Science teal · SST amber · Arabic emerald · French violet · English rose */
+body:has(#maths.active){--acc:#5ea8ff;--acc2:#6366f1;--acc3:#38bdf8}
+body:has(#science.active){--acc:#2dd4bf;--acc2:#22c55e;--acc3:#0ea5e9}
+body:has(#sst.active){--acc:#f5b544;--acc2:#f97316;--acc3:#eab308}
+body:has(#arabic.active){--acc:#34d399;--acc2:#14b8a6;--acc3:#84cc16}
+body:has(#french.active){--acc:#a78bfa;--acc2:#ec4899;--acc3:#6366f1}
+body:has(#english.active){--acc:#fb7185;--acc2:#f59e0b;--acc3:#c084fc}
+body:has(#miniExam.active),body:has(#finalExam.active){--acc:#93c5fd;--acc2:#a78bfa;--acc3:#94a3b8}
 
-/* big panels: real frosted glass */
-header{background:rgba(8,14,30,.55);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--glass-border);box-shadow:0 6px 24px rgba(0,0,0,.25)}
-.card,.lesson,.exam-q,.hero{background:var(--glass);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);
-backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-.hero{background:radial-gradient(circle at 8% 12%,rgba(99,168,255,.20),transparent 40%),radial-gradient(circle at 92% 90%,rgba(155,124,255,.18),transparent 40%),var(--glass)}
-.card:hover{border-color:rgba(99,168,255,.65);box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 1px rgba(99,168,255,.25),inset 0 1px 0 rgba(255,255,255,.1)}
+html{scrollbar-color:color-mix(in srgb,var(--acc) 55%,transparent) transparent}
+body{font-family:"Lexend",Arial,Helvetica,sans-serif;background:var(--ink);color:var(--text);position:relative;letter-spacing:.005em}
+body::before{content:"";position:fixed;inset:-15%;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(30% 36% at 15% 20%,color-mix(in srgb,var(--acc) 60%,transparent),transparent 72%),
+    radial-gradient(28% 34% at 85% 15%,color-mix(in srgb,var(--acc2) 52%,transparent),transparent 72%),
+    radial-gradient(34% 38% at 70% 85%,color-mix(in srgb,var(--acc3) 52%,transparent),transparent 72%),
+    radial-gradient(26% 30% at 25% 90%,color-mix(in srgb,var(--acc2) 40%,transparent),transparent 72%),
+    var(--ink);
+  filter:blur(30px);transition:background .9s ease;animation:aurora 24s ease-in-out infinite alternate}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(3,6,15,.55) 100%)}
+@keyframes aurora{0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  50%{transform:translate3d(-4%,3%,0) rotate(6deg) scale(1.08)}100%{transform:translate3d(3%,-2%,0) rotate(-4deg) scale(1.04)}}
 
-/* small pieces inside panels: tinted glass (no extra blur = smooth scrolling) */
-.subtab,.btn.secondary,details,.notecard,.vcard,.option,.practice-btn,.stateinfo,.slidebar,.badge,.vgroup,.tools button{background:var(--glass-2);border-color:var(--glass-border)}
-.subtab:hover,.option:hover,.practice-btn:hover{background:var(--glass-hi)}
-.subtab.active{background:linear-gradient(135deg,rgba(99,168,255,.9),rgba(155,124,255,.9));box-shadow:0 6px 20px rgba(99,168,255,.35)}
-.subtabs{padding:8px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--glass-border)}
-nav button:hover{background:var(--glass-hi);border-color:var(--glass-border)}
-.btn{box-shadow:0 6px 18px rgba(99,168,255,.28),inset 0 1px 0 rgba(255,255,255,.25)}
-.slidebar{border-color:rgba(99,168,255,.45)}
-.tip{background:rgba(251,191,36,.08)}
-.example{background:rgba(53,211,153,.08)}
-.formula{background:rgba(7,14,30,.55);border-color:var(--glass-border)}
-.ntable th{background:rgba(255,255,255,.07)}
-.ntable td,.ntable th{border-color:rgba(255,255,255,.1)}
-.answer,.longanswer,.search{background:rgba(5,10,22,.55);border-color:var(--glass-border)}
-.figcap{background:rgba(13,24,48,.85)}
-.fig{border-color:var(--glass-border);box-shadow:0 8px 26px rgba(0,0,0,.3)}
+/* the glass recipe: frosted fill + lit edge that picks up the subject colour */
+.card,.lesson,.exam-q,.hero{
+  border:1px solid transparent;border-radius:22px;
+  background:var(--sheen) padding-box,linear-gradient(var(--glass),var(--glass)) padding-box,
+    linear-gradient(140deg,rgba(255,255,255,.42),rgba(255,255,255,.06) 38%,rgba(255,255,255,.04) 62%,color-mix(in srgb,var(--acc) 70%,transparent)) border-box;
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  box-shadow:0 18px 50px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.14)}
 
-/* phones: lighter blur so scrolling stays smooth */
-@media (max-width:760px){:root{--blur:blur(10px) saturate(140%)}}
-/* browsers without blur support: make panels a bit more solid so text stays readable */
+/* header floats as a glass bar */
+header{background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:12px 16px 0}
+.head{max-width:1420px;border-radius:20px;padding:12px 18px;
+  background:rgba(10,15,34,.66);border:1px solid var(--edge);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  box-shadow:0 12px 36px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)}
+.logo{font-weight:700;letter-spacing:-.01em}.logo span{color:var(--acc);transition:color .6s}
+nav button{border-radius:12px;color:var(--muted);transition:background .2s,color .2s}
+nav button:hover{background:rgba(255,255,255,.1);border-color:transparent;color:#fff}
+body:has(#home.active) nav button:nth-child(1),body:has(#maths.active) nav button:nth-child(2),
+body:has(#science.active) nav button:nth-child(3),body:has(#sst.active) nav button:nth-child(4),
+body:has(#arabic.active) nav button:nth-child(5),body:has(#french.active) nav button:nth-child(6),
+body:has(#english.active) nav button:nth-child(7){
+  color:#fff;background:color-mix(in srgb,var(--acc) 30%,transparent);border-color:color-mix(in srgb,var(--acc) 60%,transparent)}
+
+/* hero: the subject title is the moment */
+.hero{padding:56px 34px;
+  background:radial-gradient(60% 120% at 0% 0%,color-mix(in srgb,var(--acc) 26%,transparent),transparent 60%) padding-box,
+    var(--sheen) padding-box,linear-gradient(var(--glass),var(--glass)) padding-box,
+    linear-gradient(140deg,rgba(255,255,255,.5),rgba(255,255,255,.06) 40%,color-mix(in srgb,var(--acc) 80%,transparent)) border-box}
+.hero h1{font-weight:700;letter-spacing:-.035em;line-height:1.02;color:#fff;
+  text-shadow:0 0 42px color-mix(in srgb,var(--acc) 55%,transparent),0 2px 0 rgba(0,0,0,.25)}
+.hero h1 span{color:color-mix(in srgb,var(--acc) 75%,#fff)}
+.hero p{color:#dde5f7;font-size:17.5px;line-height:1.75;max-width:72ch}
+
+/* the page you open slides in (answers your click) */
+.section.active{animation:enter .45s cubic-bezier(.2,.8,.2,1)}
+.subpanel.active{animation:fadein .3s ease}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* home: each subject card wears its own colour */
+#subjectGrid .card:nth-child(1){--acc:#5ea8ff}#subjectGrid .card:nth-child(2){--acc:#2dd4bf}
+#subjectGrid .card:nth-child(3){--acc:#f5b544}#subjectGrid .card:nth-child(4){--acc:#34d399}
+#subjectGrid .card:nth-child(5){--acc:#a78bfa}#subjectGrid .card:nth-child(6){--acc:#fb7185}
+#subjectGrid .card{transition:transform .25s,box-shadow .25s}
+#subjectGrid .card:hover{transform:translateY(-4px);
+  box-shadow:0 22px 60px rgba(0,0,0,.45),0 0 40px color-mix(in srgb,var(--acc) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.18)}
+#subjectGrid .card h3{font-weight:700}
+#subjectGrid .btn{background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#8b5cf6))}
+
+/* buttons, tabs and small parts inside the glass */
+.btn{border-radius:12px;font-weight:600;color:#06101f;
+  background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 50%,var(--acc2)));
+  box-shadow:0 8px 22px color-mix(in srgb,var(--acc) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn:hover{filter:brightness(1.08)}
+.btn.secondary{color:#fff;background:rgba(255,255,255,.08);border:1px solid var(--edge);box-shadow:none}
+.subtabs{padding:8px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.subtab{border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--muted);font-weight:600}
+.subtab:hover{color:#fff;background:rgba(255,255,255,.11);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+.subtab.active{color:#06101f;border-color:transparent;
+  background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 55%,var(--acc2)));
+  box-shadow:0 8px 24px color-mix(in srgb,var(--acc) 40%,transparent)}
+details,.notecard,.vcard,.option,.practice-btn,.stateinfo,.vgroup,.badge,.tools button{
+  background:var(--glass-in);border:1px solid rgba(255,255,255,.13);border-radius:14px}
+details[open]{border-color:color-mix(in srgb,var(--acc) 45%,transparent)}
+summary::marker{color:var(--acc)}
+.option:hover,.practice-btn:hover{background:rgba(255,255,255,.1);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+.slidebar{border-radius:18px;background:color-mix(in srgb,var(--acc) 12%,rgba(255,255,255,.04));border:1px solid color-mix(in srgb,var(--acc) 45%,transparent)}
+.tip{background:rgba(251,191,36,.09);border-radius:12px}
+.example{background:rgba(52,211,153,.09);border-radius:12px}
+.formula{background:rgba(5,10,24,.5);border:1px solid rgba(255,255,255,.12);border-radius:12px}
+.lesson h3,.card h3{letter-spacing:-.015em;font-weight:700}
+.lesson h3{color:#fff}
+.lesson h4{color:color-mix(in srgb,var(--acc) 55%,#fff)}
+.ntable{border-radius:12px;overflow:hidden}
+.ntable th{background:color-mix(in srgb,var(--acc) 22%,rgba(255,255,255,.04));color:#fff}
+.ntable tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+.answer,.longanswer,.search{background:rgba(6,10,24,.5);border:1px solid rgba(255,255,255,.14);border-radius:14px;
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.search:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent)}
+.fig{border-radius:18px;border:1px solid var(--edge);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.figcap{background:rgba(10,16,36,.85)}
+a{color:color-mix(in srgb,var(--acc) 70%,#fff)}
+
+/* keyboard users can always see where they are */
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:10px}
+
+/* phones: lighter blur and calmer aurora so scrolling stays smooth */
+@media (max-width:760px){
+  :root{--blur:blur(12px) saturate(160%)}
+  header{padding:8px 8px 0}.head{border-radius:16px;padding:10px 12px}
+  .card,.lesson,.exam-q,.hero{border-radius:18px}
+  .hero{padding:34px 20px}}
+@media (prefers-reduced-motion:reduce){
+  body::before{animation:none}.section.active,.subpanel.active{animation:none}#subjectGrid .card:hover{transform:none}}
+/* browsers without blur: keep panels solid enough to read */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-.card,.lesson,.exam-q,.hero{background:rgba(17,28,49,.92)}header{background:rgba(7,16,31,.96)}}
+  .card,.lesson,.exam-q,.hero,.head{background:rgba(15,22,44,.92)}}
 </style>
 </head>
 <body>
