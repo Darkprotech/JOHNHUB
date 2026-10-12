@@ -73,6 +73,51 @@ details{background:var(--card2);border:1px solid var(--border);border-radius:10p
 
 @media(max-width:760px){.head{flex-direction:column;align-items:flex-start}.hero{padding:35px 19px}}
 </style>
+<style id="glass-ui">
+/* ===== Glass UI (frosted-glass look) ===== */
+:root{--glass:rgba(255,255,255,.055);--glass-2:rgba(255,255,255,.085);--glass-hi:rgba(255,255,255,.12);
+--glass-border:rgba(255,255,255,.13);--glass-shadow:0 10px 34px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);--blur:blur(16px) saturate(150%)}
+body{background:#050a16;position:relative}
+body::before{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;
+background:radial-gradient(38% 42% at 12% 18%,rgba(99,168,255,.32),transparent 70%),
+radial-gradient(34% 40% at 88% 22%,rgba(155,124,255,.30),transparent 70%),
+radial-gradient(40% 45% at 75% 88%,rgba(53,211,153,.18),transparent 70%),
+radial-gradient(35% 40% at 20% 85%,rgba(251,113,133,.16),transparent 70%),
+linear-gradient(135deg,#060b16,#0d1730 55%,#120f2b);
+animation:glassDrift 28s ease-in-out infinite alternate}
+@keyframes glassDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3%,2%,0) scale(1.06)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+
+/* big panels: real frosted glass */
+header{background:rgba(8,14,30,.55);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--glass-border);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.card,.lesson,.exam-q,.hero{background:var(--glass);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);
+backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.hero{background:radial-gradient(circle at 8% 12%,rgba(99,168,255,.20),transparent 40%),radial-gradient(circle at 92% 90%,rgba(155,124,255,.18),transparent 40%),var(--glass)}
+.card:hover{border-color:rgba(99,168,255,.65);box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 1px rgba(99,168,255,.25),inset 0 1px 0 rgba(255,255,255,.1)}
+
+/* small pieces inside panels: tinted glass (no extra blur = smooth scrolling) */
+.subtab,.btn.secondary,details,.notecard,.vcard,.option,.practice-btn,.stateinfo,.slidebar,.badge,.vgroup,.tools button{background:var(--glass-2);border-color:var(--glass-border)}
+.subtab:hover,.option:hover,.practice-btn:hover{background:var(--glass-hi)}
+.subtab.active{background:linear-gradient(135deg,rgba(99,168,255,.9),rgba(155,124,255,.9));box-shadow:0 6px 20px rgba(99,168,255,.35)}
+.subtabs{padding:8px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--glass-border)}
+nav button:hover{background:var(--glass-hi);border-color:var(--glass-border)}
+.btn{box-shadow:0 6px 18px rgba(99,168,255,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+.slidebar{border-color:rgba(99,168,255,.45)}
+.tip{background:rgba(251,191,36,.08)}
+.example{background:rgba(53,211,153,.08)}
+.formula{background:rgba(7,14,30,.55);border-color:var(--glass-border)}
+.ntable th{background:rgba(255,255,255,.07)}
+.ntable td,.ntable th{border-color:rgba(255,255,255,.1)}
+.answer,.longanswer,.search{background:rgba(5,10,22,.55);border-color:var(--glass-border)}
+.figcap{background:rgba(13,24,48,.85)}
+.fig{border-color:var(--glass-border);box-shadow:0 8px 26px rgba(0,0,0,.3)}
+
+/* phones: lighter blur so scrolling stays smooth */
+@media (max-width:760px){:root{--blur:blur(10px) saturate(140%)}}
+/* browsers without blur support: make panels a bit more solid so text stays readable */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+.card,.lesson,.exam-q,.hero{background:rgba(17,28,49,.92)}header{background:rgba(7,16,31,.96)}}
+</style>
 </head>
 <body>
 
