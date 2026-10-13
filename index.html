@@ -211,6 +211,30 @@ a{color:color-mix(in srgb,var(--acc) 70%,#fff)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .card,.lesson,.exam-q,.hero,.head{background:rgba(15,22,44,.92)}}
 </style>
+<style id="theme-ui">
+/* ===== Theme picker ===== */
+.theme-pick{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.theme-pick button{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.35);padding:0;cursor:pointer;transition:transform .15s,border-color .15s}
+.theme-pick button:hover{transform:scale(1.15)}
+.theme-pick button[aria-pressed="true"]{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.25),0 0 12px currentColor}
+.theme-pick .tp-auto{background:conic-gradient(#5ea8ff,#2dd4bf,#f5b544,#fb7185,#a78bfa,#5ea8ff);color:#fff}
+@media(max-width:760px){.head{flex-wrap:wrap}.theme-pick{order:3;width:100%;justify-content:flex-end}}
+.theme-pick .tp-blue{background:#5ea8ff;color:#5ea8ff}
+html[data-theme="blue"] body{--acc:#5ea8ff!important;--acc2:#6366f1!important;--acc3:#38bdf8!important;--blue:#5ea8ff;--purple:#6366f1}
+.theme-pick .tp-red{background:#f87171;color:#f87171}
+html[data-theme="red"] body{--acc:#f87171!important;--acc2:#e11d48!important;--acc3:#fb923c!important;--blue:#f87171;--purple:#e11d48}
+.theme-pick .tp-green{background:#4ade80;color:#4ade80}
+html[data-theme="green"] body{--acc:#4ade80!important;--acc2:#16a34a!important;--acc3:#2dd4bf!important;--blue:#4ade80;--purple:#16a34a}
+.theme-pick .tp-purple{background:#a78bfa;color:#a78bfa}
+html[data-theme="purple"] body{--acc:#a78bfa!important;--acc2:#7c3aed!important;--acc3:#ec4899!important;--blue:#a78bfa;--purple:#7c3aed}
+.theme-pick .tp-orange{background:#fb923c;color:#fb923c}
+html[data-theme="orange"] body{--acc:#fb923c!important;--acc2:#f59e0b!important;--acc3:#ef4444!important;--blue:#fb923c;--purple:#f59e0b}
+.theme-pick .tp-pink{background:#f472b6;color:#f472b6}
+html[data-theme="pink"] body{--acc:#f472b6!important;--acc2:#db2777!important;--acc3:#a78bfa!important;--blue:#f472b6;--purple:#db2777}
+.theme-pick .tp-mono{background:#cbd5e1;color:#cbd5e1}
+html[data-theme="mono"] body{--acc:#cbd5e1!important;--acc2:#64748b!important;--acc3:#94a3b8!important;--blue:#cbd5e1;--purple:#64748b}
+html[data-theme]:not([data-theme="auto"]) #subjectGrid .card{--acc:inherit!important}
+</style>
 </head>
 <body>
 
@@ -226,8 +250,19 @@ a{color:color-mix(in srgb,var(--acc) 70%,#fff)}
 <button onclick="showSection('french')">French</button>
 <button onclick="showSection('english')">English</button>
 </nav>
+<div class="theme-pick" id="theme-pick" role="group" aria-label="Colour theme"><button type="button" class="tp-auto" data-theme="auto" title="Subject colours theme" aria-label="Subject colours theme" aria-pressed="false"></button><button type="button" class="tp-blue" data-theme="blue" title="Blue theme" aria-label="Blue theme" aria-pressed="false"></button><button type="button" class="tp-red" data-theme="red" title="Red theme" aria-label="Red theme" aria-pressed="false"></button><button type="button" class="tp-green" data-theme="green" title="Green theme" aria-label="Green theme" aria-pressed="false"></button><button type="button" class="tp-purple" data-theme="purple" title="Purple theme" aria-label="Purple theme" aria-pressed="false"></button><button type="button" class="tp-orange" data-theme="orange" title="Orange theme" aria-label="Orange theme" aria-pressed="false"></button><button type="button" class="tp-pink" data-theme="pink" title="Pink theme" aria-label="Pink theme" aria-pressed="false"></button><button type="button" class="tp-mono" data-theme="mono" title="Silver theme" aria-label="Silver theme" aria-pressed="false"></button></div>
 </div>
 </header>
+<script id="theme-js">(function(){
+var KEY="jsh-theme",root=document.documentElement,box=document.getElementById("theme-pick");
+function apply(t){if(t==="auto"){root.removeAttribute("data-theme")}else{root.setAttribute("data-theme",t)}
+box.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.theme===t?"true":"false")});}
+var saved="auto";try{saved=localStorage.getItem(KEY)||"auto"}catch(e){}
+apply(saved);
+box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;apply(b.dataset.theme);
+try{localStorage.setItem(KEY,b.dataset.theme)}catch(e){}});
+})();</script>
+
 
 <main id="studyHub">
 
