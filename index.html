@@ -293,6 +293,50 @@ html[data-theme]:not([data-theme="auto"]) #subjectGrid .card{--acc:inherit!impor
 @media(max-width:640px){.irr-table{display:block;overflow-x:auto;white-space:nowrap}}
 .fig-inline{margin:14px 0;text-align:center}
 </style>
+<style id="tr-css">
+body:has(#translator.active){--acc:#38bdf8;--acc2:#a78bfa;--acc3:#34d399}
+body:has(#translator.active) nav button:nth-child(8){color:#fff;background:color-mix(in srgb,var(--acc) 30%,transparent);border-color:color-mix(in srgb,var(--acc) 60%,transparent)}
+.tr-card{padding:20px}
+.tr-langs{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.tr-lab{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--muted,#b9c4de);flex:1;min-width:150px}
+.tr-sel{font:inherit;font-size:15px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(6,10,24,.55);color:#eef2ff}
+.tr-swap{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:20px;cursor:pointer}
+.tr-swap:hover{background:color-mix(in srgb,var(--acc,#38bdf8) 30%,transparent)}
+.tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tr-box{display:flex;flex-direction:column;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,10,24,.5);overflow:hidden}
+.tr-out-box{background:color-mix(in srgb,var(--acc,#38bdf8) 9%,rgba(6,10,24,.5))}
+.tr-text{min-height:150px;padding:14px 16px;font:inherit;font-size:18px;line-height:1.6;color:#eef2ff;background:transparent;border:0;resize:vertical;white-space:pre-wrap;word-wrap:break-word}
+.tr-text:focus{outline:none}
+.tr-box:focus-within{border-color:var(--acc,#38bdf8)}
+.tr-placeholder{color:#7f8aa6}
+.tr-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 10px;border-top:1px solid rgba(255,255,255,.08)}
+.tr-tools{display:flex;align-items:center;gap:6px}
+.tr-note{font-size:13px;color:#a5b4cc}
+.tr-icon{border:0;background:rgba(255,255,255,.07);color:#fff;border-radius:10px;padding:6px 9px;cursor:pointer;font-size:15px}
+.tr-icon:hover{background:rgba(255,255,255,.16)}
+.tr-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.tr-chips{display:flex;gap:8px;flex-wrap:wrap}
+.tr-chip{font:inherit;font-size:13.5px;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#dbe4f5;cursor:pointer}
+.tr-chip:hover{border-color:var(--acc,#38bdf8);color:#fff}
+.tr-hub{margin-top:16px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12)}
+.tr-hub h4{margin:0 0 8px}
+.tr-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;padding:8px 4px;border-bottom:1px solid rgba(255,255,255,.07)}
+.tr-row:last-child{border-bottom:0}
+.tr-w{font-weight:700;font-size:17px}
+.tr-w[lang=ar]{font-size:21px;font-family:inherit}
+.tr-e{color:#dbe4f5}
+.tr-t{display:block;font-size:12.5px;color:#a5b4cc;font-weight:400}
+.tr-tag{font-size:11.5px;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.08);color:#cbd5e1;white-space:nowrap}
+.tr-filter{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tr-f{font:inherit;font-size:13.5px;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#dbe4f5;cursor:pointer}
+.tr-f.active{background:linear-gradient(135deg,var(--acc,#38bdf8),color-mix(in srgb,var(--acc,#38bdf8) 55%,var(--acc2,#a78bfa)));color:#06101f;border-color:transparent}
+.tr-list{max-height:460px;overflow:auto;border-radius:12px}
+.tr-h{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer}
+.tr-h:hover{color:#fff}
+.tr-credit{opacity:.75;text-align:center;margin:8px 0 24px}
+.tr-err{color:#fca5a5}
+@media(max-width:760px){.tr-grid{grid-template-columns:1fr}.tr-text{min-height:110px;font-size:17px}.tr-swap{margin:0 auto}}
+</style>
 </head>
 <body>
 
@@ -307,6 +351,7 @@ html[data-theme]:not([data-theme="auto"]) #subjectGrid .card{--acc:inherit!impor
 <button onclick="showSection('arabic')">Arabic</button>
 <button onclick="showSection('french')">French</button>
 <button onclick="showSection('english')">English</button>
+<button onclick="showSection('translator')">🌐 Translate</button>
 </nav>
 <div class="theme-pick" id="theme-pick" role="group" aria-label="Colour theme"><button type="button" class="tp-auto" data-theme="auto" title="Subject colours theme" aria-label="Subject colours theme" aria-pressed="false"></button><button type="button" class="tp-blue" data-theme="blue" title="Blue theme" aria-label="Blue theme" aria-pressed="false"></button><button type="button" class="tp-red" data-theme="red" title="Red theme" aria-label="Red theme" aria-pressed="false"></button><button type="button" class="tp-green" data-theme="green" title="Green theme" aria-label="Green theme" aria-pressed="false"></button><button type="button" class="tp-purple" data-theme="purple" title="Purple theme" aria-label="Purple theme" aria-pressed="false"></button><button type="button" class="tp-orange" data-theme="orange" title="Orange theme" aria-label="Orange theme" aria-pressed="false"></button><button type="button" class="tp-pink" data-theme="pink" title="Pink theme" aria-label="Pink theme" aria-pressed="false"></button><button type="button" class="tp-mono" data-theme="mono" title="Silver theme" aria-label="Silver theme" aria-pressed="false"></button></div>
 </div>
@@ -2549,7 +2594,7 @@ Area method: 9.8 ÷ 0.16 = 61.25 → 62 tiles. ⚠️ This is <b>too few</b>, be
 </section>
 
 <section id="arabic" class="section">
-<div class="hero"><h1>ع Arabic Hub</h1><p><b>Half Yearly topic: Clothes around the world – الملابس حول العالم.</b> Vocabulary, grammar (negation of past &amp; present, adjectives, singular/plural, preference), reading, writing descriptions and comparisons, speaking about your uniform, a shop dialogue, and the traditional-clothes project. Extra topics are in the ⭐ Extra tab.</p></div>
+<div class="hero"><h1>ع Arabic Hub</h1><p><b>Half Yearly topic: Clothes around the world – الملابس حول العالم.</b> Vocabulary, grammar (negation of past &amp; present, adjectives, singular/plural, preference), reading, writing descriptions and comparisons, speaking about your uniform, a shop dialogue, and the traditional-clothes project. Extra topics are in the ⭐ Extra tab. <a href="#" onclick="showSection('translator');return false">🌐 Open the Translator</a> for any word or sentence.</p></div>
 
 <div class="subtabs"><button class="subtab active" data-tab="a-guide">🗺️ Exam guide</button><button class="subtab" data-tab="a-vocab">👕 المفردات Vocabulary</button><button class="subtab" data-tab="a-grammar">🧩 القواعد Grammar</button><button class="subtab" data-tab="a-reading">📖 القراءة Reading</button><button class="subtab" data-tab="a-writing">✍️ الكتابة Writing</button><button class="subtab" data-tab="a-speak">🗣️ Speaking &amp; dialogue</button><button class="subtab" data-tab="a-project">🎨 Project: traditional clothes</button><button class="subtab" data-tab="a-extra">⭐ Extra (not in exam)</button></div>
 
@@ -2918,7 +2963,7 @@ Area method: 9.8 ÷ 0.16 = 61.25 → 62 tiles. ⚠️ This is <b>too few</b>, be
 </section>
 
 <section id="french" class="section">
-<div class="hero"><h1>🇫🇷 French Hub</h1><p><b>Half Yearly syllabus:</b> chapters <b>Bonne Journée</b> (p. 58–67) and <b>La banque</b> (p. 69–75). Comprehension, writing, all the grammar (présent, futur proche, impératif, verbes pronominaux, négation, questions, adjectives) and the <b>ma classe idéale</b> poster project. Extra topics are in the ⭐ Extra tab.</p></div>
+<div class="hero"><h1>🇫🇷 French Hub</h1><p><b>Half Yearly syllabus:</b> chapters <b>Bonne Journée</b> (p. 58–67) and <b>La banque</b> (p. 69–75). Comprehension, writing, all the grammar (présent, futur proche, impératif, verbes pronominaux, négation, questions, adjectives) and the <b>ma classe idéale</b> poster project. Extra topics are in the ⭐ Extra tab. <a href="#" onclick="showSection('translator');return false">🌐 Open the Translator</a> for any word or sentence.</p></div>
 
 <div class="subtabs"><button class="subtab active" data-tab="f-guide">🗺️ Exam guide</button><button class="subtab" data-tab="f-comp">📖 Compréhension écrite</button><button class="subtab" data-tab="f-prod">✍️ Production écrite</button><button class="subtab" data-tab="f-verbes">🔤 Verbes</button><button class="subtab" data-tab="f-qneg">❓ Questions & négation</button><button class="subtab" data-tab="f-adj">🏷️ Adjectifs</button><button class="subtab" data-tab="f-vocab">📚 Vocabulaire</button><button class="subtab" data-tab="f-projet">🎨 Projet : ma classe idéale</button><button class="subtab" data-tab="f-conj">📊 All conjugations</button><button class="subtab" data-tab="f-extra">⭐ Extra (not in exam)</button></div>
 
@@ -3819,6 +3864,42 @@ As the abra carried us back, the glass towers of modern Dubai shimmered on the h
 
 <div class="card practice-card" data-subject="english"></div><div class="card"><h3>English Mini-Exam</h3><p>42 questions • 40 minutes • grammar • A Whale of the Wild / Free Willy • V.O.I.C.E. &amp; P.A.W.S. • poetry • long note</p><button class="btn" onclick="startMini('english')">Start English Mini-Exam</button></div>
 </section>
+
+<section id="translator" class="section">
+<div class="hero"><h1>🌐 Translator &amp; Dictionary</h1><p>Translate <b>any word, phrase or sentence</b> between English, French, Arabic and 21 more languages. Words from your French and Arabic lessons show up instantly, even offline, in <b>📚 Words from your hub</b>.</p></div>
+<div class="card tr-card">
+<div class="tr-langs">
+<label class="tr-lab">From<select id="trFrom" class="tr-sel"><option value="auto">✨ Detect language</option><option value="en">English</option><option value="fr">French</option><option value="ar">Arabic</option><option value="es">Spanish</option><option value="de">German</option><option value="it">Italian</option><option value="pt">Portuguese</option><option value="ru">Russian</option><option value="tr">Turkish</option><option value="hi">Hindi</option><option value="ur">Urdu</option><option value="bn">Bengali</option><option value="ta">Tamil</option><option value="ml">Malayalam</option><option value="te">Telugu</option><option value="zh-CN">Chinese</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="tl">Filipino</option><option value="id">Indonesian</option><option value="fa">Persian</option><option value="nl">Dutch</option><option value="el">Greek</option><option value="sw">Swahili</option></select></label>
+<button type="button" class="tr-swap" id="trSwap" title="Swap languages" aria-label="Swap languages">⇄</button>
+<label class="tr-lab">To<select id="trTo" class="tr-sel"><option value="en">English</option><option value="fr">French</option><option value="ar">Arabic</option><option value="es">Spanish</option><option value="de">German</option><option value="it">Italian</option><option value="pt">Portuguese</option><option value="ru">Russian</option><option value="tr">Turkish</option><option value="hi">Hindi</option><option value="ur">Urdu</option><option value="bn">Bengali</option><option value="ta">Tamil</option><option value="ml">Malayalam</option><option value="te">Telugu</option><option value="zh-CN">Chinese</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="tl">Filipino</option><option value="id">Indonesian</option><option value="fa">Persian</option><option value="nl">Dutch</option><option value="el">Greek</option><option value="sw">Swahili</option></select></label>
+</div>
+<div class="tr-grid">
+<div class="tr-box"><textarea id="trIn" class="tr-text" dir="auto" maxlength="2000" placeholder="Type or paste a word, phrase or sentence…  (Ctrl + Enter to translate)"></textarea>
+<div class="tr-bar"><span id="trDetected" class="tr-note"></span><span class="tr-tools"><span id="trCount" class="tr-note">0 / 2000</span><button type="button" class="tr-icon" id="trSpeakIn" title="Listen" aria-label="Listen to the text">🔊</button><button type="button" class="tr-icon" id="trClear" title="Clear" aria-label="Clear">✕</button></span></div></div>
+<div class="tr-box tr-out-box"><div id="trOut" class="tr-text tr-out" dir="auto" aria-live="polite"><span class="tr-placeholder">Translation appears here</span></div>
+<div class="tr-bar"><span id="trStatus" class="tr-note"></span><span class="tr-tools"><button type="button" class="tr-icon" id="trSpeakOut" title="Listen" aria-label="Listen to the translation">🔊</button><button type="button" class="tr-icon" id="trCopy" title="Copy" aria-label="Copy translation">📋</button></span></div></div>
+</div>
+<div class="tr-actions"><button type="button" class="btn" id="trGo">🌐 Translate</button>
+<span class="tr-chips" id="trChips">
+<button type="button" class="tr-chip" data-t="Bonjour, comment ça va ?">Bonjour, comment ça va ?</button>
+<button type="button" class="tr-chip" data-t="Je voudrais ouvrir un compte à la banque.">Je voudrais ouvrir un compte…</button>
+<button type="button" class="tr-chip" data-t="بِكَمْ هذا القَميص؟">بكم هذا القميص؟</button>
+<button type="button" class="tr-chip" data-t="I wake up at seven o'clock and get dressed.">I wake up at seven…</button>
+<button type="button" class="tr-chip" data-t="My school uniform is a white shirt and grey trousers.">My school uniform is…</button>
+</span></div>
+<div id="trHub" class="tr-hub" hidden></div>
+</div>
+
+<div class="card"><h3>📚 Hub word finder (works offline)</h3>
+<p class="small">Search all 507 French and Arabic words and phrases from your lessons, in French, Arabic or English.</p>
+<input id="trFind" class="search" type="search" placeholder="Search… e.g. 'shirt', 'banque', 'قميص', 'to wake up'" aria-label="Search the hub dictionary">
+<div class="tr-filter" role="group" aria-label="Language filter"><button type="button" class="tr-f active" data-l="all">All</button><button type="button" class="tr-f" data-l="fr">🇫🇷 French (215)</button><button type="button" class="tr-f" data-l="ar">ع Arabic (292)</button></div>
+<div id="trList" class="tr-list"></div><p id="trMore" class="small"></p></div>
+
+<div class="card" id="trHistCard" hidden><h3>🕘 Recent translations</h3><div id="trHist"></div><button type="button" class="btn secondary" id="trHistClear">Clear history</button></div>
+<p class="small tr-credit">Online translations by MyMemory (free, about 5,000 characters per day on each device). Machine translation can make mistakes — check important sentences with your teacher.</p>
+</section>
+
 </main>
 
 <section id="miniExam" class="exam-screen"></section>
@@ -3983,6 +4064,126 @@ const p=document.getElementById('sst-mscs');if(!p)return;
 const bs=[...p.querySelectorAll('.msc-switch .irr-sw')],vs=[...p.querySelectorAll('.msc-view')];
 bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-selected',x===b)});
   vs.forEach(v=>v.hidden=v.dataset.view!==b.dataset.view);}));
+})();</script>
+<script id="tr-js">(function(){
+const sec=document.getElementById('translator');if(!sec)return;
+const DICT=[["ar", "أنا بِخَيْر", "I'm fine", "anā bikhayr"], ["ar", "أَب", "father", "ab"], ["ar", "أَبْيَض", "white", ""], ["ar", "أَجْمَلُ مِنْ", "more beautiful than", ""], ["ar", "أَجْمَلُ مِنْ / أَخَفُّ مِنْ", "more beautiful than / lighter than", ""], ["ar", "أَحْذِية", "shoe (plural)", ""], ["ar", "أَحْزِمة", "belt (plural)", ""], ["ar", "أَحْمَر", "red", ""], ["ar", "أَخ", "brother", "akh"], ["ar", "أَخَفُّ مِنْ", "lighter than", ""], ["ar", "أَخْضَر", "green", ""], ["ar", "أَرُزّ", "rice", "aruzz"], ["ar", "أَرْبَعة", "four", "arbaʿa"], ["ar", "أَزْرَق", "blue", ""], ["ar", "أَزْياء", "uniform / costume (plural)", ""], ["ar", "أَسْوَد", "black", ""], ["ar", "أَصْفَر", "yellow", ""], ["ar", "أَكَلَ / يَأْكُلُ", "he ate / he eats", "akala / yaʾkulu"], ["ar", "أَكْمام", "sleeve (plural)", ""], ["ar", "أَلْوان", "colour (plural)", ""], ["ar", "أَمّا … فَـ …", "as for … (then) …", ""], ["ar", "أَمْس", "yesterday", "ams"], ["ar", "أَوْشِحة", "scarf (plural)", ""], ["ar", "أَيْنَ؟", "where?", ""], ["ar", "أُحِبُّ", "I love / I like", "uḥibbu"], ["ar", "أُحِبُّ تَصْميمي لِأَنَّهُ …", "I like my design because it is …", ""], ["ar", "أُحِبُّ …", "I like …", ""], ["ar", "أُحِبُّ … / لا أُحِبُّ …", "I like … / I don't like …", ""], ["ar", "أُحِبُّ … أَكْثَرَ مِنْ …", "I like … more than …", ""], ["ar", "أُخْت", "sister", "ukht"], ["ar", "أُريدُ", "I want", "urīdu"], ["ar", "أُسْبوع", "week", "usbūʿ"], ["ar", "أُفَضِّلُ … عَلى …", "I prefer … to (over) …", ""], ["ar", "أُمّ", "mother", "umm"], ["ar", "إماراتيّ", "Emirati", ""], ["ar", "إماراتيّة", "Emirati (feminine)", ""], ["ar", "اثْنان", "two", "ithnān"], ["ar", "اسْكُتْلَنْديّ", "Scottish", ""], ["ar", "اسْكُتْلَنْديّة", "Scottish (feminine)", ""], ["ar", "اسْمي", "my name is", "ismī"], ["ar", "الآن", "now", "al-ān"], ["ar", "الأَحَد", "Sunday", "al-aḥad"], ["ar", "الأَرْبِعاء", "Wednesday", "al-arbiʿāʾ"], ["ar", "الاثْنَيْن", "Monday", "al-ithnayn"], ["ar", "التَّنّورة الاسْكُتْلَنْدِيّة", "kilt (wool skirt for men)", "at-tannūra al-iskutlandiyya"], ["ar", "الثُّلاثاء", "Tuesday", "ath-thulāthāʾ"], ["ar", "الجَلّابِيّة • الطَّرْبوش", "galabeya (long loose robe) • fez (red hat)", "al-jallābiyya • aṭ-ṭarbūsh"], ["ar", "الجُمُعة", "Friday", "al-jumuʿa"], ["ar", "الخَميس", "Thursday", "al-khamīs"], ["ar", "الزّيّ المَدْرَسيّ", "school uniform", "az-ziyy al-madrasī"], ["ar", "السومْبْريرو", "sombrero (big wide hat)", "as-sombrero"], ["ar", "السَّبْت", "Saturday", "as-sabt"], ["ar", "السَّلامُ عَلَيْكُم", "peace be upon you (hello)", "as-salāmu ʿalaykum"], ["ar", "السّاري • الكورْتا", "sari (long coloured cloth, women) • kurta (long shirt)", "as-sārī • al-kurtā"], ["ar", "الشَّلْوار قَميص", "shalwar kameez (long shirt + loose trousers)", "ash-shalwār qamīṣ"], ["ar", "العَباءة • الشَّيْلة", "abaya (long black cloak) • headscarf", "al-ʿabāʾa • ash-shayla"], ["ar", "الكيمونو", "kimono (long silk robe, wide sleeves)", "al-kīmūnū"], ["ar", "الكَنْدورة • الغُتْرة • العِقال", "long white robe • head cloth • black cord on the head", "al-kandūra • al-ghutra • al-ʿiqāl"], ["ar", "المَلابِسُ التَّقْليديّةُ في … هِيَ …", "The traditional clothes in … are …", ""], ["ar", "الهانْبوك", "hanbok (colourful dress / jacket)", "al-hānbūk"], ["ar", "اليَوْم", "today / the day", "al-yawm"], ["ar", "اِخْتَرْتُ بَلَدَ …", "I chose the country …", ""], ["ar", "اِسْتَخْرِجْ مِنَ النَّصّ", "find in the text", ""], ["ar", "اِشْتَرى / يَشْتَري", "he bought / he buys", "ishtarā / yashtarī"], ["ar", "باكِسْتانيّ", "Pakistani", ""], ["ar", "باكِسْتانيّة", "Pakistani (feminine)", ""], ["ar", "بَلَد", "country", ""], ["ar", "بَناطيل", "trousers (plural)", ""], ["ar", "بَنَفْسَجيّ", "purple", ""], ["ar", "بَنَفْسَجيّة", "purple (feminine)", ""], ["ar", "بَيْت", "house / home", "bayt"], ["ar", "بَيْضاء", "white (feminine)", ""], ["ar", "بَيْنَما", "while / whereas", ""], ["ar", "بُرْتُقاليّ", "orange", ""], ["ar", "بُرْتُقاليّة", "orange (feminine)", ""], ["ar", "بُلْدان", "country (plural)", ""], ["ar", "بُنّيّ", "brown", ""], ["ar", "بُنّيّة", "brown (feminine)", ""], ["ar", "بِكَمْ؟", "how much (price)?", ""], ["ar", "بِنْطال", "trousers", "binṭāl"], ["ar", "تي شيرت", "T-shirt", "tī shirt"], ["ar", "تَقْليديّ / تَقْليديّة", "traditional", ""], ["ar", "تَنّورات", "skirt (plural)", ""], ["ar", "تَنّورة", "skirt", "tannūra"], ["ar", "تُشْبِهُ", "f)", ""], ["ar", "تُعْجِبُني …", "f thing)", ""], ["ar", "تُفّاح", "apples", "tuffāḥ"], ["ar", "تِسْعة", "nine", "tisʿa"], ["ar", "ثَقيل", "heavy", ""], ["ar", "ثَقيل / ثَقيلة", "heavy / thick", ""], ["ar", "ثَقيلة", "thick", ""], ["ar", "ثَلاثة", "three", "thalātha"], ["ar", "ثَمانِية", "eight", "thamāniya"], ["ar", "ثَوْب", "robe / garment", ""], ["ar", "ثُمَّ • أَخيراً", "then • finally", ""], ["ar", "ثِياب / أَثْواب", "robe / garment (plural)", ""], ["ar", "جَديد / جَديدة", "new", ""], ["ar", "جَدّ", "grandfather", "jadd"], ["ar", "جَدّة", "grandmother", "jadda"], ["ar", "جَميل / جَميلة", "beautiful", ""], ["ar", "جَمْع", "plural", ""], ["ar", "جَوارِب", "socks (singular جَوْرَب)", "jawārib"], ["ar", "جَوْرَب", "sock", ""], ["ar", "حَديث / حَديثة", "modern", ""], ["ar", "حَديقة", "garden / park", "ḥadīqa"], ["ar", "حَزين", "sad", "ḥazīn"], ["ar", "حَقيبة", "bag", "ḥaqība"], ["ar", "حَليب", "milk", "ḥalīb"], ["ar", "حَمْراء", "red (feminine)", ""], ["ar", "حِذاء", "shoe(s)", "ḥidhāʾ"], ["ar", "حِزام", "belt", "ḥizām"], ["ar", "خَضْراء", "green (feminine)", ""], ["ar", "خَفيف", "light", ""], ["ar", "خَفيف / خَفيفة", "light / thin", ""], ["ar", "خَفيفة", "thin", ""], ["ar", "خَمْسة", "five", "khamsa"], ["ar", "خُبْز", "bread", "khubz"], ["ar", "دَجاج", "chicken", "dajāj"], ["ar", "دَرَسَ / يَدْرُسُ", "he studied / he studies", "darasa / yadrusu"], ["ar", "دَفْتَر", "notebook", "daftar"], ["ar", "ذَهَبيّ", "gold", ""], ["ar", "ذَهَبيّة", "gold (feminine)", ""], ["ar", "ذَهَبَ / يَذْهَبُ", "he went / he goes", "dhahaba / yadhhabu"], ["ar", "رَخيص / رَخيصة", "cheap", ""], ["ar", "رَماديّ", "grey", ""], ["ar", "رَماديّة", "grey (feminine)", ""], ["ar", "زَرْقاء", "blue (feminine)", ""], ["ar", "زِيُّنا", "our uniform", ""], ["ar", "زِيّ", "uniform / costume", ""], ["ar", "سادة", "plain (one colour)", ""], ["ar", "سوق", "market", "sūq"], ["ar", "سَبْعة", "seven", "sabʿa"], ["ar", "سَعيد", "happy", "saʿīd"], ["ar", "سَنة", "year", "sana"], ["ar", "سَهْل", "easy", "sahl"], ["ar", "سَوْداء", "black (feminine)", ""], ["ar", "سُتَر", "jacket (plural)", ""], ["ar", "سُتْرة", "jacket", "sutra"], ["ar", "سِتّة", "six", "sitta"], ["ar", "شارِع", "street", "shāriʿ"], ["ar", "شَرِبَ / يَشْرَبُ", "he drank / he drinks", "shariba / yashrabu"], ["ar", "شَهْر", "month", "shahr"], ["ar", "شُكْراً", "thank you", "shukran"], ["ar", "صَباحُ الخَيْر", "good morning", "ṣabāḥ al-khayr"], ["ar", "صَحّ أَمْ خَطَأ", "true or false", ""], ["ar", "صَديق", "friend", "ṣadīq"], ["ar", "صَعْب", "difficult", "ṣaʿb"], ["ar", "صَغير", "small", "ṣaghīr"], ["ar", "صَفّ", "class / grade", "ṣaff"], ["ar", "صَفْراء", "yellow (feminine)", ""], ["ar", "صَمَّمْتُ زِيّاً جَديداً مُسْتَوْحىً مِنْ …", "I designed a new outfit inspired by …", ""], ["ar", "صَنادِل", "sandal (plural)", ""], ["ar", "صَنْدَل", "sandals", "ṣandal"], ["ar", "ضَيِّق / ضَيِّقة", "tight", ""], ["ar", "ضِدّ", "opposite", ""], ["ar", "ضِدّ / جَمْع / مُفْرَد", "opposite / plural / singular", ""], ["ar", "طالِب / طالِبة", "student (m / f)", "ṭālib / ṭāliba"], ["ar", "طَعام", "food", "ṭaʿām"], ["ar", "طَويل / طَويلة", "long", ""], ["ar", "عائِلة", "family", "ʿāʾila"], ["ar", "عَباءات", "abaya (plural)", ""], ["ar", "عَباءة", "abaya", "ʿabāʾa"], ["ar", "عَشَرة", "ten", "ʿashara"], ["ar", "عَصير", "juice", "ʿaṣīr"], ["ar", "عَفْواً", "you're welcome / excuse me", "ʿafwan"], ["ar", "عَلى", "on", "ʿalā"], ["ar", "عِشْرون", "twenty", "ʿishrūn"], ["ar", "غالٍ / غالِية", "expensive", ""], ["ar", "غَداً", "tomorrow", "ghadan"], ["ar", "غَيْر مُريح", "uncomfortable", ""], ["ar", "في", "in", "fī"], ["ar", "في الإمارات …", "in the UAE …", ""], ["ar", "في البِدايةِ • في النِّهايةِ", "at the start • in the end", ""], ["ar", "في بَلَدي …", "in my country …", ""], ["ar", "في بَلَدي … / في الإمارات …", "in my country … / in the UAE …", ""], ["ar", "في رَأْيي …", "In my opinion …", ""], ["ar", "فَساتين", "dress (plural)", ""], ["ar", "فُسْتان", "dress", "fustān"], ["ar", "قَبيح / قَبيحة", "ugly", ""], ["ar", "قَديم / قَديمة", "old", ""], ["ar", "قَرَأَ / يَقْرَأُ", "he read / he reads", "qaraʾa / yaqraʾu"], ["ar", "قَصير / قَصيرة", "short", ""], ["ar", "قَلَم", "pen / pencil", "qalam"], ["ar", "قَميص", "shirt", "qamīṣ"], ["ar", "قَميصي", "my shirt", ""], ["ar", "قَميصُكَ", "your shirt (m", ""], ["ar", "قَميصُكَ / قَميصُكِ", "your shirt (m / f)", ""], ["ar", "قَميصُكِ", "f)", ""], ["ar", "قَميصُها", "her shirt", ""], ["ar", "قَميصُهُ", "his", ""], ["ar", "قَميصُهُ / قَميصُها", "his / her shirt", ""], ["ar", "قُبَّعات", "hat (plural)", ""], ["ar", "قُبَّعة", "hat / cap", "qubbaʿa"], ["ar", "قُفّاز", "glove", ""], ["ar", "قُفّازات", "gloves", "quffāzāt"], ["ar", "قُمْصان", "shirt (plural)", ""], ["ar", "كوريّ", "Korean", ""], ["ar", "كوريّة", "Korean (feminine)", ""], ["ar", "كَبير", "big", "kabīr"], ["ar", "كَتَبَ / يَكْتُبُ", "he wrote / he writes", "kataba / yaktubu"], ["ar", "كَمْ؟", "how many?", ""], ["ar", "كَمْ؟ / بِكَمْ؟", "how many? / how much (price)?", ""], ["ar", "كَنادير", "kandura (plural)", ""], ["ar", "كَنَزات", "sweater (plural)", ""], ["ar", "كَنْدورة", "kandura", ""], ["ar", "كَنْدورة / ثَوْب", "Emirati men's robe", "kandūra / thawb"], ["ar", "كَنْزة", "sweater / jumper", "kanza"], ["ar", "كَيْفَ حالُك؟", "how are you?", "kayfa ḥāluk?"], ["ar", "كَيْفَ؟", "how?", ""], ["ar", "كُمّ", "sleeve", ""], ["ar", "كِتاب", "book", "kitāb"], ["ar", "كِلاهُما", "both of them", ""], ["ar", "لا", "no", "lā"], ["ar", "لا أَفْهَم", "I don't understand", "lā afham"], ["ar", "لا أَلْبَسُ مِعْطَفاً", "I (don't) wear a coat.", ""], ["ar", "لا أُحِبُّ …", "I don't like …", ""], ["ar", "لا تُحِبُّ سارة اللَّوْن الأَسْوَد", "Sara (doesn't) like black.", ""], ["ar", "لا يَلْبَسُ أَخي الكَنْدورة", "My brother (doesn't) wear the kandura.", ""], ["ar", "لكِنَّ / لكِنْ", "but", ""], ["ar", "لكِنْ", "but", "lākin"], ["ar", "لَبِسَ / يَلْبَسُ", "he wore / he wears", "labisa / yalbasu"], ["ar", "لَعِبَ / يَلْعَبُ", "he played / he plays", "laʿiba / yalʿabu"], ["ar", "لَوْن", "colour", ""], ["ar", "لَوْني المُفَضَّلُ هُوَ …", "My favourite colour is …", ""], ["ar", "لِأَنَّ", "because", "li-anna"], ["ar", "لِأَنَّ • لِذلِكَ", "because • so", ""], ["ar", "لِماذا؟", "why? → answer with لأنّ", ""], ["ar", "ما اسْمُك؟", "what's your name?", "mā smuk?"], ["ar", "ما لَبِسوا", "they didn't wear", ""], ["ar", "ما لَبِسَ", "he didn't wear", ""], ["ar", "ما لَبِسَتْ", "she didn't wear", ""], ["ar", "ما لَبِسْتَ", "you (m", ""], ["ar", "ما لَبِسْتَ / ما لَبِسْتِ", "you (m / f) didn't wear", ""], ["ar", "ما لَبِسْتُ", "I wore → I didn't wear", ""], ["ar", "ما لَبِسْتِ", "f) didn't wear", ""], ["ar", "ما لَبِسْنا", "we didn't wear", ""], ["ar", "ما لَوْنُ …؟", "what colour is …?", ""], ["ar", "ماء", "water", "māʾ"], ["ar", "ماذا؟", "what?", "mādhā?"], ["ar", "ماذا؟ / ما؟", "what?", ""], ["ar", "مَتى؟", "when?", ""], ["ar", "مَدينة", "city", "madīna"], ["ar", "مَدْرَسة", "school", "madrasa"], ["ar", "مَرْحَباً", "hello", "marḥaban"], ["ar", "مَساءُ الخَيْر", "good evening", "masāʾ al-khayr"], ["ar", "مَسْجِد", "mosque", "masjid"], ["ar", "مَطْعَم", "restaurant", "maṭʿam"], ["ar", "مَعاطِف", "coat (plural)", ""], ["ar", "مَعَ", "with", "maʿa"], ["ar", "مَعَ السَّلامة", "goodbye", "maʿa s-salāma"], ["ar", "مَكْسيكيّ", "Mexican", ""], ["ar", "مَكْسيكيّة", "Mexican (feminine)", ""], ["ar", "مَلابِسي المُفَضَّلةُ هِيَ …", "My favourite clothes are …", ""], ["ar", "مَنْ؟", "who?", ""], ["ar", "مُريح / مُريحة", "comfortable", ""], ["ar", "مُسْتَشْفى", "hospital", "mustashfā"], ["ar", "مُعَلِّم / مُعَلِّمة", "teacher (m / f)", "muʿallim / muʿallima"], ["ar", "مُفْرَد", "singular", ""], ["ar", "مُلَوَّن / مُلَوَّنة", "colourful", ""], ["ar", "مِئة", "hundred", "miʾa"], ["ar", "مِثْلَ", "like (similar to)", ""], ["ar", "مِصْريّ", "Egyptian", ""], ["ar", "مِصْريّة", "Egyptian (feminine)", ""], ["ar", "مِعْطَف", "coat", "miʿṭaf"], ["ar", "مِنْ فَضْلِك", "please", "min faḍlik"], ["ar", "نامَ / يَنامُ", "he slept / he sleeps", "nāma / yanāmu"], ["ar", "نَظّارات", "glasses (plural)", ""], ["ar", "نَظّارة", "glasses", "naẓẓāra"], ["ar", "نَعَمْ", "yes", "naʿam"], ["ar", "هَلْ؟", "yes/no question", ""], ["ar", "هُوَ / هِيَ مِنَ الحَريرِ / القُطْنِ / الصّوفِ", "It is made of silk / cotton / wool.", ""], ["ar", "هِنْديّ", "Indian", ""], ["ar", "هِنْديّة", "Indian (feminine)", ""], ["ar", "واجِب", "homework / duty", "wājib"], ["ar", "واحِد", "one", "wāḥid"], ["ar", "واسِع", "loose", ""], ["ar", "واسِع / واسِعة", "loose / wide", ""], ["ar", "واسِعة", "wide", ""], ["ar", "وَ", "and", "wa"], ["ar", "وَ • أَيْضاً", "and • also", ""], ["ar", "وَرْديّ", "pink", ""], ["ar", "وَرْديّة", "pink (feminine)", ""], ["ar", "وَعَلَيْكُمُ السَّلام", "and peace be upon you (reply)", "wa ʿalaykumu s-salām"], ["ar", "وِشاح", "scarf", "wishāḥ"], ["ar", "يابانيّ", "Japanese", ""], ["ar", "يابانيّة", "Japanese (feminine)", ""], ["ar", "يَخْتَلِفُ عَنْ / تَخْتَلِفُ عَنْ", "is different from", ""], ["ar", "يَلْبَسُ النّاسُ … في …", "People wear … at/in …", ""], ["ar", "يُشْبِهُ", "resembles (m", ""], ["ar", "يُشْبِهُ / تُشْبِهُ", "resembles (m / f)", ""], ["ar", "يُعْجِبُني …", "I like (m", ""], ["ar", "يُعْجِبُني … / تُعْجِبُني …", "I like (m / f thing)", ""], ["fr", "aimer", "to like / to love", ""], ["fr", "aller", "to go", ""], ["fr", "août", "August", ""], ["fr", "au revoir", "goodbye", ""], ["fr", "aujourd'hui", "today", ""], ["fr", "avec", "with", ""], ["fr", "avoir", "to have", ""], ["fr", "avril", "April", ""], ["fr", "beau / belle", "beautiful", ""], ["fr", "blanc", "white", ""], ["fr", "bleu", "blue", ""], ["fr", "boire", "to drink", ""], ["fr", "bonjour", "hello / good morning", ""], ["fr", "bonsoir", "good evening", ""], ["fr", "cent", "hundred", ""], ["fr", "changer de l'argent", "to exchange money", ""], ["fr", "cinq", "five", ""], ["fr", "cinquante", "fifty", ""], ["fr", "combien ?", "how much / how many?", ""], ["fr", "comment ?", "how?", ""], ["fr", "comment tu t'appelles ?", "what's your name?", ""], ["fr", "comment ça va ?", "how are you?", ""], ["fr", "content", "happy", ""], ["fr", "d'habitude", "usually", ""], ["fr", "dans", "in", ""], ["fr", "de rien", "you're welcome", ""], ["fr", "demain", "tomorrow", ""], ["fr", "deux", "two", ""], ["fr", "devoir", "to have to (must)", ""], ["fr", "difficile", "difficult", ""], ["fr", "dimanche", "Sunday", ""], ["fr", "dix", "ten", ""], ["fr", "dix-huit", "eighteen", ""], ["fr", "dix-neuf", "nineteen", ""], ["fr", "dix-sept", "seventeen", ""], ["fr", "dormir", "to sleep", ""], ["fr", "douze", "twelve", ""], ["fr", "décembre", "December", ""], ["fr", "dépenser", "to spend", ""], ["fr", "déposer / verser", "to deposit", ""], ["fr", "en voiture", "by car", ""], ["fr", "et", "and", ""], ["fr", "excusez-moi", "excuse me", ""], ["fr", "facile", "easy", ""], ["fr", "faire", "to do / to make", ""], ["fr", "faire ses devoirs", "to do homework", ""], ["fr", "finir", "to finish", ""], ["fr", "février", "February", ""], ["fr", "grand", "big / tall", ""], ["fr", "gris", "grey", ""], ["fr", "hier", "yesterday", ""], ["fr", "huit", "eight", ""], ["fr", "j'ai douze ans", "I am twelve years old", ""], ["fr", "janvier", "January", ""], ["fr", "jaune", "yellow", ""], ["fr", "je m'appelle…", "my name is…", ""], ["fr", "je ne comprends pas", "I don't understand", ""], ["fr", "jeudi", "Thursday", ""], ["fr", "juillet", "July", ""], ["fr", "juin", "June", ""], ["fr", "l'ami / l'amie", "friend (m / f)", ""], ["fr", "l'année", "the year", ""], ["fr", "l'après-midi", "afternoon", ""], ["fr", "l'argent (m.)", "money", ""], ["fr", "l'argent de poche", "pocket money", ""], ["fr", "l'eau", "water", ""], ["fr", "l'employé(e)", "bank clerk", ""], ["fr", "l'école", "school", ""], ["fr", "l'élève", "pupil", ""], ["fr", "la banque", "bank", ""], ["fr", "la cantine", "school canteen", ""], ["fr", "la classe", "class / classroom", ""], ["fr", "la famille", "family", ""], ["fr", "la gomme", "eraser", ""], ["fr", "la grand-mère", "grandmother", ""], ["fr", "la monnaie", "change / currency", ""], ["fr", "la mère", "mother", ""], ["fr", "la pomme", "apple", ""], ["fr", "la règle", "ruler", ""], ["fr", "la récréation", "break time", ""], ["fr", "la semaine", "the week", ""], ["fr", "la sœur", "sister", ""], ["fr", "le cahier", "exercise book", ""], ["fr", "le client / la cliente", "customer", ""], ["fr", "le code secret", "PIN", ""], ["fr", "le crayon", "pencil", ""], ["fr", "le distributeur (de billets)", "cash machine / ATM", ""], ["fr", "le déjeuner", "lunch", ""], ["fr", "le dîner", "dinner", ""], ["fr", "le fromage", "cheese", ""], ["fr", "le frère", "brother", ""], ["fr", "le goûter", "afternoon snack", ""], ["fr", "le grand-père", "grandfather", ""], ["fr", "le guichet", "counter", ""], ["fr", "le jus d'orange", "orange juice", ""], ["fr", "le lait", "milk", ""], ["fr", "le livre", "book", ""], ["fr", "le matin", "morning", ""], ["fr", "le matin / le soir", "morning / evening", ""], ["fr", "le mois", "the month", ""], ["fr", "le pain", "bread", ""], ["fr", "le petit-déjeuner", "breakfast", ""], ["fr", "le poulet", "chicken", ""], ["fr", "le professeur", "teacher", ""], ["fr", "le père", "father", ""], ["fr", "le riz", "rice", ""], ["fr", "le sac", "bag", ""], ["fr", "le soir", "evening", ""], ["fr", "le stylo", "pen", ""], ["fr", "les devoirs", "homework", ""], ["fr", "les parents", "parents", ""], ["fr", "lire", "to read", ""], ["fr", "lundi", "Monday", ""], ["fr", "mai", "May", ""], ["fr", "maintenant", "now", ""], ["fr", "mais", "but", ""], ["fr", "manger", "to eat", ""], ["fr", "mardi", "Tuesday", ""], ["fr", "marron", "brown", ""], ["fr", "mars", "March", ""], ["fr", "merci", "thank you", ""], ["fr", "merci beaucoup", "thank you very much", ""], ["fr", "mercredi", "Wednesday", ""], ["fr", "mille", "thousand", ""], ["fr", "neuf", "nine", ""], ["fr", "noir", "black", ""], ["fr", "non", "no", ""], ["fr", "novembre", "November", ""], ["fr", "octobre", "October", ""], ["fr", "onze", "eleven", ""], ["fr", "oui", "yes", ""], ["fr", "ouvrir un compte", "to open an account", ""], ["fr", "où ?", "where?", ""], ["fr", "parce que", "because", ""], ["fr", "pardon", "sorry / pardon", ""], ["fr", "parler", "to speak", ""], ["fr", "payer", "to pay", ""], ["fr", "petit", "small", ""], ["fr", "pourquoi ?", "why?", ""], ["fr", "pouvez-vous répéter ?", "can you repeat?", ""], ["fr", "pouvoir", "to be able to (can)", ""], ["fr", "prendre", "to take", ""], ["fr", "prendre le bus", "to take the bus", ""], ["fr", "qu'est-ce que c'est ?", "what is it?", ""], ["fr", "quand ?", "when?", ""], ["fr", "quarante", "forty", ""], ["fr", "quatorze", "fourteen", ""], ["fr", "quatre", "four", ""], ["fr", "quatre-vingt-dix", "ninety", ""], ["fr", "quatre-vingts", "eighty", ""], ["fr", "qui ?", "who?", ""], ["fr", "quinze", "fifteen", ""], ["fr", "quoi ?", "what?", ""], ["fr", "remplir", "to fill in", ""], ["fr", "remplir / signer", "to fill in / to sign", ""], ["fr", "rentrer", "to come home", ""], ["fr", "retirer", "to withdraw", ""], ["fr", "rose", "pink", ""], ["fr", "rouge", "red", ""], ["fr", "s'habiller", "to get dressed", ""], ["fr", "s'il te plaît", "please (to a friend)", ""], ["fr", "s'il vous plaît", "please (polite)", ""], ["fr", "salut", "hi / bye (informal)", ""], ["fr", "samedi", "Saturday", ""], ["fr", "sans", "without", ""], ["fr", "savoir", "to know", ""], ["fr", "se brosser les dents", "to brush your teeth", ""], ["fr", "se coiffer", "to do your hair", ""], ["fr", "se coucher", "to go to bed", ""], ["fr", "se doucher", "to shower", ""], ["fr", "se dépêcher", "to hurry", ""], ["fr", "se lever", "to get up", ""], ["fr", "se reposer", "to rest", ""], ["fr", "se réveiller", "to wake up", ""], ["fr", "seize", "sixteen", ""], ["fr", "sept", "seven", ""], ["fr", "septembre", "September", ""], ["fr", "signer", "to sign", ""], ["fr", "six", "six", ""], ["fr", "soixante", "sixty", ""], ["fr", "soixante-dix", "seventy", ""], ["fr", "sous", "under", ""], ["fr", "sur", "on", ""], ["fr", "tard", "late", ""], ["fr", "tous les jours", "every day", ""], ["fr", "treize", "thirteen", ""], ["fr", "trente", "thirty", ""], ["fr", "triste", "sad", ""], ["fr", "trois", "three", ""], ["fr", "tôt", "early", ""], ["fr", "tôt / tard", "early / late", ""], ["fr", "un", "one", ""], ["fr", "un billet", "banknote", ""], ["fr", "un chèque", "cheque", ""], ["fr", "un compte (bancaire)", "(bank) account", ""], ["fr", "un formulaire", "form", ""], ["fr", "une carte bancaire", "bank card", ""], ["fr", "une pièce (de monnaie)", "coin", ""], ["fr", "une pièce d'identité", "ID document", ""], ["fr", "vendre", "to sell", ""], ["fr", "vendredi", "Friday", ""], ["fr", "venir", "to come", ""], ["fr", "vert", "green", ""], ["fr", "vingt", "twenty", ""], ["fr", "violet", "purple", ""], ["fr", "voir", "to see", ""], ["fr", "vouloir", "to want", ""], ["fr", "zéro", "zero", ""], ["fr", "à bientôt", "see you soon", ""], ["fr", "à pied", "on foot", ""], ["fr", "à pied / en voiture", "on foot / by car", ""], ["fr", "ça va bien, merci", "I'm fine, thanks", ""], ["fr", "économiser", "to save (money)", ""], ["fr", "écrire", "to write", ""], ["fr", "être", "to be", ""]];
+const $=id=>document.getElementById(id);
+const inp=$('trIn'),out=$('trOut'),from=$('trFrom'),to=$('trTo'),status=$('trStatus'),det=$('trDetected');
+const NAMES={};[...to.options].forEach(o=>NAMES[o.value]=o.textContent);
+const VOICE={en:'en-GB',fr:'fr-FR',ar:'ar-SA',es:'es-ES',de:'de-DE',it:'it-IT',pt:'pt-PT',ru:'ru-RU',tr:'tr-TR',hi:'hi-IN',ur:'ur-PK',bn:'bn-IN',ta:'ta-IN',ml:'ml-IN',te:'te-IN','zh-CN':'zh-CN',ja:'ja-JP',ko:'ko-KR',tl:'fil-PH',id:'id-ID',fa:'fa-IR',nl:'nl-NL',el:'el-GR',sw:'sw-KE'};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+to.value=store.get('tr-to','fr');from.value=store.get('tr-from','auto');
+// ----- language detection
+function detect(t){
+  if(/[\u0600-\u06FF]/.test(t))return /[\u067E\u0686\u0698\u06AF]/.test(t)?'fa':(/[\u0679\u0688\u0691\u06BA\u06BE\u06C1\u06D2]/.test(t)?'ur':'ar');
+  if(/[\u0900-\u097F]/.test(t))return 'hi';if(/[\u0980-\u09FF]/.test(t))return 'bn';if(/[\u0B80-\u0BFF]/.test(t))return 'ta';
+  if(/[\u0D00-\u0D7F]/.test(t))return 'ml';if(/[\u0C00-\u0C7F]/.test(t))return 'te';if(/[\u3040-\u30FF]/.test(t))return 'ja';
+  if(/[\uAC00-\uD7AF]/.test(t))return 'ko';if(/[\u4E00-\u9FFF]/.test(t))return 'zh-CN';if(/[\u0400-\u04FF]/.test(t))return 'ru';if(/[\u0370-\u03FF]/.test(t))return 'el';
+  const w=' '+t.toLowerCase().replace(/[^a-zà-ÿœæß'\s]/g,' ')+' ';
+  const score=(re)=>(w.match(re)||[]).length;
+  const fr=score(/ (le|la|les|un|une|des|du|de|est|je|tu|il|elle|nous|vous|et|avec|pour|dans|ce|que|qui|pas|ne|suis|bonjour|merci|au|aux|mon|ma|mes|c'est|j'ai|l'|d') /g)+(/[éèêàçùâîôûëïœ]/.test(t)?2:0);
+  const es=score(/ (el|los|las|es|está|por|qué|hola|gracias|y|una|con|para|muy|pero) /g)+(/[ñ¿¡]/.test(t)?3:0);
+  const de=score(/ (der|die|das|und|ist|ich|nicht|ein|eine|mit|zu|danke|hallo) /g)+(/[äöüß]/.test(t)?3:0);
+  const en=score(/ (the|a|an|is|are|i|you|and|to|of|in|my|it|this|what|how|with|for|at) /g);
+  const best=[['fr',fr],['es',es],['de',de],['en',en]].sort((a,b)=>b[1]-a[1])[0];
+  return best[1]>0?best[0]:'en';
+}
+// ----- hub dictionary lookups
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u064B-\u0652\u0670\u0640]/g,'')
+  .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[’]/g,"'").replace(/[^\p{L}\p{N}' ]+/gu,' ').replace(/\s+/g,' ').trim();
+const IDX=DICT.map(d=>({d,w:norm(d[1]),parts:norm(d[1]).split(' / '),e:' '+norm(d[2])+' '}));
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function row(d){return `<div class="tr-row"><span class="tr-w" lang="${d[0]}" dir="auto">${esc(d[1])}</span><span class="tr-e">${esc(d[2])}${d[3]?`<span class="tr-t">${esc(d[3])}</span>`:''}</span><span class="tr-tag">${d[0]==='fr'?'🇫🇷 French':'ع Arabic'}</span></div>`}
+function hubMatches(text){
+  const n=norm(text);if(!n)return[];
+  const words=n.split(' ').filter(Boolean),found=new Map();
+  const stripAl=w=>{w=w.replace(/^(وال|بال|فال|لل)/,'ال');if(w.startsWith('ال')&&w.length>3)w=w.slice(2);
+    if(/[\u0600-\u06FF]/.test(w)){if(w.length>3&&/ا$/.test(w))w=w.slice(0,-1);if(w.length>3&&/^و/.test(w)&&!/^و[اي]/.test(w))w=w.slice(1);}
+    else w=w.replace(/^(l|d|j|qu|n|s|m|t)'/,'');return w;};
+  IDX.forEach(x=>{const fw=' '+x.w+' ';
+    if(fw.includes(' '+n+' ')||x.parts.includes(n))found.set(x.d,100);});
+  for(let len=Math.min(4,words.length);len>=1;len--){
+    for(let i=0;i+len<=words.length;i++){
+      const ph=words.slice(i,i+len).join(' ');if(len===1&&(ph.length<2||(ph.length<3&&words.length>1&&!/[\u0600-\u06FF]/.test(ph))))continue;
+      IDX.forEach(x=>{if(found.has(x.d))return;
+        const hit=x.parts.some(p=>p===ph||stripAl(p)===stripAl(ph)||(len>1&&(' '+p+' ').includes(' '+ph+' ')));
+        const enHit=len===1&&ph.length>2&&/^[a-z']+$/.test(ph)&&!/^(the|and|you|are|for|with|this|that|was|has|have|its|his|her|but|not|can|our|your)$/.test(ph)&&x.e.includes(' '+ph+' ');
+        if(hit)found.set(x.d,len*10);else if(enHit)found.set(x.d,len);});
+    }}
+  return [...found.entries()].sort((a,b)=>b[1]-a[1]).slice(0,12).map(e=>e[0]);
+}
+function showHub(text,extra){
+  const m=hubMatches(text+(extra?' '+extra:''));const box=$('trHub');
+  if(!m.length){box.hidden=true;return}
+  box.hidden=false;box.innerHTML='<h4>📚 Words from your hub</h4>'+m.map(row).join('');
+}
+// ----- online translation (MyMemory)
+function chunks(t){const parts=t.match(/[^.!?؟\n]+[.!?؟\n]*/g)||[t];const out=[];let cur='';
+  parts.forEach(p=>{if((cur+p).length>450){if(cur)out.push(cur);while(p.length>450){out.push(p.slice(0,450));p=p.slice(450)}cur=p}else cur+=p});
+  if(cur.trim())out.push(cur);return out;}
+const decode=s=>{const t=document.createElement('textarea');t.innerHTML=s;return t.value};
+async function translateChunk(q,s,d){
+  const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(q)+'&langpair='+encodeURIComponent(s+'|'+d));
+  if(!r.ok)throw new Error('http '+r.status);
+  const j=await r.json();const txt=(j.responseData&&j.responseData.translatedText)||'';
+  if(+j.responseStatus!==200||/^MYMEMORY WARNING|QUERY LENGTH LIMIT|INVALID LANGUAGE PAIR/i.test(txt))throw new Error(/WARNING/i.test(txt)?'limit':'bad');
+  return decode(txt);
+}
+let busy=false;
+async function go(){
+  const text=inp.value.trim();if(!text||busy)return;
+  let s=from.value==='auto'?detect(text):from.value,d=to.value;
+  det.textContent=from.value==='auto'?'Detected: '+(NAMES[s]||s):'';
+  if(s===d){d=s==='en'?'fr':'en';to.value=d;}
+  busy=true;$('trGo').disabled=true;status.textContent='Translating…';status.className='tr-note';
+  out.innerHTML='<span class="tr-placeholder">…</span>';
+  try{
+    const parts=[];for(const c of chunks(text))parts.push(await translateChunk(c.trim(),s,d));
+    const res=parts.join(' ').replace(/\s+([.,!?;:])/g,'$1');
+    out.textContent=res;out.lang=d;status.textContent=(NAMES[s]||s)+' → '+(NAMES[d]||d);
+    showHub(text,res);saveHist(text,res,s,d);
+  }catch(e){
+    const m=hubMatches(text);
+    out.innerHTML=m.length?'<span class="tr-placeholder">Online translation unavailable — see the hub words below.</span>':'<span class="tr-err">Couldn\'t translate right now.</span>';
+    status.innerHTML='<span class="tr-err">'+(e.message==='limit'?'Daily free limit reached on this device — try again tomorrow. Hub words still work.':'No internet or the translator is busy. Hub words still work offline.')+'</span>';
+    showHub(text);
+  }finally{busy=false;$('trGo').disabled=false;}
+}
+// ----- history
+function saveHist(a,b,s,d){let h=store.get('tr-hist',[]);h=h.filter(x=>x.a!==a||x.d!==d);h.unshift({a,b,s,d});store.set('tr-hist',h.slice(0,12));renderHist();}
+function renderHist(){const h=store.get('tr-hist',[]);$('trHistCard').hidden=!h.length;
+  $('trHist').innerHTML=h.map((x,i)=>`<div class="tr-h" data-i="${i}"><span dir="auto">${esc(x.a.slice(0,80))}</span><span dir="auto" class="tr-e">${esc(x.b.slice(0,80))}</span></div>`).join('');}
+$('trHist').addEventListener('click',e=>{const r=e.target.closest('.tr-h');if(!r)return;const x=store.get('tr-hist',[])[+r.dataset.i];if(!x)return;
+  inp.value=x.a;from.value=x.s;to.value=x.d;out.textContent=x.b;status.textContent=(NAMES[x.s]||x.s)+' → '+(NAMES[x.d]||x.d);count();showHub(x.a,x.b);window.scrollTo({top:sec.offsetTop,behavior:'smooth'});});
+$('trHistClear').onclick=()=>{store.set('tr-hist',[]);renderHist();};
+// ----- speech, copy, swap, misc
+function speak(text,lang){if(!('speechSynthesis' in window)||!text)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=VOICE[lang]||lang;u.rate=.9;speechSynthesis.speak(u);}
+$('trSpeakIn').onclick=()=>{const t=inp.value.trim();speak(t,from.value==='auto'?detect(t):from.value)};
+$('trSpeakOut').onclick=()=>{if(!out.querySelector('.tr-placeholder,.tr-err'))speak(out.textContent,to.value)};
+$('trCopy').onclick=()=>{if(out.querySelector('.tr-placeholder,.tr-err'))return;const t=out.textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{status.textContent='Copied ✓'}).catch(()=>{status.textContent='Select the text to copy'})};
+$('trSwap').onclick=()=>{const s=from.value==='auto'?detect(inp.value||'a'):from.value,d=to.value;from.value=d;to.value=s;
+  if(!out.querySelector('.tr-placeholder,.tr-err')&&out.textContent){inp.value=out.textContent;out.innerHTML='<span class="tr-placeholder">Translation appears here</span>';count();}
+  store.set('tr-from',from.value);store.set('tr-to',to.value);};
+$('trClear').onclick=()=>{inp.value='';out.innerHTML='<span class="tr-placeholder">Translation appears here</span>';status.textContent='';det.textContent='';$('trHub').hidden=true;count();inp.focus();};
+from.onchange=()=>store.set('tr-from',from.value);to.onchange=()=>{store.set('tr-to',to.value);if(inp.value.trim())go()};
+function count(){$('trCount').textContent=inp.value.length+' / 2000'}
+let typing;inp.addEventListener('input',()=>{count();clearTimeout(typing);typing=setTimeout(()=>{const t=inp.value.trim();
+  if(t){if(from.value==='auto')det.textContent='Detected: '+(NAMES[detect(t)]||'');showHub(t)}else $('trHub').hidden=true},350)});
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();go()}});
+$('trGo').onclick=go;
+$('trChips').addEventListener('click',e=>{const c=e.target.closest('.tr-chip');if(!c)return;inp.value=c.dataset.t;count();from.value='auto';
+  const s=detect(c.dataset.t);if(s===to.value)to.value=s==='en'?'fr':'en';go();});
+// ----- offline word finder
+let filt='all';const list=$('trList'),find=$('trFind');
+function renderList(){const q=norm(find.value);let m=IDX.filter(x=>(filt==='all'||x.d[0]===filt)&&(!q||x.w.includes(q)||x.e.includes(q)||(x.d[3]&&norm(x.d[3]).includes(q))));
+  const total=m.length;m=m.slice(0,150);list.innerHTML=m.map(x=>row(x.d)).join('')||'<p class="small">No match in the hub — try the translator above for any word.</p>';
+  $('trMore').textContent=total>150?`Showing 150 of ${total} — type to narrow it down.`:`${total} word${total===1?'':'s'}`;}
+find.addEventListener('input',renderList);
+sec.querySelectorAll('.tr-f').forEach(b=>b.onclick=()=>{filt=b.dataset.l;sec.querySelectorAll('.tr-f').forEach(x=>x.classList.toggle('active',x===b));renderList();});
+list.addEventListener('click',e=>{const w=e.target.closest('.tr-w');if(w)speak(w.textContent,w.lang)});
+renderList();renderHist();count();
 })();</script>
 <script id="dict-plus">
 /* ===== Dictionary upgrade: new glossary words, search panel, saved words ===== */
