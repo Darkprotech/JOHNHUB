@@ -4929,5 +4929,17 @@ document.addEventListener('dblclick',e=>{if(e.target.closest('input,textarea,but
 })();
 
 </script>
+<script id="sup-fix">(function(){
+const MAP={'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'−','ˣ':'x','⁺':'+','ⁿ':'n'};
+const RX=/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻ˣ⁺ⁿ]+/g,TEST=/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻ˣ⁺ⁿ]/;
+const SKIP={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,SUP:1,TEMPLATE:1,OPTION:1,SELECT:1,SVG:1,TEXT:1,TSPAN:1};
+function fixNode(t){const s=t.nodeValue;if(!TEST.test(s))return;const p=t.parentNode;if(!p||SKIP[p.nodeName.toUpperCase()]||p.closest&&p.closest('svg,textarea,[contenteditable]'))return;
+ const f=document.createDocumentFragment();let last=0;s.replace(RX,(m,i)=>{if(i>last)f.appendChild(document.createTextNode(s.slice(last,i)));const e=document.createElement('sup');e.className='supx';e.textContent=[...m].map(c=>MAP[c]).join('');f.appendChild(e);last=i+m.length});
+ if(last<s.length)f.appendChild(document.createTextNode(s.slice(last)));p.replaceChild(f,t)}
+function walk(root){if(!root)return;if(root.nodeType===3){fixNode(root);return}if(root.nodeType!==1||SKIP[root.nodeName.toUpperCase()])return;
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>TEST.test(n.nodeValue)?1:2});const list=[];while(w.nextNode())list.push(w.currentNode);list.forEach(fixNode)}
+function start(){walk(document.body);new MutationObserver(ms=>ms.forEach(m=>{m.addedNodes.forEach(walk);if(m.type==='characterData')fixNode(m.target)})).observe(document.body,{childList:true,subtree:true,characterData:true})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();})();</script>
+<style id="sup-css">sup.supx{font-size:.72em;line-height:0;vertical-align:.55em;font-family:inherit;font-weight:inherit}</style>
 </body>
 </html>
